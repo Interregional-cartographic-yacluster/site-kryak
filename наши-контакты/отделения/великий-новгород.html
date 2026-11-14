@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МХ «КРЯК» — Новгородское региональное отделение</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Raleway:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #8f7ed6;
+            --primary-dark: #7260c2;
+            --primary-darker: #5a4a9e;
+            --primary-light: #a897e8;
+            --secondary: #ff6b6b;
+            --accent: #4ecdc4;
+            --light: #ffffff;
+            --text: #333333;
+            --background: #8f7ed6;
+            --shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            --shadow-strong: 0 12px 25px rgba(0, 0, 0, 0.15);
+            --shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.18);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Raleway', sans-serif;
+            background: var(--background);
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-strong);
+            margin-bottom: 40px;
+        }
+        
+        .main-title {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            object-fit: cover;
+        }
+        
+        .title-text h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .title-text p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+        
+        /* Contacts */
+        .contacts-section {
+            margin-top: 30px;
+        }
+        
+        .contacts-title {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+        }
+        
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .contact-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        .contact-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+        }
+        
+        /* Content Sections */
+        .content-section {
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow-strong);
+            padding: 40px;
+            margin-bottom: 40px;
+            color: var(--text);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            bottom: -10px;
+            left: 0;
+            border-radius: 2px;
+        }
+        
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .team-member {
+            background: var(--background);
+            color: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .member-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent);
+            margin: 0 auto 20px;
+        }
+        
+        .member-name {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+        
+        .member-role {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        /* Subdivision Section - обновленный с центрированием */
+        .subdivision {
+            background: linear-gradient(135deg, var(--primary-darker) 0%, var(--primary-dark) 100%);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+        
+        .subdivision-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .subdivision-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            object-fit: cover;
+        }
+        
+        .subdivision-title {
+            font-size: 1.8rem;
+            color: white;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .subdivision-description {
+            color: white;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        /* Online Activity Section */
+        .online-section {
+            background: var(--background);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+        
+        .online-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .online-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .online-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+            color: white;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .title-text h1 {
+                font-size: 2rem;
+            }
+            
+            .title-text p {
+                font-size: 1.1rem;
+            }
+            
+            .main-title {
+                text-align: center;
+            }
+            
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .contact-link {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+            }
+            
+            .content-section {
+                padding: 25px;
+            }
+            
+            .section-title h2 {
+                font-size: 1.6rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .member-photo {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .subdivision {
+                padding: 25px;
+            }
+            
+            .online-section {
+                padding: 30px 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 25px 15px;
+            }
+            
+            .title-text h1 {
+                font-size: 1.6rem;
+            }
+            
+            .content-section {
+                padding: 20px;
+            }
+            
+            .subdivision {
+                padding: 20px;
+            }
+            
+            .subdivision-title {
+                font-size: 1.5rem;
+            }
+        }
+    
+
+        /* Общая навигация сайта */
+        .site-nav {
+            position: sticky;
+            top: 12px;
+            z-index: 1000;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto 24px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            color: #333;
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(255, 255, 255, 0.65);
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            backdrop-filter: blur(14px);
+        }
+        .site-nav__brand {
+            color: #7260c2;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .site-nav__links {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 4px;
+            list-style: none;
+        }
+        .site-nav__links a,
+        .site-nav summary {
+            display: block;
+            padding: 9px 13px;
+            border-radius: 10px;
+            color: #4b4659;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+        .site-nav__links a:hover,
+        .site-nav summary:hover,
+        .site-nav details[open] > summary {
+            color: #7260c2;
+            background: #f1eefc;
+        }
+        .site-nav details { position: relative; }
+        .site-nav summary { list-style: none; }
+        .site-nav summary::-webkit-details-marker { display: none; }
+        .site-nav summary::after { content: ' ▾'; }
+        .site-nav details[open] > summary::after { content: ' ▴'; }
+        .site-nav__submenu {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            width: min(330px, calc(100vw - 40px));
+            padding: 8px;
+            list-style: none;
+            background: #fff;
+            border: 1px solid #e8e3f5;
+            border-radius: 14px;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        .site-nav__submenu li + li { margin-top: 3px; }
+        .site-nav__submenu a { white-space: normal; }
+        .site-nav__submenu .site-nav__submenu {
+            position: static;
+            width: 100%;
+            margin: 4px 0 0;
+            padding: 5px 0 5px 10px;
+            border: 0;
+            border-left: 2px solid #e8e3f5;
+            border-radius: 0;
+            box-shadow: none;
+            background: #faf9fe;
+        }
+        .site-nav__submenu summary { white-space: normal; }
+        @media (max-width: 720px) {
+            .site-nav { align-items: flex-start; flex-direction: column; gap: 5px; }
+            .site-nav__links { width: 100%; align-items: stretch; flex-direction: column; }
+            .site-nav__links > li > a, .site-nav summary { padding: 8px 10px; }
+            .site-nav__submenu { position: static; width: 100%; margin-top: 4px; box-shadow: none; }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<nav class="site-nav" aria-label="Основная навигация">
+    <a class="site-nav__brand" href="/главная">КРЯК</a>
+    <ul class="site-nav__links">
+        <li><a href="/главная">Главная</a></li>
+        <li><a href="/карта-деятельности">Карта деятельности</a></li>
+        <li><a href="/история">История</a></li>
+        <li><a href="/наш-архив">Архив</a></li>
+        <li>
+            <details>
+                <summary>УрбанХаб</summary>
+                <ul class="site-nav__submenu">
+                    <li><a href="/урбанхаб/вырубки-курск">Карта вырубок Курской области</a></li>
+                    <li><a href="/урбанхаб/незаконные-стоянки-курск">Карта стихийных парковок Курска</a></li>
+                    <li><a href="/урбанхаб/окн-курск">Карта ОКН Курской области</a></li>
+                </ul>
+            </details>
+        </li>
+
+        <li>
+            <details>
+                <summary>Яндекс Карты</summary>
+                <ul class="site-nav__submenu">
+                    <li><a href="/яндекс-карты/что-такое-няк">Что такое НЯК?</a></li>
+                    <li><a href="/яндекс-карты/3d-карты">3D-карты</a></li>
+                </ul>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary>Наши друзья</summary>
+                <ul class="site-nav__submenu">
+                    <li>
+                        <details>
+                            <summary>Ведомства</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-друзья/ведомства/минстрой-россии">Минстрой России</a></li>
+                                <li><a href="/наши-друзья/ведомства/росмолодёжь">Росмолодёжь</a></li>
+                                <li><a href="/наши-друзья/ведомства/комитет-молодёжной-политики-курской-области">Комитет молодёжной политики Курской области</a></li>
+                                <li><a href="/наши-друзья/ведомства/администрация-курска">Администрация Курска</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Проекты</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-друзья/проекты/народная-карта">Народная карта Яндекса</a></li>
+                                <li><a href="/наши-друзья/проекты/добро-рф">Добро.рф и Добро.Медиа</a></li>
+                                <li><a href="/наши-друзья/проекты/медиазавры">«МЕДИАЗАВРЫ, вперёд!»</a></li>
+                                <li><a href="/наши-друзья/проекты/содружество-урбанистов">Содружество урбанистов</a></li>
+                                <li><a href="/наши-друзья/проекты/урбан-админы">Урбан-админы</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Движения</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-друзья/движения/движение-первых">Движение Первых</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Дополнительное образование</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-друзья/доп-образование/медиашкола-цдт">Медиашкола «ДЮйМ» ЦДТ</a></li>
+                                <li><a href="/наши-друзья/доп-образование/курская-люж">ЛЮЖ | Курск</a></li>
+                                <li><a href="/наши-друзья/доп-образование/префикс-10">Медиафорум «Префикс +10»</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Университеты</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-друзья/университеты/кгу">Курский государственный университет</a></li>
+                                <li><a href="/наши-друзья/университеты/юзгу">Юго-Западный государственный университет</a></li>
+                                <li><a href="/наши-друзья/университеты/сахгу">Сахалинский государственный университет</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Сторонники</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-друзья/сторонники/хаяла-бахшиева">Хаяла Бахшиева</a></li>
+                                <li><a href="/наши-друзья/сторонники/андрей-башкирев">Андрей Башкирев</a></li>
+                                <li><a href="/наши-друзья/сторонники/дэниз-байрам">Дэниз Байрам</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                </ul>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary>Наши контакты</summary>
+                <ul class="site-nav__submenu">
+                    <li><a href="/наши-контакты/президент-движения">Президент движения</a></li>
+                    <li>
+                        <details>
+                            <summary>Советы</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-контакты/советы/совет-движения">Совет Движения</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Отделения</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-контакты/отделения/курск">Курск</a></li>
+                                <li><a href="/наши-контакты/отделения/киров">Киров</a></li>
+                                <li><a href="/наши-контакты/отделения/великий-новгород">Великий Новгород</a></li>
+                                <li><a href="/наши-контакты/отделения/нижний-новгород">Нижний Новгород</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                </ul>
+            </details>
+        </li>
+    </ul>
+</nav>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="main-title">
+                <img src="https://i.ibb.co/r2wSpmyy/new-logo-kryak.png" alt="МХ КРЯК" class="logo">
+                <div class="title-text">
+                    <h1>МХ «КРЯК»</h1>
+                    <p>Новгородское региональное отделение</p>
+                </div>
+            </div>
+            
+            <div class="contacts-section">
+                <h3 class="contacts-title">Контакты отделения</h3>
+                <div class="contact-links">
+                    <a href="https://max.ru/channel_yacluster_kryak" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <img src="https://raw.githubusercontent.com/Kursk-Editors-of-Yandex-Maps/Image/refs/heads/main/Max-logo-2025.png" alt="Max" class="contact-icon">
+                        <span>Макс</span>
+                    </a>
+                    <a href="https://vk.ru/yacluster_kryak" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <img src="https://i.ibb.co/CsPdHcFG/Icon-Color.png" alt="VK" class="contact-icon">
+                        <span>ВКонтакте</span>
+                    </a>
+                    <a href="https://dobro.ru/organizations/10164939/about" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <img src="https://i.ibb.co/tpX8h1cR/6v-QBl8-L6mgk.png" alt="Добро.рф" class="contact-icon">
+                        <span>Добро.рф</span>
+                    </a>
+                    <a href="https://rutube.ru/channel/34568143/" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <img src="https://i.ibb.co/JRz5WL4S/Icon-RUTUBE-dark-color-circle.png" alt="Rutube" class="contact-icon">
+                        <span>Rutube</span>
+                    </a>
+                    <a href="mailto:kryak_v.novgorod@mail.ru" class="contact-link">
+                        <img src="https://i.ibb.co/sdqDJ0tm/1200x630wa.png" alt="Email" class="contact-icon">
+                        <span>kryak_v.novgorod@mail.ru</span>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Team Section -->
+        <section class="content-section fade-in">
+            <div class="section-title">
+                <h2>Руководство отделения</h2>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="https://i.ibb.co/RTknmXTj/p1738491143084.jpg" alt="Егор Разинский" class="member-photo">
+                    <div class="member-name">Егор Разинский</div>
+                    <div class="member-role">Руководитель отделения</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partnership Section -->
+        <section class="content-section fade-in">
+            <div class="section-title">
+                <h2>Партнёрство</h2>
+            </div>
+            
+            <div class="subdivision">
+                <div class="subdivision-header">
+                    <img src="https://i.ibb.co/FbTP819X/Slide-16-9-43-2.png" alt="Astrolent Studio" class="subdivision-logo">
+                    <h3 class="subdivision-title">Astrolent Studio</h3>
+                    
+                    <div class="contact-links">
+                        <a href="https://vk.ru/astrolent.stud" target="_blank" rel="noopener noreferrer" class="contact-link">
+                            <img src="https://i.ibb.co/CsPdHcFG/Icon-Color.png" alt="VK" class="contact-icon">
+                            <span>ВКонтакте</span>
+                        </a>
+                        <!-- Telegram ссылка удалена -->
+                    </div>
+                </div>
+                
+                <div class="subdivision-description">
+                    <p>Новгородское региональное отделение МХ «КРЯК» работает в партнёрстве с Astrolent Studio, используя её инфраструктуру и ресурсы для реализации проектов.</p>
+                    <p style="margin-top: 15px;">Это сотрудничество позволяет нам использовать передовые технологии и методики в нашей деятельности, обеспечивая высокое качество работы и инновационный подход к решению задач.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Online Activity Section -->
+        <section class="content-section fade-in">
+            <div class="section-title">
+                <h2>Формат работы отделения</h2>
+            </div>
+            
+            <div class="online-section">
+                <div class="online-icon">
+                    <i class="fas fa-laptop-house"></i>
+                </div>
+                <h3 class="online-title">Онлайн-формат деятельности</h3>
+                <div class="online-description">
+                    <p>Новгородское региональное отделение работает в дистанционном формате, что позволяет эффективно взаимодействовать с участниками из разных районов без географических ограничений.</p>
+                    <p style="margin-top: 15px;">Этот подход соответствует современным тенденциям цифровизации и обеспечивает максимальную доступность участия в проектах КРЯК для молодёжи Новгородской области.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Анимация появления элементов при скролле
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            function checkFade() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementBottom = element.getBoundingClientRect().bottom;
+                    const isVisible = (elementTop < window.innerHeight - 100) && (elementBottom > 0);
+                    
+                    if (isVisible) {
+                        element.classList.add('visible');
+                    }
+                });
+            }
+            
+            // Проверяем при загрузке и при скролле
+            checkFade();
+            window.addEventListener('scroll', checkFade);
+        });
+    </script>
+</body>
+</html>
