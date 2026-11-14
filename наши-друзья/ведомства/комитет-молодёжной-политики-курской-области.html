@@ -564,14 +564,76 @@
             .site-footer__copyright { font-size: 0.92rem; }
             .site-footer__legal { font-size: 0.76rem; }
         }
-    </style>
+
+        /* Компактное мобильное меню */
+        .site-nav__toggle {
+            display: none;
+            width: 44px;
+            height: 44px;
+            padding: 9px;
+            flex: 0 0 auto;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 5px;
+            color: #333;
+            background: transparent;
+            border: 0;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .site-nav__toggle:hover,
+        .site-nav__toggle:focus-visible { background: #f1eefc; }
+        .site-nav__toggle:focus-visible { outline: 3px solid rgba(114, 96, 194, 0.35); }
+        .site-nav__toggle span {
+            width: 25px;
+            height: 3px;
+            display: block;
+            background: currentColor;
+            border-radius: 3px;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+        @media (max-width: 720px) {
+            .site-nav {
+                align-items: center;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 4px 10px;
+                padding: 7px 12px;
+            }
+            .site-nav__toggle { display: flex; margin-left: auto; }
+            .site-nav__links {
+                display: none;
+                flex: 0 0 100%;
+                width: 100%;
+                align-items: stretch;
+                flex-direction: column;
+                padding-top: 4px;
+                border-top: 1px solid #e8e3f5;
+            }
+            .site-nav.is-open {
+                max-height: calc(100vh - 24px);
+                overflow-y: auto;
+            }
+            .site-nav.is-open .site-nav__links { display: flex; }
+            .site-nav.is-open .site-nav__toggle span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .site-nav.is-open .site-nav__toggle span:nth-child(2) { opacity: 0; }
+            .site-nav.is-open .site-nav__toggle span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+        }
+
+</style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
 <nav class="site-nav" aria-label="Основная навигация">
     <a class="site-nav__brand" href="/главная">КРЯК</a>
-    <ul class="site-nav__links">
+    <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="site-nav-menu" aria-label="Открыть меню">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <ul class="site-nav__links" id="site-nav-menu">
         <li><a href="/главная">Главная</a></li>
         <li><a href="/карта-деятельности">Карта деятельности</a></li>
         <li>
@@ -791,6 +853,33 @@
     <p class="site-footer__copyright">© МХ «КРЯК», 2022–2026</p>
     <p class="site-footer__legal">Материалы принадлежат участникам молодёжного общественного движения «Межрегиональный картографический Я-кластер» как авторам, на основании п. 4.5 Устава движения. Использование материалов, размещённых на этом сайте, возможно только при обязательном указании автора и ссылки на источник.</p>
 </footer>
+
+<script>
+(function () {
+    const nav = document.querySelector('.site-nav');
+    const toggle = nav && nav.querySelector('.site-nav__toggle');
+    if (!nav || !toggle) return;
+
+    const setOpen = (open) => {
+        nav.classList.toggle('is-open', open);
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+    };
+
+    toggle.addEventListener('click', () => setOpen(!nav.classList.contains('is-open')));
+    nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            setOpen(false);
+            toggle.focus();
+        }
+    });
+    window.matchMedia('(min-width: 721px)').addEventListener('change', (event) => {
+        if (event.matches) setOpen(false);
+    });
+})();
+</script>
+
 </body>
 </html>
 
