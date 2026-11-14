@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Яндекс о новом поколении Яндекс Карт</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #8f7ed6;
+            font-family: 'Montserrat', sans-serif;
+            color: white;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+        
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .video-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        
+        .video-container iframe {
+            width: 100%;
+            height: 250px;
+            display: block;
+            border: none;
+        }
+        
+        .video-info {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .video-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .video-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+        
+        .copyright {
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        /* Анимация появления */
+        .video-card {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        .video-card:nth-child(1) { animation-delay: 0.1s; }
+        .video-card:nth-child(2) { animation-delay: 0.2s; }
+        .video-card:nth-child(3) { animation-delay: 0.3s; }
+        .video-card:nth-child(4) { animation-delay: 0.4s; }
+        .video-card:nth-child(5) { animation-delay: 0.5s; }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .videos-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .video-card {
+                padding: 20px;
+            }
+            
+            .video-container iframe {
+                height: 200px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 1.7rem;
+            }
+            
+            .video-container iframe {
+                height: 180px;
+            }
+        }
+    
+
+        /* Общая навигация сайта */
+        .site-nav {
+            position: sticky;
+            top: 12px;
+            z-index: 1000;
+            max-width: 1200px;
+            margin: 0 auto 24px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            color: #333;
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(255, 255, 255, 0.65);
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            backdrop-filter: blur(14px);
+        }
+        .site-nav__brand {
+            color: #7260c2;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .site-nav__links {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 4px;
+            list-style: none;
+        }
+        .site-nav__links a,
+        .site-nav summary {
+            display: block;
+            padding: 9px 13px;
+            border-radius: 10px;
+            color: #4b4659;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+        .site-nav__links a:hover,
+        .site-nav summary:hover,
+        .site-nav details[open] > summary {
+            color: #7260c2;
+            background: #f1eefc;
+        }
+        .site-nav details { position: relative; }
+        .site-nav summary { list-style: none; }
+        .site-nav summary::-webkit-details-marker { display: none; }
+        .site-nav summary::after { content: ' ▾'; }
+        .site-nav details[open] summary::after { content: ' ▴'; }
+        .site-nav__submenu {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            width: min(330px, calc(100vw - 40px));
+            padding: 8px;
+            list-style: none;
+            background: #fff;
+            border: 1px solid #e8e3f5;
+            border-radius: 14px;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        .site-nav__submenu li + li { margin-top: 3px; }
+        .site-nav__submenu a { white-space: normal; }
+        @media (max-width: 720px) {
+            .site-nav { align-items: flex-start; flex-direction: column; gap: 5px; }
+            .site-nav__links { width: 100%; align-items: stretch; flex-direction: column; }
+            .site-nav__links > li > a, .site-nav summary { padding: 8px 10px; }
+            .site-nav__submenu { position: static; width: 100%; margin-top: 4px; box-shadow: none; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="site-nav" aria-label="Основная навигация">
+    <a class="site-nav__brand" href="/главная">КРЯК</a>
+    <ul class="site-nav__links">
+        <li><a href="/главная">Главная</a></li>
+        <li><a href="/карта-деятельности">Карта деятельности</a></li>
+        <li>
+            <details>
+                <summary>УрбанХаб</summary>
+                <ul class="site-nav__submenu">
+                    <li><a href="/урбанхаб/вырубки-курск">Карта вырубок Курской области</a></li>
+                    <li><a href="/урбанхаб/незаконные-стоянки-курск">Карта стихийных парковок Курска</a></li>
+                    <li><a href="/урбанхаб/окн-курск">Карта ОКН Курской области</a></li>
+                </ul>
+            </details>
+        </li>
+
+        <li>
+            <details>
+                <summary>Яндекс Карты</summary>
+                <ul class="site-nav__submenu">
+                    <li><a href="/яндекс-карты/что-такое-няк">Что такое НЯК</a></li>
+                    <li><a href="/яндекс-карты/3d-карты">3D-карты</a></li>
+                </ul>
+            </details>
+        </li>
+    </ul>
+</nav>
+
+    <div class="container">
+        <header>
+            <h1>Яндекс о новом поколении Яндекс Карт</h1>
+            <p class="subtitle">Смотрите подборку видео о современных технологиях картографии и новых возможностях платформы</p>
+        </header>
+        
+        <div class="videos-grid">
+            <div class="video-card">
+                <div class="video-container">
+                    <iframe title="Видео 1" src="https://vk.ru/video_ext.php?oid=-11283947&id=456240416&hd=2" 
+                        allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" 
+                        frameborder="0" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Новые технологии картографии</div>
+                    <div class="video-description">Обзор современных решений в области цифровых карт</div>
+                </div>
+            </div>
+            
+            <!-- Пятое видео стало вторым -->
+            <div class="video-card">
+                <div class="video-container">
+                    <iframe title="Видео 2" src="https://vk.ru/video_ext.php?oid=-11283947&id=456240626&hd=2" 
+                        allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" 
+                        frameborder="0" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Карты как источник идей</div>
+                    <div class="video-description">Как карты помогают найти, куда пойти и что посмотреть</div>
+                </div>
+            </div>
+            
+            <div class="video-card">
+                <div class="video-container">
+                    <iframe title="Видео 3" src="https://vk.ru/video_ext.php?oid=-161665691&id=456240871&hd=2" 
+                        allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" 
+                        frameborder="0" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Будущее картографии</div>
+                    <div class="video-description">Перспективы развития картографических сервисов</div>
+                </div>
+            </div>
+            
+            <!-- Четвёртое видео с правильным названием -->
+            <div class="video-card">
+                <div class="video-container">
+                    <iframe title="Видео 4" src="https://vk.ru/video_ext.php?oid=-11283947&id=456240669&hd=2" 
+                        allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" 
+                        frameborder="0" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Карта с вашими интересами</div>
+                    <div class="video-description">Персонализированные рекомендации на основе ваших предпочтений</div>
+                </div>
+            </div>
+            
+            <!-- Второе видео стало пятым -->
+            <div class="video-card">
+                <div class="video-container">
+                    <iframe title="Видео 5" src="https://vk.ru/video_ext.php?oid=-11283947&id=456240898&hd=2" 
+                        allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" 
+                        frameborder="0" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Зачем картам 3D-объекты?</div>
+                    <div class="video-description">Значение трёхмерной визуализации для современной картографии</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            © ООО «ЯНДЕКС»
+        </div>
+    </div>
+</body>
+</html>
