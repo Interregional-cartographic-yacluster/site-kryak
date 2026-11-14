@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МХ «КРЯК» — Хаяла Бахшиева</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Raleway:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #8f7ed6;
+            --primary-dark: #7260c2;
+            --primary-light: #a897e8;
+            --secondary: #ff6b6b;
+            --accent: #4ecdc4;
+            --light: #ffffff;
+            --text: #333333;
+            --background: #8f7ed6;
+            --shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            --shadow-strong: 0 12px 25px rgba(0, 0, 0, 0.15);
+            --shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.18);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Raleway', sans-serif;
+            background: var(--background);
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-strong);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            transition: var(--transition);
+            object-fit: cover;
+        }
+        
+        .logo:hover {
+            transform: scale(1.1);
+            border-color: var(--secondary);
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+        
+        .header-tagline {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+        
+        /* Contacts in Header */
+        .header-contacts {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .contact-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        /* Content Sections */
+        .content-section {
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow-strong);
+            padding: 40px;
+            margin-bottom: 40px;
+            color: var(--text);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            bottom: -10px;
+            left: 0;
+            border-radius: 2px;
+        }
+        
+        .section-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .section-content p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        /* History Section */
+        .history-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .history-card {
+            background: var(--background);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .history-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .history-card h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .history-card h3 i {
+            color: var(--accent);
+        }
+        
+        /* Organizations Section */
+        .org-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .org-card {
+            background: var(--background);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+        
+        .org-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .org-logo {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            background: white;
+            padding: 10px;
+        }
+        
+        .org-card h3 {
+            color: white;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .org-period {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        /* Volunteer Section */
+        .volunteer-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-strong);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .volunteer-section h2 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+        }
+        
+        .volunteer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .volunteer-content p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .volunteer-image {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 15px;
+            margin: 30px auto;
+            display: block;
+            box-shadow: var(--shadow);
+        }
+        
+        /* Quote Section */
+        .quote-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 50px 40px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-strong);
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .quote-section::before {
+            content: '"';
+            font-size: 8rem;
+            color: rgba(255, 255, 255, 0.2);
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            font-family: Georgia, serif;
+        }
+        
+        .quote-section p {
+            font-size: 1.4rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .quote-author {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        /* Collaboration Section */
+        .collaboration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .collaboration-card {
+            background: var(--background);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .collaboration-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .collaboration-card h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .collaboration-card h3 i {
+            color: var(--accent);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .logos {
+                gap: 20px;
+            }
+            
+            .logo {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .content-section {
+                padding: 25px;
+            }
+            
+            .section-title h2 {
+                font-size: 1.6rem;
+            }
+            
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .contact-link {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+            }
+            
+            .quote-section {
+                padding: 40px 30px;
+            }
+            
+            .quote-section::before {
+                font-size: 6rem;
+                top: 10px;
+                left: 30px;
+            }
+            
+            .quote-section p {
+                font-size: 1.2rem;
+            }
+            
+            .org-grid, .history-grid, .collaboration-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .org-logo {
+                width: 80px;
+                height: 80px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 25px 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.6rem;
+            }
+            
+            .content-section {
+                padding: 20px;
+            }
+            
+            .quote-section {
+                padding: 30px 20px;
+            }
+            
+            .quote-section::before {
+                font-size: 5rem;
+                top: 5px;
+                left: 20px;
+            }
+            
+            .quote-section p {
+                font-size: 1.1rem;
+            }
+            
+            .volunteer-section {
+                padding: 30px 20px;
+            }
+            
+            .org-logo {
+                width: 70px;
+                height: 70px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .header h1 {
+                font-size: 1.4rem;
+            }
+            
+            .header p {
+                font-size: 0.9rem;
+            }
+            
+            .logos {
+                gap: 15px;
+            }
+            
+            .logo {
+                width: 90px;
+                height: 90px;
+            }
+            
+            .content-section {
+                padding: 15px;
+                margin-bottom: 30px;
+            }
+            
+            .section-title h2 {
+                font-size: 1.4rem;
+            }
+            
+            .section-content p {
+                font-size: 1rem;
+            }
+            
+            .history-card, .org-card, .collaboration-card {
+                padding: 20px;
+            }
+            
+            .history-card h3, .org-card h3, .collaboration-card h3 {
+                font-size: 1.1rem;
+            }
+            
+            .org-logo {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .header {
+                padding: 20px 15px;
+            }
+            
+            .header h1 {
+                font-size: 1.3rem;
+            }
+            
+            .content-section {
+                padding: 15px 10px;
+            }
+            
+            .section-title h2 {
+                font-size: 1.3rem;
+            }
+            
+            .contact-link {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .quote-section {
+                padding: 25px 15px;
+            }
+            
+            .quote-section::before {
+                font-size: 4rem;
+                top: 0;
+                left: 15px;
+            }
+            
+            .org-logo {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 280px) {
+            .header h1 {
+                font-size: 1.2rem;
+            }
+            
+            .logo {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .section-title h2 {
+                font-size: 1.2rem;
+            }
+            
+            .contact-link {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+            }
+            
+            .org-logo {
+                width: 45px;
+                height: 45px;
+            }
+        }
+    
+
+        /* Общая навигация сайта */
+        .site-nav {
+            position: sticky;
+            top: 12px;
+            z-index: 1000;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto 24px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            color: #333;
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(255, 255, 255, 0.65);
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            backdrop-filter: blur(14px);
+        }
+        .site-nav__brand {
+            color: #7260c2;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .site-nav__links {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 4px;
+            list-style: none;
+        }
+        .site-nav__links a,
+        .site-nav summary {
+            display: block;
+            padding: 9px 13px;
+            border-radius: 10px;
+            color: #4b4659;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+        .site-nav__links a:hover,
+        .site-nav summary:hover,
+        .site-nav details[open] > summary {
+            color: #7260c2;
+            background: #f1eefc;
+        }
+        .site-nav details { position: relative; }
+        .site-nav summary { list-style: none; }
+        .site-nav summary::-webkit-details-marker { display: none; }
+        .site-nav summary::after { content: ' ▾'; }
+        .site-nav details[open] > summary::after { content: ' ▴'; }
+        .site-nav__submenu {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            width: min(330px, calc(100vw - 40px));
+            padding: 8px;
+            list-style: none;
+            background: #fff;
+            border: 1px solid #e8e3f5;
+            border-radius: 14px;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        .site-nav__submenu li + li { margin-top: 3px; }
+        .site-nav__submenu a { white-space: normal; }
+        .site-nav__submenu .site-nav__submenu {
+            position: static;
+            width: 100%;
+            margin: 4px 0 0;
+            padding: 5px 0 5px 10px;
+            border: 0;
+            border-left: 2px solid #e8e3f5;
+            border-radius: 0;
+            box-shadow: none;
+            background: #faf9fe;
+        }
+        .site-nav__submenu summary { white-space: normal; }
+        @media (max-width: 720px) {
+            .site-nav { align-items: flex-start; flex-direction: column; gap: 5px; }
+            .site-nav__links { width: 100%; align-items: stretch; flex-direction: column; }
+            .site-nav__links > li > a, .site-nav summary { padding: 8px 10px; }
+            .site-nav__submenu { position: static; width: 100%; margin-top: 4px; box-shadow: none; }
+        }
+
+            /* Общий подвал сайта */
+        .site-footer {
+            width: 100%;
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding: 24px 28px;
+            color: #4b4659;
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(255, 255, 255, 0.65);
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            font-family: 'Montserrat', sans-serif;
+            text-align: left;
+        }
+        .site-footer__copyright {
+            margin: 0 0 10px;
+            color: #7260c2;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+        .site-footer__legal {
+            margin: 0;
+            font-size: 0.82rem;
+            line-height: 1.65;
+        }
+        @media (max-width: 576px) {
+            .site-footer {
+                margin-top: 28px;
+                padding: 20px 18px;
+            }
+            .site-footer__copyright { font-size: 0.92rem; }
+            .site-footer__legal { font-size: 0.76rem; }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<nav class="site-nav" aria-label="Основная навигация">
+    <a class="site-nav__brand" href="/главная">КРЯК</a>
+    <ul class="site-nav__links">
+        <li><a href="/главная">Главная</a></li>
+        <li><a href="/карта-деятельности">Карта деятельности</a></li>
+        <li>
+            <details>
+                <summary>УрбанХаб</summary>
+                <ul class="site-nav__submenu">
+                    <li><a href="/урбанхаб/вырубки-курск">Карта вырубок Курской области</a></li>
+                    <li><a href="/урбанхаб/незаконные-стоянки-курск">Карта стихийных парковок Курска</a></li>
+                    <li><a href="/урбанхаб/окн-курск">Карта ОКН Курской области</a></li>
+                </ul>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary>Яндекс Карты</summary>
+                <ul class="site-nav__submenu">
+                    <li><a href="/яндекс-карты/что-такое-няк">Что такое НЯК?</a></li>
+                    <li><a href="/яндекс-карты/3d-карты">3D-карты</a></li>
+                </ul>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary>Наши контакты</summary>
+                <ul class="site-nav__submenu">
+                    <li><a href="/наши-контакты/президент-движения">Президент движения</a></li>
+                    <li>
+                        <details>
+                            <summary>Советы</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-контакты/советы/совет-движения">Совет Движения</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Отделения</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-контакты/отделения/курск">Курск</a></li>
+                                <li><a href="/наши-контакты/отделения/киров">Киров</a></li>
+                                <li><a href="/наши-контакты/отделения/великий-новгород">Великий Новгород</a></li>
+                                <li><a href="/наши-контакты/отделения/нижний-новгород">Нижний Новгород</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                </ul>
+            </details>
+        </li>
+        <li><a href="/история">История</a></li>
+        <li><a href="/наш-архив">Наш архив</a></li>
+    </ul>
+</nav>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logos">
+                <img src="https://i.ibb.co/Mysyxdpk/nex-Ufo-Sv-X0-m0-C2ov-Gh-lh-Al-Fl-Pl6qoe-KLFSQ7-MHi9-Z3-VUfu-En-Okzk-Nv-RLfvt-PRo2r2t-Rw1dj-Kn3-RNna-FVQl.png" 
+                     alt="Хаяла Бахшиева" class="logo">
+            </div>
+            <h1>Хаяла Бахшиева</h1>
+            <p>Волонтёр и активист</p>
+            <div class="header-tagline">Волонтёрство — это не работа, это состояние души</div>
+            
+            <!-- Контакты в шапке -->
+            <div class="header-contacts">
+                <div class="contact-links">
+                    <a href="https://vk.com/liza_lemon56" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <i class="fab fa-vk"></i>
+                        <span>ВКонтакте</span>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- About Section -->
+        <section class="content-section fade-in">
+            <div class="section-title">
+                <h2>О Хаяле Бахшиевой</h2>
+            </div>
+            <div class="section-content">
+                <p>Хаяла Бахшиева — активный общественный деятель, волонтёр и участница молодёжных организаций. Свою деятельность она начала с волонтёрства в Российском Красном Кресте, где проявила себя как ответственный и целеустремлённый человек.</p>
+                
+                <p>Сегодня Хаяла продолжает свою активную общественную работу, участвует в реализации социальных и молодёжных проектов, направленных на развитие регионов и поддержку нуждающихся.</p>
+                
+                <div class="org-grid">
+                    <div class="org-card">
+                        <img src="https://i.ibb.co/PLhZyCW/image.jpg" 
+                             alt="Российский Красный Крест" class="org-logo">
+                        <div class="org-period">2024</div>
+                        <h3>Российский Красный Крест</h3>
+                        <p>Волонтёр в пункте выдачи гуманитарной помощи</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Анимация появления элементов при скролле
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            function checkFade() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementBottom = element.getBoundingClientRect().bottom;
+                    const isVisible = (elementTop < window.innerHeight - 100) && (elementBottom > 0);
+                    
+                    if (isVisible) {
+                        element.classList.add('visible');
+                    }
+                });
+            }
+            
+            // Проверяем при загрузке и при скролле
+            checkFade();
+            window.addEventListener('scroll', checkFade);
+        });
+    </script>
+<footer class="site-footer">
+    <p class="site-footer__copyright">© МХ «КРЯК», 2022–2026</p>
+    <p class="site-footer__legal">Материалы принадлежат участникам молодёжного общественного движения «Межрегиональный картографический Я-кластер» как авторам, на основании п. 4.5 Устава движения. Использование материалов, размещённых на этом сайте, возможно только при обязательном указании автора и ссылки на источник.</p>
+</footer>
+</body>
+</html>
+
