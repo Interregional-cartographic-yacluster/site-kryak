@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Молодёжный холдинг «Картографический региональный Я-кластер»</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* Все ваши стили остаются без изменений */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Raleway:wght@300;400;500;600;700&display=swap');
+:root {
+  --primary: #8f7ed6;
+  --primary-dark: #7260c2;
+  --primary-light: #a897e8;
+  --secondary: #ff6b6b;
+  --accent: #4ecdc4;
+  --light: #ffffff;
+  --text: #333333;
+  --shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  --shadow-strong: 0 12px 25px rgba(0, 0, 0, 0.15);
+  --shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.18);
+  --transition: all 0.3s ease;
+  --transition-slow: all 0.6s ease;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Raleway', sans-serif;
+  background: var(--primary);
+  color: white;
+  line-height: 1.6;
+  overflow-x: hidden;
+  padding: 20px;
+  min-height: 100vh;
+}
+h1, h2, h3, h4, h5 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Hero Section */
+.hero {
+  padding: 100px 0 80px;
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  margin-bottom: 40px;
+  box-shadow: var(--shadow-strong);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+  background: rgba(131, 125, 189, 0.7);
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(143, 126, 214, 0.3) 0%, rgba(255, 107, 107, 0.2) 100%);
+  z-index: -1;
+}
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  padding: 30px;
+}
+.logo-container {
+  margin-bottom: 30px;
+  animation: fadeInDown 1s ease;
+}
+.logo {
+  max-width: 200px;
+  height: auto;
+  border-radius: 50%;
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  transition: var(--transition);
+}
+.logo:hover {
+  transform: scale(1.05) rotate(5deg);
+  border-color: var(--secondary);
+}
+.hero-title {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
+  background: none;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  animation: fadeInDown 1s ease;
+}
+.hero-subtitle {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  animation: fadeInDown 1s ease 0.2s both;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.hero p {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  animation: fadeInUp 1s ease;
+  opacity: 0.9;
+}
+
+/* Archive Section */
+.archive {
+  padding: 80px 0;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  margin-bottom: 40px;
+  box-shadow: var(--shadow-strong);
+  position: relative;
+  overflow: hidden;
+}
+.section-title {
+  text-align: center;
+  margin-bottom: 50px;
+  position: relative;
+}
+.section-title h2 {
+  font-size: 2.5rem;
+  color: var(--primary);
+  margin-bottom: 15px;
+  position: relative;
+  display: inline-block;
+}
+.section-title h2::after {
+  content: '';
+  position: absolute;
+  width: 80%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+  bottom: -15px;
+  left: 10%;
+  border-radius: 2px;
+}
+.archive-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: left;
+}
+.archive-content p {
+  color: var(--text);
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+.archive-content ul {
+  margin: 15px 0 25px 20px;
+  color: var(--text);
+  line-height: 1.6;
+}
+.archive-link {
+  display: inline-block;
+  background: var(--primary);
+  color: white;
+  padding: 12px 30px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+}
+.archive-link:hover {
+  background: var(--primary-dark);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Mission Section */
+.mission {
+  padding: 80px 0;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  margin-bottom: 40px;
+  box-shadow: var(--shadow-strong);
+  position: relative;
+  overflow: hidden;
+}
+.mission-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+}
+.mission-card {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  flex: 1;
+  min-width: 280px;
+  max-width: 350px;
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  border-left: 4px solid var(--primary);
+}
+.mission-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(143, 126, 214, 0.05) 0%, rgba(78, 205, 196, 0.05) 100%);
+  opacity: 0;
+  transition: var(--transition);
+}
+.mission-card:hover {
+  transform: translateY(-10px) rotateX(5deg) scale(1.02);
+  box-shadow: var(--shadow-hover);
+}
+.mission-card:hover::before {
+  opacity: 1;
+}
+.mission-card i {
+  font-size: 2.5rem;
+  color: var(--primary);
+  margin-bottom: 20px;
+  transition: var(--transition);
+  display: inline-block;
+}
+.mission-card:hover i {
+  transform: scale(1.2) rotate(10deg);
+  color: var(--secondary);
+}
+.mission-card h3 {
+  color: var(--primary-dark);
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+}
+.mission-card p {
+  color: var(--text);
+  font-size: 1rem;
+}
+
+/* Directions Section */
+.directions {
+  padding: 80px 0;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  margin-bottom: 40px;
+  box-shadow: var(--shadow-strong);
+}
+.directions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+}
+.direction-card {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  text-align: center;
+  border-top: 4px solid var(--primary);
+}
+.direction-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(143, 126, 214, 0.05) 0%, rgba(78, 205, 196, 0.05) 100%);
+  opacity: 0;
+  transition: var(--transition);
+}
+.direction-card:hover {
+  transform: translateY(-10px) rotateX(5deg) scale(1.02);
+  box-shadow: var(--shadow-hover);
+}
+.direction-card:hover::before {
+  opacity: 1;
+}
+.direction-card i {
+  font-size: 3rem;
+  color: var(--primary);
+  margin-bottom: 20px;
+  transition: var(--transition);
+  display: inline-block;
+}
+.direction-card:hover i {
+  transform: scale(1.2) rotate(10deg);
+  color: var(--secondary);
+}
+.direction-card h3 {
+  color: var(--primary-dark);
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+}
+.direction-card p {
+  color: var(--text);
+  font-size: 1rem;
+}
+
+/* Achievements Section */
+.achievements {
+  padding: 80px 0;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  margin-bottom: 40px;
+  box-shadow: var(--shadow-strong);
+}
+.achievements-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.achievement-item {
+  background: linear-gradient(to right, #f0eeff, #e6e4f7);
+  border-left: 5px solid var(--accent);
+  padding: 25px;
+  margin: 20px 0;
+  border-radius: 0 15px 15px 0;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.achievement-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(78, 205, 196, 0.1) 0%, transparent 100%);
+  transform: translateX(-100%);
+  transition: var(--transition-slow);
+}
+.achievement-item:hover {
+  transform: translateX(10px);
+  box-shadow: var(--shadow-hover);
+}
+.achievement-item:hover::before {
+  transform: translateX(0);
+}
+.achievement-icon {
+  margin-right: 20px;
+  font-size: 2rem;
+  color: var(--accent);
+  transition: var(--transition);
+  min-width: 50px;
+  text-align: center;
+}
+.achievement-item:hover .achievement-icon {
+  transform: scale(1.3);
+}
+.achievement-content strong {
+  color: var(--primary-dark);
+  font-size: 1.1rem;
+}
+.achievement-content {
+  color: var(--text);
+  font-size: 1rem;
+}
+
+/* Supporters Section */
+.supporters {
+  padding: 80px 0;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  margin-bottom: 40px;
+  box-shadow: var(--shadow-strong);
+}
+.supporters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 25px;
+  align-items: center;
+}
+.supporter-item {
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  text-align: center;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(143, 126, 214, 0.2);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.supporter-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(143, 126, 214, 0.05) 0%, rgba(255, 107, 107, 0.05) 100%);
+  opacity: 0;
+  transition: var(--transition);
+}
+.supporter-item:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: var(--shadow-hover);
+}
+.supporter-item:hover::before {
+  opacity: 1;
+}
+.supporter-logo {
+  max-width: 100%;
+  max-height: 60px;
+  object-fit: contain;
+  transition: var(--transition);
+  margin-bottom: 15px;
+}
+.supporter-item:hover .supporter-logo {
+  transform: scale(1.1);
+}
+.supporter-name {
+  font-weight: 600;
+  color: var(--primary-dark);
+  font-size: 0.9rem;
+  line-height: 1.3;
+  margin-top: 10px;
+}
+.movement-first .supporter-name {
+  font-size: 0.85rem;
+}
+
+/* Стили для предупреждения внутри карточки */
+.partner-warning {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(143, 126, 214, 0.98);
+  border-radius: 15px;
+  padding: 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  backdrop-filter: blur(5px);
+  border: 2px solid var(--primary-light);
+}
+.partner-warning.active {
+  display: flex;
+  animation: warningFadeIn 0.3s ease;
+}
+.warning-content {
+  text-align: center;
+  max-width: 90%;
+}
+.warning-text {
+  color: white;
+  margin-bottom: 25px;
+  line-height: 1.5;
+  font-size: 0.9rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+.warning-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.warning-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  transition: var(--transition);
+  min-width: 100px;
+  font-size: 0.85rem;
+}
+.warning-cancel {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.warning-proceed {
+  background: var(--accent);
+  color: white;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.warning-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+.warning-cancel:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+.warning-proceed:hover {
+  background: #3db8ad;
+  color: white;
+}
+
+/* Анимации */
+@keyframes warningFadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes textShine {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+  .container { max-width: 100%; padding: 0 30px; }
+}
+@media (max-width: 992px) {
+  .hero-title { font-size: 2.5rem; }
+  .hero-subtitle { font-size: 1.6rem; }
+  .mission-card, .direction-card { min-width: 250px; }
+  .section-title h2 { font-size: 2.2rem; }
+}
+@media (max-width: 768px) {
+  body { padding: 15px; }
+  .hero { padding: 60px 0 40px; }
+  .hero-title { font-size: 2rem; }
+  .hero-subtitle { font-size: 1.4rem; white-space: normal; }
+  .hero p { font-size: 1.1rem; }
+  .section-title h2 { font-size: 2rem; }
+  .mission-content { flex-direction: column; align-items: center; }
+  .mission-card { max-width: 100%; }
+  .directions-grid, .supporters-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+  .mission, .directions, .achievements, .supporters { padding: 50px 0; }
+  .achievement-item { flex-direction: column; text-align: center; padding: 20px; }
+  .achievement-icon { margin-right: 0; margin-bottom: 15px; }
+  .supporter-item { height: 160px; padding: 20px; }
+}
+@media (max-width: 576px) {
+  body { padding: 10px; }
+  .container { padding: 0 15px; }
+  .hero { padding: 40px 0 30px; }
+  .hero-title { font-size: 1.8rem; }
+  .hero-subtitle { font-size: 1.2rem; }
+  .hero p { font-size: 1rem; }
+  .logo { max-width: 150px; }
+  .section-title h2 { font-size: 1.6rem; }
+  .mission, .directions, .achievements, .supporters { padding: 40px 0; }
+  .mission-card, .direction-card { padding: 20px; }
+  .mission-card i, .direction-card i { font-size: 2rem; }
+  .directions-grid, .supporters-grid { grid-template-columns: 1fr; }
+  .achievement-content strong { font-size: 1rem; }
+  .achievement-content { font-size: 0.9rem; }
+  .supporter-item { height: 140px; padding: 15px; }
+  .supporter-name { font-size: 0.8rem; }
+  .movement-first .supporter-name { font-size: 0.75rem; }
+}
+@media (max-width: 400px) {
+  .hero-title { font-size: 1.6rem; }
+  .hero-subtitle { font-size: 1.1rem; }
+  .section-title h2 { font-size: 1.4rem; }
+  .mission-card h3, .direction-card h3 { font-size: 1.2rem; }
+  .mission-card p, .direction-card p { font-size: 0.9rem; }
+  .supporter-item { height: 130px; }
+  .supporter-logo { max-height: 50px; }
+}
+
+        /* Общая навигация сайта */
+        .site-nav {
+            position: sticky;
+            top: 12px;
+            z-index: 1000;
+            max-width: 1200px;
+            margin: 0 auto 24px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            color: #333;
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(255, 255, 255, 0.65);
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            backdrop-filter: blur(14px);
+        }
+        .site-nav__brand {
+            color: #7260c2;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .site-nav__links {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 4px;
+            list-style: none;
+        }
+        .site-nav__links a,
+        .site-nav summary {
+            display: block;
+            padding: 9px 13px;
+            border-radius: 10px;
+            color: #4b4659;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+        .site-nav__links a:hover,
+        .site-nav summary:hover,
+        .site-nav details[open] > summary {
+            color: #7260c2;
+            background: #f1eefc;
+        }
+        .site-nav details { position: relative; }
+        .site-nav summary { list-style: none; }
+        .site-nav summary::-webkit-details-marker { display: none; }
+        .site-nav summary::after { content: ' ▾'; }
+        .site-nav details[open] summary::after { content: ' ▴'; }
+        .site-nav__submenu {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            width: min(330px, calc(100vw - 40px));
+            padding: 8px;
+            list-style: none;
+            background: #fff;
+            border: 1px solid #e8e3f5;
+            border-radius: 14px;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        .site-nav__submenu li + li { margin-top: 3px; }
+        .site-nav__submenu a { white-space: normal; }
+        @media (max-width: 720px) {
+            .site-nav { align-items: flex-start; flex-direction: column; gap: 5px; }
+            .site-nav__links { width: 100%; align-items: stretch; flex-direction: column; }
+            .site-nav__links > li > a, .site-nav summary { padding: 8px 10px; }
+            .site-nav__submenu { position: static; width: 100%; margin-top: 4px; box-shadow: none; }
+        }
+
+    </style>
+</head>
+<body>
+
+<nav class="site-nav" aria-label="Основная навигация">
+    <a class="site-nav__brand" href="/главная">КРЯК</a>
+    <ul class="site-nav__links">
+        <li><a href="/главная">Главная</a></li>
+        <li><a href="/карта-деятельности">Карта деятельности</a></li>
+        <li>
+            <details>
+                <summary>УрбанХаб</summary>
+                <ul class="site-nav__submenu">
+                    <li><a href="/урбанхаб/вырубки-курск">Карта вырубок Курской области</a></li>
+                    <li><a href="/урбанхаб/незаконные-стоянки-курск">Карта стихийных парковок Курска</a></li>
+                    <li><a href="/урбанхаб/окн-курск">Карта ОКН Курской области</a></li>
+                </ul>
+            </details>
+        </li>
+
+        <li>
+            <details>
+                <summary>Яндекс Карты</summary>
+                <ul class="site-nav__submenu">
+                    <li><a href="/яндекс-карты/что-такое-няк">Что такое НЯК</a></li>
+                    <li><a href="/яндекс-карты/3d-карты">3D-карты</a></li>
+                </ul>
+            </details>
+        </li>
+    </ul>
+</nav>
+
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="container hero-content">
+    <div class="logo-container">
+      <img src="https://raw.githubusercontent.com/Cartographic-regional-I-cluster/Image/d9e3928e91490c524ed94006a973559061aa7598/new-logo-kryak%20(1).png" alt="Логотип КРЯК" class="logo">
+    </div>
+    <h1 class="hero-title">Молодёжное движение «КРЯК»</h1>
+    <h1 class="hero-subtitle">Место, где старые карты рождают новые города</h1>
+    <p>Мы сохраняем историю, рисуем будущее и создаём комфортную среду - вместе</p>
+  </div>
+</section>
+
+<!-- Archive Section -->
+<section class="archive" id="archive">
+  <div class="container">
+    <div class="section-title">
+      <h2>Архив КРЯКа — память, которая работает</h2>
+    </div>
+    <div class="archive-content">
+      <p>Архив КРЯКа - это постоянно пополняемая коллекция материалов, имеющих историческую, образовательную и практическую ценность.</p>
+      <p>В нём хранятся:</p>
+      <ul>
+        <li>Советские географические атласы, изданные ГУГК при СМ СССР (включая «Малый атлас мира», 1974 года), — официальные документы органов власти, не охраняемые авторским правом;</li>
+        <li>Официальные документы холдинга: уставы, положения, протоколы, регламенты;</li>
+        <li>Номера журнала «Светлячок»;</li>
+        <li>Материалы партнёрских проектов и мероприятий.</li>
+      </ul>
+      <p>Все материалы, кроме книг, защищённых авторским правом (например, «Строительное проектирование» Нойферта), доступны в электронном виде на сайте. Бумажные оригиналы хранятся в Курске и используются исключительно участниками холдинга.</p>
+      <p>Мы не просто собираем — мы описываем, систематизируем и используем архив в урбанистике, образовании и медиа. Например, сравнение карт 1974 и 2026 годов помогает понять, как менялись границы, инфраструктура и восприятие мира.</p>
+      <a href="https://www.yacluster-kryak.ru/%D0%BD%D0%B0%D1%88-%D0%B0%D1%80%D1%85%D0%B8%D0%B2" class="archive-link">Перейти в электронный архив</a>
+    </div>
+  </div>
+</section>
+
+<!-- Mission Section -->
+<section class="mission" id="mission">
+  <div class="container">
+    <div class="section-title">
+      <h2>Наши цели — по Уставу</h2>
+    </div>
+    <div class="mission-content">
+      <div class="mission-card fade-in">
+        <i class="fas fa-users"></i>
+        <h3>Развитие молодёжи</h3>
+        <p>Помогаем находить себя в картографии, урбанистике и цифровых технологиях через практику, а не теорию.</p>
+      </div>
+      <div class="mission-card fade-in">
+        <i class="fas fa-city"></i>
+        <h3>Комфортная среда</h3>
+        <p>Формируем городскую среду - от Курска до Сахалина - через благоустройство, карты и общественные инициативы.</p>
+      </div>
+      <div class="mission-card fade-in">
+        <i class="fas fa-microscope"></i>
+        <h3>Гражданская наука</h3>
+        <p>Популяризируем участие каждого в создании знаний: когда ты правишь карту - ты делаешь мир точнее.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Directions Section -->
+<section class="directions" id="directions">
+  <div class="container">
+    <div class="section-title">
+      <h2>Направления деятельности</h2>
+    </div>
+    <div class="directions-grid">
+      <div class="direction-card fade-in">
+        <i class="fas fa-map-marked-alt"></i>
+        <h3>Урбанистика и картография</h3>
+        <p>Редактируем Яндекс Карты, предлагаем территории благоустройства, работаем с Минстроем России.</p>
+      </div>
+      <div class="direction-card fade-in">
+        <i class="fas fa-cube"></i>
+        <h3>Иммерсивные технологии</h3>
+        <p>3D-модели, Minecraft-проекты, геймификация городской среды - под руководством Егора Разинского и Дмитрия Шаповала.</p>
+      </div>
+      <div class="direction-card fade-in">
+        <i class="fas fa-newspaper"></i>
+        <h3>Медиа и дизайн</h3>
+        <p>Журнал «Светлячок», соцсети, визуальная идентичность - команда Светланы Белоусовой и Полины Пожидаевой.</p>
+      </div>
+      <div class="direction-card fade-in">
+        <i class="fas fa-archive"></i>
+        <h3>Архив и история</h3>
+        <p>Оцифровка, описание и публикация документов СССР и холдинга - для учёбы, исследований и вдохновения.</p>
+      </div>
+      <div class="direction-card fade-in">
+        <i class="fas fa-hands-helping"></i>
+        <h3>Волонтёрство и события</h3>
+        <p>Субботники, форумы, конкурсы - всё это мы делаем через платформу «Добро.рф» и собственные инициативы.</p>
+      </div>
+      <div class="direction-card fade-in">
+        <i class="fas fa-seedling"></i>
+        <h3>«Реновация Соловьиного края»</h3>
+        <p>Региональный проект по развитию Курской области под руководством Кирилла Киреева.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Achievements Section -->
+<section class="achievements" id="achievements">
+  <div class="container">
+    <div class="section-title">
+      <h2>Наши достижения</h2>
+    </div>
+    <div class="achievements-container">
+      <div class="achievement-item fade-in">
+        <div class="achievement-icon"><i class="fas fa-trophy"></i></div>
+        <div class="achievement-content"><strong>Апрель 2025:</strong> проект «Уютный Курск» вошёл в сборник лучших практик Минстроя России за 2024 год</div>
+      </div>
+      <div class="achievement-item fade-in">
+        <div class="achievement-icon"><i class="fas fa-medal"></i></div>
+        <div class="achievement-content"><strong>Апрель 2025:</strong> участие в разработке перечня мер для ускорения процесса достижения углеродной нейтральности Сахалинской области в рамках всероссийской олимпиады «Ближе к Дальнему»</div>
+      </div>
+      <div class="achievement-item fade-in">
+        <div class="achievement-icon"><i class="fas fa-award"></i></div>
+        <div class="achievement-content"><strong>Август 2025:</strong> победа в заочном этапе I Всероссийского конкурса медиаконтента о благоустройстве</div>
+      </div>
+      <div class="achievement-item fade-in">
+        <div class="achievement-icon"><i class="fas fa-award"></i></div>
+        <div class="achievement-content"><strong>Октябрь 2025:</strong> Дмитрий Шаповал получил благодарственное письмо от министра строительства и ЖКХ РФ Ирека Файзуллина</div>
+      </div>
+      <div class="achievement-item fade-in">
+        <div class="achievement-icon"><i class="fas fa-award"></i></div>
+        <div class="achievement-content"><strong>Ноябрь 2025:</strong> наш сайт взял 2 место в номинации «Лучший сайт» XXXI межрегионального фестиваля детской и молодёжной журналистики «Огни тайги»!</div>
+      </div>
+      <div class="achievement-item fade-in">
+        <div class="achievement-icon"><i class="fas fa-chart-line"></i></div>
+        <div class="achievement-content"><strong>Более 52 000 правок</strong> на Яндекс Картах в различных регионах России</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Supporters Section (партнёры) -->
+<section class="supporters" id="supporters">
+  <div class="container">
+    <div class="section-title">
+      <h2>Нас поддерживают</h2>
+    </div>
+    <div class="supporters-grid" id="supportersGrid"></div>
+  </div>
+</section>
+
+<script>
+(function() {
+  // Массив данных партнёров (последние три записи удалены)
+  const partnersData = [
+    { name: 'Минстрой России', logo: 'https://raw.githubusercontent.com/Cartographic-regional-I-cluster/Image/refs/heads/main/Minstroy-RF.png', url: 'https://www.yacluster-kryak.ru/%D0%BD%D0%B0%D1%88%D0%B8-%D0%B4%D1%80%D1%83%D0%B7%D1%8C%D1%8F/%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D1%81%D1%82%D0%B2%D0%B0/%D0%BC%D0%B8%D0%BD%D1%81%D1%82%D1%80%D0%BE%D0%B9-%D1%80%D0%BE%D1%81%D1%81%D0%B8%D0%B8', className: '' },
+    { name: 'Росмолодёжь', logo: 'https://raw.githubusercontent.com/Cartographic-regional-I-cluster/Image/refs/heads/main/image%20(2).png', url: 'https://www.yacluster-kryak.ru/%D0%BD%D0%B0%D1%88%D0%B8-%D0%B4%D1%80%D1%83%D0%B7%D1%8C%D1%8F/%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D1%81%D1%82%D0%B2%D0%B0/%D1%80%D0%BE%D1%81%D0%BC%D0%BE%D0%BB%D0%BE%D0%B4%D1%91%D0%B6%D1%8C', className: '' },
+    { name: 'Яндекс', logo: 'https://raw.githubusercontent.com/Cartographic-regional-I-cluster/Image/refs/heads/main/yandex-logo-rus.png', url: 'https://www.yacluster-kryak.ru/%D0%BD%D0%B0%D1%88%D0%B8-%D0%B4%D1%80%D1%83%D0%B7%D1%8C%D1%8F/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B/%D0%BD%D0%B0%D1%80%D0%BE%D0%B4%D0%BD%D0%B0%D1%8F-%D0%BA%D0%B0%D1%80%D1%82%D0%B0', className: '' },
+    { name: 'РДДМ «Движение Первых»', logo: 'https://raw.githubusercontent.com/Cartographic-regional-I-cluster/Image/refs/heads/main/pervie.png', url: 'https://www.yacluster-kryak.ru/%D0%BD%D0%B0%D1%88%D0%B8-%D0%B4%D1%80%D1%83%D0%B7%D1%8C%D1%8F/%D0%B4%D0%B2%D0%B8%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F/%D0%B4%D0%B2%D0%B8%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BF%D0%B5%D1%80%D0%B2%D1%8B%D1%85', className: 'movement-first' },
+    { name: 'Добро.рф', logo: 'https://raw.githubusercontent.com/Cartographic-regional-I-cluster/Image/refs/heads/main/6v-QBl8-L6mgk.png', url: 'https://www.yacluster-kryak.ru/%D0%BD%D0%B0%D1%88%D0%B8-%D0%B4%D1%80%D1%83%D0%B7%D1%8C%D1%8F/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B/%D0%B4%D0%BE%D0%B1%D1%80%D0%BE-%D1%80%D1%84', className: '' },
+    { name: 'Добро.Медиа', logo: 'https://raw.githubusercontent.com/Cartographic-regional-I-cluster/Image/refs/heads/main/798853bbaecb9b291bef12d7196f5f7f.png', url: 'https://www.yacluster-kryak.ru/%D0%BD%D0%B0%D1%88%D0%B8-%D0%B4%D1%80%D1%83%D0%B7%D1%8C%D1%8F/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B/%D0%B4%D0%BE%D0%B1%D1%80%D0%BE-%D1%80%D1%84', className: '' },
+    { name: 'Медиашкола «ДЮйМ» ЦДТ', logo: 'https://raw.githubusercontent.com/Cartographic-regional-I-cluster/Image/refs/heads/main/is7y3-uk-D8o.png', url: 'https://www.yacluster-kryak.ru/%D0%BD%D0%B0%D1%88%D0%B8-%D0%B4%D1%80%D1%83%D0%B7%D1%8C%D1%8F/%D0%B4%D0%BE%D0%BF-%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5/%D0%BC%D0%B5%D0%B4%D0%B8%D0%B0%D1%88%D0%BA%D0%BE%D0%BB%D0%B0-%D1%86%D0%B4%D1%82', className: '' },
+    { name: 'ЛЮЖ | Курск', logo: 'https://raw.githubusercontent.com/Cartographic-regional-I-cluster/Image/refs/heads/main/Vmake-1732993238.png', url: 'https://www.yacluster-kryak.ru/%D0%BD%D0%B0%D1%88%D0%B8-%D0%B4%D1%80%D1%83%D0%B7%D1%8C%D1%8F/%D0%B4%D0%BE%D0%BF-%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5/%D0%BA%D1%83%D1%80%D1%81%D0%BA%D0%B0%D1%8F-%D0%BB%D1%8E%D0%B6', className: '' },
+    { name: 'Медиафорум «Префикс +10»', logo: 'https://raw.githubusercontent.com/Cartographic-regional-I-cluster/Image/refs/heads/main/ez-DLp34-Rz-g.png', url: 'https://www.yacluster-kryak.ru/%D0%BD%D0%B0%D1%88%D0%B8-%D0%B4%D1%80%D1%83%D0%B7%D1%8C%D1%8F/%D0%B4%D0%BE%D0%BF-%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5/%D0%BF%D1%80%D0%B5%D1%84%D0%B8%D0%BA%D1%81-10', className: '' },
+    { name: 'МЕДИАЗАВРЫ, вперёд!', logo: 'https://raw.githubusercontent.com/Cartographic-regional-I-cluster/Image/refs/heads/main/H6mbi7ew-VW8.png', url: 'https://www.yacluster-kryak.ru/%D0%BD%D0%B0%D1%88%D0%B8-%D0%B4%D1%80%D1%83%D0%B7%D1%8C%D1%8F/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B/%D0%BC%D0%B5%D0%B4%D0%B8%D0%B0%D0%B7%D0%B0%D0%B2%D1%80%D1%8B', className: '' },
+    { name: 'Комитет молодёжной политики Курской области', logo: 'https://raw.githubusercontent.com/Cartographic-regional-I-cluster/Image/refs/heads/main/9-Yfgu-BL3tt-E.png', url: 'https://www.yacluster-kryak.ru/наши-друзья/ведомства/комитет-молодёжной-политики-курской-области', className: '' },
+    { name: 'Администрация Курска', logo: 'https://raw.githubusercontent.com/Cartographic-regional-I-cluster/Image/refs/heads/main/kursk-511x533.png', url: 'https://www.yacluster-kryak.ru/наши-друзья/ведомства/администрация-курска', className: '' },
+    { name: 'Курский государственный университет', logo: 'https://raw.githubusercontent.com/Cartographic-regional-I-cluster/Image/refs/heads/main/Phi-NXMWd7-Nto-Iw-Hj-S65t-N84-Nc-Fz-ILdgt-P-T4-KEab-UOqy8gg3-MTwr-WIWOl-HO1-MJb-Vv-YH3j-Eo-WFLWMx7-5.png', url: 'https://www.yacluster-kryak.ru/%D0%BD%D0%B0%D1%88%D0%B8-%D0%B4%D1%80%D1%83%D0%B7%D1%8C%D1%8F/%D1%83%D0%BD%D0%B8%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%82%D0%B5%D1%82%D1%8B/%D0%BA%D0%B3%D1%83', className: '' },
+    { name: 'Юго-Западный государственный университет', logo: 'https://raw.githubusercontent.com/Cartographic-regional-I-cluster/Image/refs/heads/main/5210887725371226426.png', url: 'https://www.yacluster-kryak.ru/%D0%BD%D0%B0%D1%88%D0%B8-%D0%B4%D1%80%D1%83%D0%B7%D1%8C%D1%8F/%D1%83%D0%BD%D0%B8%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%82%D0%B5%D1%82%D1%8B/%D1%8E%D0%B7%D0%B3%D1%83', className: '' },
+    { name: 'Сахалинский государственный университет', logo: 'https://raw.githubusercontent.com/Cartographic-regional-I-cluster/Image/refs/heads/main/Phi-NXMWd7-Nto-Iw-Hj-S65t-N84-Nc-Fz-ILdgt-P-T4-KEab-UOqy8gg3-MTwr-WIWOl-HO1-MJb-Vv-YH3j-Eo-WFLWMx7-5o-EHI.png', url: 'https://www.yacluster-kryak.ru/%D0%BD%D0%B0%D1%88%D0%B8-%D0%B4%D1%80%D1%83%D0%B7%D1%8C%D1%8F/%D1%83%D0%BD%D0%B8%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%82%D0%B5%D1%82%D1%8B/%D1%81%D0%B0%D1%85%D0%B3%D1%83', className: '' },
+    { name: 'Хаяла Бахшиева', logo: 'https://raw.githubusercontent.com/Cartographic-regional-I-cluster/Image/refs/heads/main/nex-Ufo-Sv-X0-m0-C2ov-Gh-lh-Al-Fl-Pl6qoe-KLFSQ7-MHi9-Z3-VUfu-En-Okzk-Nv-RLfvt-PRo2r2t-Rw1dj-Kn3-RNna-FVQl.png', url: 'https://www.yacluster-kryak.ru/%D0%BD%D0%B0%D1%88%D0%B8-%D0%B4%D1%80%D1%83%D0%B7%D1%8C%D1%8F/%D1%81%D1%82%D0%BE%D1%80%D0%BE%D0%BD%D0%BD%D0%B8%D0%BA%D0%B8/%D1%85%D0%B0%D1%8F%D0%BB%D0%B0-%D0%B1%D0%B0%D1%85%D1%88%D0%B8%D0%B5%D0%B2%D0%B0', className: '' },
+    { name: 'Андрей Башкирев', logo: 'https://raw.githubusercontent.com/Cartographic-regional-I-cluster/Image/refs/heads/main/0a9eddda-1151-4a5d-be30-bd569f4561d7.png', url: 'https://www.yacluster-kryak.ru/%D0%BD%D0%B0%D1%88%D0%B8-%D0%B4%D1%80%D1%83%D0%B7%D1%8C%D1%8F/%D1%81%D1%82%D0%BE%D1%80%D0%BE%D0%BD%D0%BD%D0%B8%D0%BA%D0%B8/%D0%B0%D0%BD%D0%B4%D1%80%D0%B5%D0%B9-%D0%B1%D0%B0%D1%88%D0%BA%D0%B8%D1%80%D0%B5%D0%B2', className: '' },
+    { name: 'Дэниз Байрам', logo: 'https://raw.githubusercontent.com/Cartographic-regional-I-cluster/Image/refs/heads/main/52108877253712264263.png', url: 'https://www.yacluster-kryak.ru/%D0%BD%D0%B0%D1%88%D0%B8-%D0%B4%D1%80%D1%83%D0%B7%D1%8C%D1%8F/%D1%81%D1%82%D0%BE%D1%80%D0%BE%D0%BD%D0%BD%D0%B8%D0%BA%D0%B8/%D0%B4%D1%8D%D0%BD%D0%B8%D0%B7-%D0%B1%D0%B0%D0%B9%D1%80%D0%B0%D0%BC', className: '' },
+    { name: 'Astrolent Studio', logo: 'https://raw.githubusercontent.com/Cartographic-regional-I-cluster/Image/refs/heads/main/Slide-16-9-43-2.png', url: 'https://www.yacluster-kryak.ru/%D0%BD%D0%B0%D1%88%D0%B8-%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D1%8B/%D0%BE%D1%82%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F/%D0%B2%D0%B5%D0%BB%D0%B8%D0%BA%D0%B8%D0%B9-%D0%BD%D0%BE%D0%B2%D0%B3%D0%BE%D1%80%D0%BE%D0%B4', className: '' },
+    { name: 'Содружество', logo: 'https://raw.githubusercontent.com/Cartographic-regional-I-cluster/Image/refs/heads/main/521088772537122642625.png', url: 'https://www.yacluster-kryak.ru/%D0%BD%D0%B0%D1%88%D0%B8-%D0%B4%D1%80%D1%83%D0%B7%D1%8C%D1%8F/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B/%D1%81%D0%BE%D0%B4%D1%80%D1%83%D0%B6%D0%B5%D1%81%D1%82%D0%B2%D0%BE-%D1%83%D1%80%D0%B1%D0%B0%D0%BD%D0%B8%D1%81%D1%82%D0%BE%D0%B2', className: '' },
+    { name: 'Урбан-админы', logo: 'https://raw.githubusercontent.com/Cartographic-regional-I-cluster/Image/refs/heads/main/521088772537122642626.png', url: 'https://www.yacluster-kryak.ru/%D0%BD%D0%B0%D1%88%D0%B8-%D0%B4%D1%80%D1%83%D0%B7%D1%8C%D1%8F/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B/%D1%83%D1%80%D0%B1%D0%B0%D0%BD-%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D1%8B', className: '' }
+  ];
+
+  // Генерация карточек
+  const grid = document.getElementById('supportersGrid');
+  if (!grid) {
+    console.error('Контейнер #supportersGrid не найден');
+    return;
+  }
+
+  partnersData.forEach(p => {
+    const item = document.createElement('div');
+    item.className = `supporter-item fade-in ${p.className}`;
+    item.setAttribute('data-url', p.url);
+
+    item.innerHTML = `
+      <img src="${p.logo}" alt="${p.name}" class="supporter-logo" loading="lazy">
+      <div class="supporter-name">${p.name}</div>
+      <div class="partner-warning">
+        <div class="warning-content">
+          <div class="warning-text"><p>Вы переходите на страницу партнёра. Продолжить?</p></div>
+          <div class="warning-actions">
+            <button class="warning-btn warning-cancel">Отмена</button>
+            <a href="${p.url}" target="_blank" rel="noopener noreferrer" class="warning-btn warning-proceed">Перейти</a>
+          </div>
+        </div>
+      </div>
+    `;
+
+    grid.appendChild(item);
+  });
+
+  // Анимация появления элементов при скролле
+  const fadeElements = document.querySelectorAll('.fade-in');
+  function checkFade() {
+    fadeElements.forEach(element => {
+      const elementTop = element.getBoundingClientRect().top;
+      const elementBottom = element.getBoundingClientRect().bottom;
+      const isVisible = (elementTop < window.innerHeight - 100) && (elementBottom > 0);
+      if (isVisible) {
+        element.classList.add('visible');
+      }
+    });
+  }
+  checkFade();
+  window.addEventListener('scroll', checkFade);
+
+  // Обработчики для каждой карточки
+  document.querySelectorAll('.supporter-item').forEach(item => {
+    const warning = item.querySelector('.partner-warning');
+    const cancelBtn = item.querySelector('.warning-cancel');
+    const proceedLink = item.querySelector('.warning-proceed');
+    let timeoutId;
+
+    item.addEventListener('click', function(e) {
+      if (e.target.closest('.warning-btn')) return; // игнорируем клики по кнопкам
+      const url = item.getAttribute('data-url');
+      if (url) {
+        proceedLink.href = url;
+        warning.classList.add('active');
+        timeoutId = setTimeout(() => {
+          warning.classList.remove('active');
+        }, 10000);
+      }
+    });
+
+    cancelBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      warning.classList.remove('active');
+      clearTimeout(timeoutId);
+    });
+
+    proceedLink.addEventListener('click', function(e) {
+      clearTimeout(timeoutId);
+    });
+
+    warning.addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+  });
+})();
+</script>
+</body>
+</html>
