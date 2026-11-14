@@ -340,7 +340,7 @@
         .site-nav summary { list-style: none; }
         .site-nav summary::-webkit-details-marker { display: none; }
         .site-nav summary::after { content: ' ▾'; }
-        .site-nav details[open] summary::after { content: ' ▴'; }
+        .site-nav details[open] > summary::after { content: ' ▴'; }
         .site-nav__submenu {
             position: absolute;
             top: calc(100% + 8px);
@@ -355,6 +355,18 @@
         }
         .site-nav__submenu li + li { margin-top: 3px; }
         .site-nav__submenu a { white-space: normal; }
+        .site-nav__submenu .site-nav__submenu {
+            position: static;
+            width: 100%;
+            margin: 4px 0 0;
+            padding: 5px 0 5px 10px;
+            border: 0;
+            border-left: 2px solid #e8e3f5;
+            border-radius: 0;
+            box-shadow: none;
+            background: #faf9fe;
+        }
+        .site-nav__submenu summary { white-space: normal; }
         @media (max-width: 720px) {
             .site-nav { align-items: flex-start; flex-direction: column; gap: 5px; }
             .site-nav__links { width: 100%; align-items: stretch; flex-direction: column; }
@@ -371,6 +383,8 @@
     <ul class="site-nav__links">
         <li><a href="/главная">Главная</a></li>
         <li><a href="/карта-деятельности">Карта деятельности</a></li>
+        <li><a href="/история">История</a></li>
+        <li><a href="/наш-архив">Архив</a></li>
         <li>
             <details>
                 <summary>УрбанХаб</summary>
@@ -388,6 +402,101 @@
                 <ul class="site-nav__submenu">
                     <li><a href="/яндекс-карты/что-такое-няк">Что такое НЯК?</a></li>
                     <li><a href="/яндекс-карты/3d-карты">3D-карты</a></li>
+                </ul>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary>Наши друзья</summary>
+                <ul class="site-nav__submenu">
+                    <li>
+                        <details>
+                            <summary>Ведомства</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-друзья/ведомства/минстрой-россии">Минстрой России</a></li>
+                                <li><a href="/наши-друзья/ведомства/росмолодёжь">Росмолодёжь</a></li>
+                                <li><a href="/наши-друзья/ведомства/комитет-молодёжной-политики-курской-области">Комитет молодёжной политики Курской области</a></li>
+                                <li><a href="/наши-друзья/ведомства/администрация-курска">Администрация Курска</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Проекты</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-друзья/проекты/народная-карта">Народная карта Яндекса</a></li>
+                                <li><a href="/наши-друзья/проекты/добро-рф">Добро.рф и Добро.Медиа</a></li>
+                                <li><a href="/наши-друзья/проекты/медиазавры">«МЕДИАЗАВРЫ, вперёд!»</a></li>
+                                <li><a href="/наши-друзья/проекты/содружество-урбанистов">Содружество урбанистов</a></li>
+                                <li><a href="/наши-друзья/проекты/урбан-админы">Урбан-админы</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Движения</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-друзья/движения/движение-первых">Движение Первых</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Дополнительное образование</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-друзья/доп-образование/медиашкола-цдт">Медиашкола «ДЮйМ» ЦДТ</a></li>
+                                <li><a href="/наши-друзья/доп-образование/курская-люж">ЛЮЖ | Курск</a></li>
+                                <li><a href="/наши-друзья/доп-образование/префикс-10">Медиафорум «Префикс +10»</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Университеты</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-друзья/университеты/кгу">Курский государственный университет</a></li>
+                                <li><a href="/наши-друзья/университеты/юзгу">Юго-Западный государственный университет</a></li>
+                                <li><a href="/наши-друзья/университеты/сахгу">Сахалинский государственный университет</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Сторонники</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-друзья/сторонники/хаяла-бахшиева">Хаяла Бахшиева</a></li>
+                                <li><a href="/наши-друзья/сторонники/андрей-башкирев">Андрей Башкирев</a></li>
+                                <li><a href="/наши-друзья/сторонники/дэниз-байрам">Дэниз Байрам</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                </ul>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary>Наши контакты</summary>
+                <ul class="site-nav__submenu">
+                    <li><a href="/наши-контакты/президент-движения">Президент движения</a></li>
+                    <li>
+                        <details>
+                            <summary>Советы</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-контакты/советы/совет-движения">Совет Движения</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Отделения</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-контакты/отделения/курск">Курск</a></li>
+                                <li><a href="/наши-контакты/отделения/киров">Киров</a></li>
+                                <li><a href="/наши-контакты/отделения/великий-новгород">Великий Новгород</a></li>
+                                <li><a href="/наши-контакты/отделения/нижний-новгород">Нижний Новгород</a></li>
+                            </ul>
+                        </details>
+                    </li>
                 </ul>
             </details>
         </li>

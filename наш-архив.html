@@ -1,0 +1,1661 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>МХ «КРЯК» — Архив</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #8f7ed6;
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .documents-container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(106, 90, 205, 0.15);
+            padding: 30px;
+            border: 1px solid #e6e1ff;
+        }
+        
+        .year-header {
+            color: #8f7ed6;
+            text-align: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0ecff;
+            font-weight: 700;
+            font-size: 1.8em;
+            text-shadow: 0 2px 4px rgba(106, 90, 205, 0.1);
+        }
+        
+        .search-container {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .search-wrapper {
+            display: flex;
+            align-items: center;
+            position: relative;
+            width: 100%;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 16px 55px 16px 55px;
+            border: 2px solid #d5cfff;
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s;
+            background-color: #f9f8ff;
+            width: 100%;
+            color: #5a4a9e;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #8f7ed6;
+            box-shadow: 0 0 0 4px rgba(143, 126, 214, 0.2);
+            background-color: white;
+        }
+        
+        .search-input::placeholder {
+            color: #a097d6;
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            color: #8f7ed6;
+            font-size: 20px;
+            pointer-events: none;
+        }
+        
+        .search-results {
+            margin-top: 10px;
+            color: #8f7ed6;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .clear-search {
+            position: absolute;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #a097d6;
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            transition: color 0.3s;
+        }
+        
+        .clear-search:hover {
+            color: #8f7ed6;
+        }
+        
+        .month-section {
+            margin-bottom: 30px;
+        }
+        
+        .month-header {
+            background: linear-gradient(135deg, #8f7ed6 0%, #7a6bc9 100%);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+            border: none;
+            box-shadow: 0 4px 12px rgba(143, 126, 214, 0.3);
+        }
+        
+        .month-header:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(143, 126, 214, 0.4);
+            background: linear-gradient(135deg, #9a8bdf 0%, #8578d2 100%);
+        }
+        
+        .month-header h2 {
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+        
+        .month-content {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .event {
+            background: #f9f8ff;
+            border-radius: 10px;
+            padding: 18px;
+            transition: all 0.3s ease;
+            border-left: 5px solid #8f7ed6;
+            border: 1px solid #e6e1ff;
+        }
+        
+        .event:hover {
+            background-color: #f3f0ff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(143, 126, 214, 0.15);
+        }
+        
+        .event-date {
+            font-weight: 700;
+            color: #6a5acd;
+            margin-bottom: 10px;
+            font-size: 0.95em;
+            letter-spacing: 0.5px;
+        }
+        
+        .document-link {
+            display: block;
+            padding: 16px 20px;
+            margin: 10px 0;
+            background: #f9f8ff;
+            border-left: 5px solid #8f7ed6;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #4a3c8c;
+            transition: all 0.3s;
+            font-weight: 500;
+            border: 1px solid #e6e1ff;
+        }
+
+        .document-link:hover {
+            background: linear-gradient(135deg, #8f7ed6 0%, #7a6bc9 100%);
+            color: white;
+            transform: translateX(5px);
+            border-color: #8f7ed6;
+            box-shadow: 0 5px 15px rgba(143, 126, 214, 0.25);
+        }
+        
+        .franchise-documents,
+        .project-documents,
+        .order-documents,
+        .media-documents,
+        .expert-documents {
+            margin-top: 10px;
+        }
+        
+        .franchise-document,
+        .project-document,
+        .volunteer-document,
+        .olympiad-document,
+        .ministry-document,
+        .order-document,
+        .monitoring-document,
+        .atlas-document,
+        .redbook-document,
+        .media-document,
+        .media-journal,
+        .transport-document,
+        .expert-document {
+            display: block;
+            padding: 14px 18px;
+            margin: 10px 0;
+            background: #f9f8ff;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #4a3c8c;
+            transition: all 0.3s;
+            font-weight: 500;
+            border: 1px solid #e6e1ff;
+        }
+
+        .franchise-document {
+            border-left: 4px solid #a897e8;
+        }
+
+        .franchise-document:hover {
+            background: linear-gradient(135deg, #a897e8 0%, #9585da 100%);
+            color: white;
+            transform: translateX(5px);
+            border-color: #a897e8;
+            box-shadow: 0 5px 15px rgba(168, 151, 232, 0.25);
+        }
+        
+        .project-document {
+            border-left: 4px solid #7260c2;
+        }
+
+        .project-document:hover {
+            background: linear-gradient(135deg, #7260c2 0%, #6554b3 100%);
+            color: white;
+            transform: translateX(5px);
+            border-color: #7260c2;
+            box-shadow: 0 5px 15px rgba(114, 96, 194, 0.25);
+        }
+        
+        .volunteer-document {
+            border-left: 4px solid #9889e0;
+        }
+
+        .volunteer-document:hover {
+            background: linear-gradient(135deg, #9889e0 0%, #897ad4 100%);
+            color: white;
+            transform: translateX(5px);
+            border-color: #9889e0;
+            box-shadow: 0 5px 15px rgba(152, 137, 224, 0.25);
+        }
+        
+        .olympiad-document {
+            border-left: 4px solid #b886eb;
+        }
+
+        .olympiad-document:hover {
+            background: linear-gradient(135deg, #b886eb 0%, #a975e0 100%);
+            color: white;
+            transform: translateX(5px);
+            border-color: #b886eb;
+            box-shadow: 0 5px 15px rgba(184, 134, 235, 0.25);
+        }
+        
+        .ministry-document {
+            border-left: 4px solid #6a5acd;
+        }
+
+        .ministry-document:hover {
+            background: linear-gradient(135deg, #6a5acd 0%, #5d4cbb 100%);
+            color: white;
+            transform: translateX(5px);
+            border-color: #6a5acd;
+            box-shadow: 0 5px 15px rgba(106, 90, 205, 0.25);
+        }
+
+        .order-document {
+            border-left: 4px solid #5d4a9e;
+        }
+
+        .order-document:hover {
+            background: linear-gradient(135deg, #5d4a9e 0%, #50418d 100%);
+            color: white;
+            transform: translateX(5px);
+            border-color: #5d4a9e;
+            box-shadow: 0 5px 15px rgba(93, 74, 158, 0.25);
+        }
+
+        .monitoring-document {
+            border-left: 4px solid #7b68ee;
+        }
+
+        .monitoring-document:hover {
+            background: linear-gradient(135deg, #7b68ee 0%, #6c59dd 100%);
+            color: white;
+            transform: translateX(5px);
+            border-color: #7b68ee;
+            box-shadow: 0 5px 15px rgba(123, 104, 238, 0.25);
+        }
+
+        .transport-document {
+            border-left: 4px solid #3498db;
+        }
+
+        .transport-document:hover {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            transform: translateX(5px);
+            border-color: #3498db;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.25);
+        }
+
+        .atlas-document {
+            border-left: 4px solid #9b59b6;
+        }
+
+        .atlas-document:hover {
+            background: linear-gradient(135deg, #9b59b6 0%, #8a48a5 100%);
+            color: white;
+            transform: translateX(5px);
+            border-color: #9b59b6;
+            box-shadow: 0 5px 15px rgba(155, 89, 182, 0.25);
+        }
+
+        .redbook-document {
+            border-left: 4px solid #c0392b;
+        }
+
+        .redbook-document:hover {
+            background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
+            color: white;
+            transform: translateX(5px);
+            border-color: #c0392b;
+            box-shadow: 0 5px 15px rgba(192, 57, 43, 0.25);
+        }
+
+        .media-document {
+            border-left: 4px solid #8e44ad;
+        }
+
+        .media-document:hover {
+            background: linear-gradient(135deg, #8e44ad 0%, #7d3c98 100%);
+            color: white;
+            transform: translateX(5px);
+            border-color: #8e44ad;
+            box-shadow: 0 5px 15px rgba(142, 68, 173, 0.25);
+        }
+
+        .media-journal {
+            border-left: 4px solid #9b59b6;
+        }
+
+        .media-journal:hover {
+            background: linear-gradient(135deg, #9b59b6 0%, #8a48a5 100%);
+            color: white;
+            transform: translateX(5px);
+            border-color: #9b59b6;
+            box-shadow: 0 5px 15px rgba(155, 89, 182, 0.25);
+        }
+        
+        .expert-document {
+            border-left: 4px solid #2ecc71;
+        }
+
+        .expert-document:hover {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            color: white;
+            transform: translateX(5px);
+            border-color: #2ecc71;
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.25);
+        }
+
+        .document-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.85em;
+            color: #8a7fc6;
+            margin-top: 8px;
+            transition: color 0.3s;
+        }
+        
+        .document-link:hover .document-meta,
+        .franchise-document:hover .document-meta,
+        .project-document:hover .document-meta,
+        .volunteer-document:hover .document-meta,
+        .olympiad-document:hover .document-meta,
+        .ministry-document:hover .document-meta,
+        .order-document:hover .document-meta,
+        .monitoring-document:hover .document-meta,
+        .transport-document:hover .document-meta,
+        .atlas-document:hover .document-meta,
+        .redbook-document:hover .document-meta,
+        .media-document:hover .document-meta,
+        .media-journal:hover .document-meta,
+        .expert-document:hover .document-meta {
+            color: #e6e1ff !important;
+        }
+
+        .notice-plate {
+            background: #f9f8ff;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            border: 1px solid #e6e1ff;
+            color: #8a7fc6;
+            font-size: 0.9em;
+            line-height: 1.5;
+            text-align: left;
+        }
+
+        .description-text {
+            background: #f9f8ff;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #e6e1ff;
+            color: #8a7fc6;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+        
+        .hidden-by-search {
+            display: none !important;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #8a7fc6;
+            font-style: italic;
+            display: none;
+            background: #f9f8ff;
+            border-radius: 10px;
+            border: 1px solid #e6e1ff;
+            margin: 20px 0;
+        }
+        
+        .update-notice {
+            text-align: center;
+            color: #8f7ed6;
+            font-size: 0.9em;
+            margin-top: 30px;
+            padding: 14px;
+            background-color: #f3f0ff;
+            border-radius: 10px;
+            border: 1px solid #d5cfff;
+            font-weight: 600;
+            box-shadow: 0 4px 8px rgba(106, 90, 205, 0.1);
+        }
+
+        .archive-contact {
+            text-align: center;
+            color: #5a4a9e;
+            font-size: 0.95em;
+            margin-top: 15px;
+            padding: 16px 20px;
+            background-color: #f9f8ff;
+            border-radius: 10px;
+            border: 1px solid #d5cfff;
+            line-height: 1.6;
+        }
+        .archive-contact a {
+            color: #6a5acd;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .archive-contact a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 600px) {
+            .documents-container {
+                padding: 20px 15px;
+            }
+            
+            .search-input {
+                padding: 14px 50px 14px 45px;
+                font-size: 14px;
+            }
+            
+            .search-icon {
+                left: 15px;
+                font-size: 18px;
+            }
+            
+            .clear-search {
+                right: 15px;
+                font-size: 22px;
+                width: 22px;
+                height: 22px;
+                display: none;
+            }
+            
+            .document-link {
+                padding: 14px 16px;
+            }
+            
+            .franchise-document,
+            .project-document,
+            .volunteer-document,
+            .olympiad-document,
+            .ministry-document,
+            .order-document,
+            .monitoring-document,
+            .transport-document,
+            .atlas-document,
+            .redbook-document,
+            .media-document,
+            .media-journal,
+            .expert-document {
+                padding: 12px 15px;
+            }
+            
+            .document-meta {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .month-header {
+                padding: 14px 18px;
+            }
+            
+            .month-header h2 {
+                font-size: 1.2em;
+            }
+        }
+    
+
+        /* Общая навигация сайта */
+        .site-nav {
+            position: sticky;
+            top: 12px;
+            z-index: 1000;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto 24px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            color: #333;
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(255, 255, 255, 0.65);
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            backdrop-filter: blur(14px);
+        }
+        .site-nav__brand {
+            color: #7260c2;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .site-nav__links {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 4px;
+            list-style: none;
+        }
+        .site-nav__links a,
+        .site-nav summary {
+            display: block;
+            padding: 9px 13px;
+            border-radius: 10px;
+            color: #4b4659;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+        .site-nav__links a:hover,
+        .site-nav summary:hover,
+        .site-nav details[open] > summary {
+            color: #7260c2;
+            background: #f1eefc;
+        }
+        .site-nav details { position: relative; }
+        .site-nav summary { list-style: none; }
+        .site-nav summary::-webkit-details-marker { display: none; }
+        .site-nav summary::after { content: ' ▾'; }
+        .site-nav details[open] > summary::after { content: ' ▴'; }
+        .site-nav__submenu {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            width: min(330px, calc(100vw - 40px));
+            padding: 8px;
+            list-style: none;
+            background: #fff;
+            border: 1px solid #e8e3f5;
+            border-radius: 14px;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        .site-nav__submenu li + li { margin-top: 3px; }
+        .site-nav__submenu a { white-space: normal; }
+        .site-nav__submenu .site-nav__submenu {
+            position: static;
+            width: 100%;
+            margin: 4px 0 0;
+            padding: 5px 0 5px 10px;
+            border: 0;
+            border-left: 2px solid #e8e3f5;
+            border-radius: 0;
+            box-shadow: none;
+            background: #faf9fe;
+        }
+        .site-nav__submenu summary { white-space: normal; }
+        @media (max-width: 720px) {
+            .site-nav { align-items: flex-start; flex-direction: column; gap: 5px; }
+            .site-nav__links { width: 100%; align-items: stretch; flex-direction: column; }
+            .site-nav__links > li > a, .site-nav summary { padding: 8px 10px; }
+            .site-nav__submenu { position: static; width: 100%; margin-top: 4px; box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+<nav class="site-nav" aria-label="Основная навигация">
+    <a class="site-nav__brand" href="/главная">КРЯК</a>
+    <ul class="site-nav__links">
+        <li><a href="/главная">Главная</a></li>
+        <li><a href="/карта-деятельности">Карта деятельности</a></li>
+        <li><a href="/история">История</a></li>
+        <li><a href="/наш-архив">Архив</a></li>
+        <li>
+            <details>
+                <summary>УрбанХаб</summary>
+                <ul class="site-nav__submenu">
+                    <li><a href="/урбанхаб/вырубки-курск">Карта вырубок Курской области</a></li>
+                    <li><a href="/урбанхаб/незаконные-стоянки-курск">Карта стихийных парковок Курска</a></li>
+                    <li><a href="/урбанхаб/окн-курск">Карта ОКН Курской области</a></li>
+                </ul>
+            </details>
+        </li>
+
+        <li>
+            <details>
+                <summary>Яндекс Карты</summary>
+                <ul class="site-nav__submenu">
+                    <li><a href="/яндекс-карты/что-такое-няк">Что такое НЯК?</a></li>
+                    <li><a href="/яндекс-карты/3d-карты">3D-карты</a></li>
+                </ul>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary>Наши друзья</summary>
+                <ul class="site-nav__submenu">
+                    <li>
+                        <details>
+                            <summary>Ведомства</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-друзья/ведомства/минстрой-россии">Минстрой России</a></li>
+                                <li><a href="/наши-друзья/ведомства/росмолодёжь">Росмолодёжь</a></li>
+                                <li><a href="/наши-друзья/ведомства/комитет-молодёжной-политики-курской-области">Комитет молодёжной политики Курской области</a></li>
+                                <li><a href="/наши-друзья/ведомства/администрация-курска">Администрация Курска</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Проекты</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-друзья/проекты/народная-карта">Народная карта Яндекса</a></li>
+                                <li><a href="/наши-друзья/проекты/добро-рф">Добро.рф и Добро.Медиа</a></li>
+                                <li><a href="/наши-друзья/проекты/медиазавры">«МЕДИАЗАВРЫ, вперёд!»</a></li>
+                                <li><a href="/наши-друзья/проекты/содружество-урбанистов">Содружество урбанистов</a></li>
+                                <li><a href="/наши-друзья/проекты/урбан-админы">Урбан-админы</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Движения</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-друзья/движения/движение-первых">Движение Первых</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Дополнительное образование</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-друзья/доп-образование/медиашкола-цдт">Медиашкола «ДЮйМ» ЦДТ</a></li>
+                                <li><a href="/наши-друзья/доп-образование/курская-люж">ЛЮЖ | Курск</a></li>
+                                <li><a href="/наши-друзья/доп-образование/префикс-10">Медиафорум «Префикс +10»</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Университеты</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-друзья/университеты/кгу">Курский государственный университет</a></li>
+                                <li><a href="/наши-друзья/университеты/юзгу">Юго-Западный государственный университет</a></li>
+                                <li><a href="/наши-друзья/университеты/сахгу">Сахалинский государственный университет</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Сторонники</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-друзья/сторонники/хаяла-бахшиева">Хаяла Бахшиева</a></li>
+                                <li><a href="/наши-друзья/сторонники/андрей-башкирев">Андрей Башкирев</a></li>
+                                <li><a href="/наши-друзья/сторонники/дэниз-байрам">Дэниз Байрам</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                </ul>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary>Наши контакты</summary>
+                <ul class="site-nav__submenu">
+                    <li><a href="/наши-контакты/президент-движения">Президент движения</a></li>
+                    <li>
+                        <details>
+                            <summary>Советы</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-контакты/советы/совет-движения">Совет Движения</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Отделения</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-контакты/отделения/курск">Курск</a></li>
+                                <li><a href="/наши-контакты/отделения/киров">Киров</a></li>
+                                <li><a href="/наши-контакты/отделения/великий-новгород">Великий Новгород</a></li>
+                                <li><a href="/наши-контакты/отделения/нижний-новгород">Нижний Новгород</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                </ul>
+            </details>
+        </li>
+    </ul>
+</nav>
+
+    <div class="container">
+        <div class="documents-container">
+            <h1 class="year-header">Архив МХ «КРЯК»</h1>
+            
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <div class="search-icon">🔍</div>
+                    <input type="text" class="search-input" placeholder="Поиск документов..." id="searchInput">
+                    <button class="clear-search" id="clearSearch">×</button>
+                </div>
+                <div class="search-results" id="searchResults"></div>
+            </div>
+            
+            <div id="documentsContent">
+                <!-- УСТАВНЫЕ ДОКУМЕНТЫ -->
+                <div class="month-section">
+                    <div class="month-header">
+                        <h2>📄 Уставные документы</h2>
+                        <span>▼</span>
+                    </div>
+                    <div class="month-content">
+                        <div class="event">
+                            <div class="event-date">Основной документ</div>
+                            <div class="event-content">
+                                <a href="https://cloud.mail.ru/public/oRGJ/afXky51M7" class="document-link" target="_blank" rel="noopener noreferrer" data-searchable="Устав МХ КРЯК PDF 1.27 МБ Основной документ Уставные документы" data-archive="УСТ-01">
+                                    <strong>Устав МХ «КРЯК»</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 1.27 МБ (архив №УСТ-01)</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="event">
+                            <div class="event-date">Документы по франшизе (аффилированию)</div>
+                            <div class="event-content franchise-documents">
+                                <a href="https://cloud.mail.ru/public/3DuU/68CLEWPtv" class="franchise-document" target="_blank" rel="noopener noreferrer" data-searchable="Шаблон документов для отделения по франшизе PDF 112 КБ Документы по франшизе аффилированию" data-archive="005">
+                                    <strong>Шаблон документов для отделения по франшизе</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 112 КБ (архив №005)</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="notice-plate">
+                            Материалы находятся в бумажном архиве МХ «КРЯК» и используются в целях архивирования уставной деятельности движения (п. 2.2 Устава).
+                        </div>
+                    </div>
+                </div>
+
+                <!-- БРЕНДБУК МХ «КРЯК» -->
+                <div class="month-section">
+                    <div class="month-header">
+                        <h2>🎨 Брендбук МХ «КРЯК»</h2>
+                        <span>▼</span>
+                    </div>
+                    <div class="month-content">
+                        <div class="event">
+                            <div class="event-date">Фирменный стиль и визуальная идентичность</div>
+                            <div class="event-content">
+                                <a href="https://cloud.mail.ru/public/nSVY/As4mWXkM9" class="project-document" target="_blank" rel="noopener noreferrer" data-searchable="Брендбук МХ КРЯК PDF 7.34 МБ фирменный стиль визуальная идентичность" data-archive="054">
+                                    <strong>Брендбук МХ «КРЯК»</strong>
+                                    <div class="document-meta">
+                                        <span>PPTX, 7.34 МБ (архив №054)</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="notice-plate">
+                            Материал находится в бумажном архиве МХ «КРЯК» и регламентирует использование фирменной символики движения (п. 2.2 Устава).
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ПРИКАЗЫ И ДОВЕРЕННОСТИ -->
+                <div class="month-section">
+                    <div class="month-header">
+                        <h2>📋 Приказы и доверенности</h2>
+                        <span>▼</span>
+                    </div>
+                    <div class="month-content">
+                        <!-- Курское региональное отделение -->
+                        <div class="event">
+                            <div class="event-date">Курское региональное отделение</div>
+                            <div class="event-content order-documents">
+                                <a href="https://cloud.mail.ru/public/GRYC/cv7uMBgXM" class="order-document" target="_blank" rel="noopener noreferrer" data-searchable="Приказ о регистрации Курского регионального отделения в структуре МХ КРЯК PDF 795 КБ Бугаенко 31.10.2025" data-archive="006">
+                                    <strong>Приказ о регистрации Курского регионального отделения в структуре МХ «КРЯК»</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 795 КБ (архив №006)</span>
+                                    </div>
+                                </a>
+                                <a href="https://cloud.mail.ru/public/6cQv/TfAh9DAhR" class="order-document" target="_blank" rel="noopener noreferrer" data-searchable="Доверенность на основании которой действует подразделение Реновация Соловьиного края PDF 794 КБ 31.10.2025" data-archive="007">
+                                    <strong>Доверенность, на основании которой действует подразделение «Реновация Соловьиного края»</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 794 КБ (архив №007)</span>
+                                    </div>
+                                </a>
+                                <!-- Приказ №6 УДАЛЁН -->
+                            </div>
+                        </div>
+
+                        <!-- Кировское региональное отделение -->
+                        <div class="event">
+                            <div class="event-date">Кировское региональное отделение</div>
+                            <div class="event-content order-documents">
+                                <a href="https://cloud.mail.ru/public/oNUa/hp9kc5jCx" class="order-document" target="_blank" rel="noopener noreferrer" data-searchable="Приказ о назначении врио руководителя Кировского отделения PDF 950 КБ Бугаенко 10.07.2025" data-archive="008">
+                                    <strong>Приказ о назначении врио руководителя Кировского отделения (10.07.2025)</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 950 КБ (архив №008)</span>
+                                    </div>
+                                </a>
+                                <a href="https://cloud.mail.ru/public/yPBa/QTtrKmgzk" class="order-document" target="_blank" rel="noopener noreferrer" data-searchable="Приказ о реорганизации Кировского отделения PDF 790 КБ Бугаенко 07.08.2025" data-archive="009">
+                                    <strong>Приказ о реорганизации Кировского отделения (07.08.2025)</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 790 КБ (архив №009)</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Функциональное направление «Дизайн» -->
+                        <div class="event">
+                            <div class="event-date">Функциональное направление «Дизайн»</div>
+                            <div class="event-content order-documents">
+                                <a href="https://cloud.mail.ru/public/2dN1/msoEfXM7G" class="order-document" target="_blank" rel="noopener noreferrer" data-searchable="Приказ №3 О назначении руководителя функционального направления Дизайн PDF 792 КБ Бугаенко 18.11.2025" data-archive="012">
+                                    <strong>Приказ №3 «О назначении руководителя функционального направления «Дизайн» (18.11.2025)</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 792 КБ (архив №012)</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Функциональное направление «Иммерсивные технологии» -->
+                        <div class="event">
+                            <div class="event-date">Функциональное направление «Иммерсивные технологии»</div>
+                            <div class="event-content order-documents">
+                                <a href="https://cloud.mail.ru/public/UzUV/iRchXrW4W" class="order-document" target="_blank" rel="noopener noreferrer" data-searchable="Приказ о регистрации направления Иммерсивные технологии PDF 957 КБ Бугаенко Шаповал Разинский 25.06.2025" data-archive="010">
+                                    <strong>Приказ о регистрации направления «Иммерсивные технологии» (25.06.2025)</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 957 КБ (архив №010)</span>
+                                    </div>
+                                </a>
+                                <a href="https://cloud.mail.ru/public/adjW/1Y6qpCLpX" class="order-document" target="_blank" rel="noopener noreferrer" data-searchable="Доверенность для Новгородского и Нижегородского региональных отделений PDF 796 КБ Бугаенко Разинский Шаповал 31.10.2025" data-archive="011">
+                                    <strong>Доверенность для Новгородского и Нижегородского региональных отделений</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 796 КБ (архив №011)</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Поднаправление «Космическая систематика» -->
+                        <div class="event">
+                            <div class="event-date">Поднаправление «Космическая систематика»</div>
+                            <div class="event-content order-documents">
+                                <a href="https://cloud.mail.ru/public/Knjv/RZ5sTM3L9" class="order-document" target="_blank" rel="noopener noreferrer" data-searchable="Приказ №5 Об открытии поднаправления Космическая систематика PDF 786 КБ" data-archive="055">
+                                    <strong>Приказ №5 «Об открытии поднаправления «Космическая систематика»</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 786 КБ (архив №055)</span>
+                                    </div>
+                                </a>
+                                <a href="https://cloud.mail.ru/public/bpjK/hkbqF7776" class="order-document" target="_blank" rel="noopener noreferrer" data-searchable="Микроконтроллерная инженерия на базе ESP32 DOCX 32.5 КБ поднаправление Космическая систематика" data-archive="058">
+                                    <strong>Микроконтроллерная инженерия на базе ESP32</strong>
+                                    <div class="document-meta">
+                                        <span>DOCX, 32.5 КБ (архив №058)</span>
+                                    </div>
+                                </a>
+                                <a href="https://github.com/Interregional-cartographic-yacluster/clock" class="order-document" target="_blank" rel="noopener noreferrer" data-searchable="Горизонтальные часы на ESP32-WROOM-32D GitHub репозиторий поднаправление Космическая систематика" data-archive="059">
+                                    <strong>Горизонтальные часы на ESP32-WROOM-32D</strong>
+                                    <div class="document-meta">
+                                        <span>GitHub, репозиторий (архив №059)</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- ОТДЕЛЬНАЯ ПЛАШКА ТОЛЬКО ДЛЯ КОСМИЧЕСКОЙ СИСТЕМАТИКИ с лицензиями -->
+                            <div class="notice-plate">
+                                Проекты микроконтроллерной инженерии распространяются по лицензии PolyForm Noncommercial License 1.0.0 (полный текст доступен в репозиториях проектов на GitHub).
+                            </div>
+                        </div>
+                        
+                        <!-- ОБЩАЯ ПЛАШКА ДЛЯ ВСЕХ ПРИКАЗОВ -->
+                        <div class="notice-plate">
+                            Материалы находятся в бумажном архиве МХ «КРЯК» и подтверждают внутренний документооборот движения (п. 2.2 Устава).
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ПРО НАС В СМИ -->
+                <div class="month-section">
+                    <div class="month-header">
+                        <h2>📰 Про нас в СМИ</h2>
+                        <span>▼</span>
+                    </div>
+                    <div class="month-content">
+                        <div class="event">
+                            <div class="event-date">Курск, ТРК «Сейм»</div>
+                            <div class="event-content media-documents">
+                                <a href="https://seyminfo.ru/kurskij-shkolnik-roman-bugaenko-vnes-bolee-1600-pravok-v-narodnuju-kartu.html" class="media-document" target="_blank" rel="noopener noreferrer" data-searchable="Курский школьник Роман Бугаенко внёс более 1600 правок в Народную карту август 2022 ТРК Сейм Курск">
+                                    <strong>Курский школьник Роман Бугаенко внёс более 1600 правок в Народную карту (август 2022)</strong>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="event">
+                            <div class="event-date">Курск, МБУ ДО «Центр детского творчества»</div>
+                            <div class="event-content media-documents">
+                                <a href="https://cloud.mail.ru/public/sbw9/KbJAecWzC" class="media-journal" target="_blank" rel="noopener noreferrer" data-searchable="Журнал Светлячок №47 осень 2022 Центр детского творчества Курск PDF 36.7 МБ" data-archive="013">
+                                    <strong>Журнал «Светлячок» №47 (осень 2022)</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 36.7 МБ (архив №013)</span>
+                                    </div>
+                                </a>
+                                <a href="https://cloud.mail.ru/public/rdAU/kWRxDaJok" class="media-journal" target="_blank" rel="noopener noreferrer" data-searchable="Журнал Светлячок №48 зима 2022 2023 Центр детского творчества Курск PDF 34.1 МБ" data-archive="014">
+                                    <strong>Журнал «Светлячок» №48 (зима 2022 - 2023)</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 34.1 МБ (архив №014)</span>
+                                    </div>
+                                </a>
+                                <a href="https://cloud.mail.ru/public/s3XS/L74X1r3C8" class="media-journal" target="_blank" rel="noopener noreferrer" data-searchable="Журнал Светлячок №49 весна 2023 Центр детского творчества Курск PDF 39.3 МБ" data-archive="015">
+                                    <strong>Журнал «Светлячок» №49 (весна 2023)</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 39.3 МБ (архив №015)</span>
+                                    </div>
+                                </a>
+                                <a href="https://cloud.mail.ru/public/wKfB/c8RTGcr9p" class="media-journal" target="_blank" rel="noopener noreferrer" data-searchable="Журнал Светлячок №51 осень 2023 Центр детского творчества Курск PDF 39.2 МБ" data-archive="016">
+                                    <strong>Журнал «Светлячок» №51 (осень 2023)</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 39.2 МБ (архив №016)</span>
+                                    </div>
+                                </a>
+                                <a href="https://cloud.mail.ru/public/u6SL/Ckkc3vRqn" class="media-journal" target="_blank" rel="noopener noreferrer" data-searchable="Журнал Светлячок №52 зима 2023 2024 Центр детского творчества Курск PDF 35.9 МБ" data-archive="017">
+                                    <strong>Журнал «Светлячок» №52 (зима 2023 - 2024)</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 35.9 МБ (архив №017)</span>
+                                    </div>
+                                </a>
+                                <a href="https://cloud.mail.ru/public/tnu2/fAtZa96p3" class="media-journal" target="_blank" rel="noopener noreferrer" data-searchable="Журнал Светлячок №53 весна 2024 Центр детского творчества Курск PDF 46 МБ" data-archive="018">
+                                    <strong>Журнал «Светлячок» №53 (весна 2024)</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 46 МБ (архив №018)</span>
+                                    </div>
+                                </a>
+                                <a href="https://cloud.mail.ru/public/TtsB/kfzhDEiXQ" class="media-journal" target="_blank" rel="noopener noreferrer" data-searchable="Журнал Светлячок №54 лето 2024 Центр детского творчества Курск PDF 36.1 МБ" data-archive="019">
+                                    <strong>Журнал «Светлячок» №54 (лето 2024)</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 36.1 МБ (архив №019)</span>
+                                    </div>
+                                </a>
+                                <a href="https://cloud.mail.ru/public/xm1f/fxEYHofcn" class="media-journal" target="_blank" rel="noopener noreferrer" data-searchable="Журнал Светлячок №55 осень 2024 Центр детского творчества Курск PDF 45.5 МБ" data-archive="020">
+                                    <strong>Журнал «Светлячок» №55 (осень 2024)</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 45.5 МБ (архив №020)</span>
+                                    </div>
+                                </a>
+                                <a href="https://cloud.mail.ru/public/g8p7/r1Ri4Aexq" class="media-journal" target="_blank" rel="noopener noreferrer" data-searchable="Журнал Светлячок №56 зима 2024 2025 Центр детского творчества Курск PDF 38.7 МБ" data-archive="021">
+                                    <strong>Журнал «Светлячок» №56 (зима 2024 - 2025)</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 38.7 МБ (архив №021)</span>
+                                    </div>
+                                </a>
+                                <a href="https://cloud.mail.ru/public/PEht/NG35L7iaH" class="media-journal" target="_blank" rel="noopener noreferrer" data-searchable="Журнал Светлячок №57 весна 2025 Центр детского творчества Курск PDF 33.9 МБ" data-archive="022">
+                                    <strong>Журнал «Светлячок» №57 (весна 2025)</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 33.9 МБ (архив №022)</span>
+                                    </div>
+                                </a>
+                                <a href="https://cloud.mail.ru/public/VZ6Q/sdhyeT3ef" class="media-journal" target="_blank" rel="noopener noreferrer" data-searchable="Журнал Светлячок №58 лето 2025 Центр детского творчества Курск PDF 38.2 МБ" data-archive="046">
+                                    <strong>Журнал «Светлячок» №58 (лето 2025)</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 38.2 МБ (архив №046)</span>
+                                    </div>
+                                </a>
+                                <a href="https://cloud.mail.ru/public/rq92/ikUKSbuhq" class="media-journal" target="_blank" rel="noopener noreferrer" data-searchable="Журнал Светлячок №59 осень 2025 Центр детского творчества Курск PDF 36.7 МБ" data-archive="047">
+                                    <strong>Журнал «Светлячок» №59 (осень 2025)</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 36.7 МБ (архив №047)</span>
+                                    </div>
+                                </a>
+                                <a href="https://cloud.mail.ru/public/PEt4/sJCoQkt8c" class="media-journal" target="_blank" rel="noopener noreferrer" data-searchable="Журнал Светлячок №60 зима 2025 2026 Центр детского творчества Курск PDF 41.2 МБ" data-archive="053">
+                                    <strong>Журнал «Светлячок» №60 (зима 2025 - 2026)</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 41.2 МБ (архив №053)</span>
+                                    </div>
+                                </a>
+                                <a href="https://cloud.mail.ru/public/4bCZ/bz1RunGpM" class="media-journal" target="_blank" rel="noopener noreferrer" data-searchable="Журнал Светлячок №61 весна 2026 Центр детского творчества Курск PDF 40.4 МБ" data-archive="061">
+                                    <strong>Журнал «Светлячок» №61 (весна 2026)</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 40.4 МБ (архив №061)</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="event">
+                            <div class="event-date">ГТРК «Курск»</div>
+                            <div class="event-content media-documents">
+                                <a href="https://gtrkkursk.ru/news/55381-obshchestvenniki-pomogayut-korrektirovat-transportnuyu-reformu-kurske" class="media-document" target="_blank" rel="noopener noreferrer" data-searchable="Общественники помогают корректировать транспортную реформу в Курске август 2024 ГТРК Курск">
+                                    <strong>Общественники помогают корректировать транспортную реформу в Курске (август 2024)</strong>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="event">
+                            <div class="event-date">Газета «Курская правда»</div>
+                            <div class="event-content media-documents">
+                                <a href="https://kpravda.ru/2025/10/03/molodyozhnyj-dajdzhest-27/" class="media-document" target="_blank" rel="noopener noreferrer" data-searchable="КРЯК услышали в Минстрое рубрика Молодёжный дайджест газетный выпуск № 2025_120 октябрь 2025 Курская правда">
+                                    <strong>«КРЯК» услышали в Минстрое (газетный выпуск № 2025_120, октябрь 2025)</strong>
+                                </a>
+                                <a href="https://kpravda.ru/2026/02/13/zapomnit-gorod-v-3d/" class="media-document" target="_blank" rel="noopener noreferrer" data-searchable="Запомнить город в 3D рубрика Молодая гвардия газетный выпуск № 2026_016 февраль 2026 Курская правда" data-archive="051">
+                                    <strong>Запомнить город в 3D (газетный выпуск № 2026_016, февраль 2026)</strong>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="notice-plate">
+                            Материалы ГТРК «Курск», газеты «Курская правда» и ТРК «Сейм» размещены по ссылкам на официальные источники в открытом доступе. Выпуски журнала «Светлячок» находятся в бумажном архиве МХ «КРЯК», ссылки ведут напрямую в облачное хранилище МХ «КРЯК». Все материалы используются в информационных и архивных целях (п. 2.2 Устава). Авторские права на публикации - за соответствующими СМИ и редакцией журнала «Светлячок».<br><br>Выпуски журнала «Светлячок» хранятся на цифровой инфраструктуре МХ «КРЯК» на основании договорённости с медиашколой «ДЮйМ» (МБУ ДО «ЦДТ») и редакцией журнала.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ЗАЩИТА ПРОЕКТОВ -->
+                <div class="month-section">
+                    <div class="month-header">
+                        <h2>🎓 Защита проектов</h2>
+                        <span>▼</span>
+                    </div>
+                    <div class="month-content">
+                        <div class="event">
+                            <div class="event-date">Курск, школа №59 имени Г. М. Мыльникова, 2024</div>
+                            <div class="event-content project-documents">
+                                <a href="https://cloud.mail.ru/public/KHs2/FWpzPeepZ" class="project-document" target="_blank" rel="noopener noreferrer" data-searchable="Яндекс Карты в жизни человека DOCX 7.25 МБ Проектные работы Защита проектов 2024 школа №59 Курск" data-archive="023">
+                                    <strong>Яндекс Карты в жизни человека</strong>
+                                    <div class="document-meta">
+                                        <span>DOCX, 7.25 МБ (архив №023)</span>
+                                    </div>
+                                </a>
+                                <a href="https://cloud.mail.ru/public/RmJh/m6SF3WCN1" class="project-document" target="_blank" rel="noopener noreferrer" data-searchable="Яндекс Карты в жизни человека PPTX 5.63 МБ Проектные работы Защита проектов 2024 школа №59 Курск" data-archive="024">
+                                    <strong>Яндекс Карты в жизни человека</strong>
+                                    <div class="document-meta">
+                                        <span>PPTX, 5.63 МБ (архив №024)</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="event">
+                            <div class="event-date">Курск, Центр детского творчества, 2025</div>
+                            <div class="event-content project-documents">
+                                <a href="https://cloud.mail.ru/public/S8Nh/vJy4HCnrP" class="project-document" target="_blank" rel="noopener noreferrer" data-searchable="МХ КРЯК DOCX 1.4 МБ Проектные работы Защита проектов 2025 Центр детского творчества Курск" data-archive="025">
+                                    <strong>МХ «КРЯК»</strong>
+                                    <div class="document-meta">
+                                        <span>DOCX, 1.4 МБ (архив №025)</span>
+                                    </div>
+                                </a>
+                                <a href="https://cloud.mail.ru/public/Moeq/ubWuoC89f" class="project-document" target="_blank" rel="noopener noreferrer" data-searchable="МХ КРЯК PPTX 3.85 МБ Проектные работы Защита проектов 2025 Центр детского творчества Курск" data-archive="026">
+                                    <strong>МХ «КРЯК»</strong>
+                                    <div class="document-meta">
+                                        <span>PPTX, 3.85 МБ (архив №026)</span>
+                                    </div>
+                                </a>
+                                <a href="https://cloud.mail.ru/public/Th9n/Zbu2AMpjC" class="project-document" target="_blank" rel="noopener noreferrer" data-searchable="Сертификат о защите проекта МХ КРЯК PDF 708 КБ Защита проектов 2025 Центр детского творчества Курск" data-archive="027">
+                                    <strong>Сертификат о защите проекта «МХ «КРЯК»</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 708 КБ (архив №027)</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="event">
+                            <div class="event-date">Курск, школа №7 имени А. С. Пушкина, 2026</div>
+                            <div class="event-content project-documents">
+                                <a href="https://cloud.mail.ru/public/EM4B/mjJfZGMC7" class="project-document" target="_blank" rel="noopener noreferrer" data-searchable="Создание 3D-моделей ОКН города Курска для цифрового пространства Яндекс Карт DOCX 36 КБ Проектные работы Защита проектов 2026 школа №7 Курск" data-archive="049">
+                                    <strong>Создание 3D-моделей ОКН города Курска для цифрового пространства Яндекс Карт</strong>
+                                    <div class="document-meta">
+                                        <span>DOCX, 36 КБ (архив №049)</span>
+                                    </div>
+                                </a>
+                                <a href="https://cloud.mail.ru/public/eaGr/9LojFsRez" class="project-document" target="_blank" rel="noopener noreferrer" data-searchable="Создание 3D-моделей ОКН города Курска для цифрового пространства Яндекс Карт PPTX 11.1 МБ Проектные работы Защита проектов 2026 школа №7 Курск" data-archive="051">
+                                    <strong>Создание 3D-моделей ОКН города Курска для цифрового пространства Яндекс Карт</strong>
+                                    <div class="document-meta">
+                                        <span>PPTX, 11.1 МБ (архив №051)</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="notice-plate">
+                            Материалы находятся в бумажном архиве МХ «КРЯК» и документируют проектную деятельность движения (п. 2.2 Устава). Авторские права - за создателями.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ВСЕРОССИЙСКАЯ ОЛИМПИАДА -->
+                <div class="month-section">
+                    <div class="month-header">
+                        <h2>🏆 Всероссийская метапредметная олимпиада «Ближе к Дальнему»</h2>
+                        <span>▼</span>
+                    </div>
+                    <div class="month-content">
+                        <div class="event">
+                            <div class="event-date">Южно-Сахалинск, СахГУ, 2025</div>
+                            <div class="event-content">
+                                <a href="https://cloud.mail.ru/public/iqFP/iBZLYvj9M" class="olympiad-document" target="_blank" rel="noopener noreferrer" data-searchable="Диплом победителя I тура январь 2025 PDF 367 КБ олимпиада Ближе к Дальнему Всероссийская олимпиада Южно-Сахалинск СахГУ 2025" data-archive="028">
+                                    <strong>Диплом победителя I тура (январь 2025)</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 367 КБ (архив №028)</span>
+                                    </div>
+                                </a>
+                                
+                                <a href="https://cloud.mail.ru/public/P6qD/JS95gpNeL" class="olympiad-document" target="_blank" rel="noopener noreferrer" data-searchable="Похвальная грамота за участие во II туре февраль 2025 PNG 75.4 КБ олимпиада Ближе к Дальнему Всероссийская олимпиада Южно-Сахалинск СахГУ 2025" data-archive="029">
+                                    <strong>Похвальная грамота за участие во II туре (февраль 2025)</strong>
+                                    <div class="document-meta">
+                                        <span>PNG, 75.4 КБ (архив №029)</span>
+                                    </div>
+                                </a>
+                                
+                                <a href="https://cloud.mail.ru/public/ozxN/R6zuZc9Du" class="olympiad-document" target="_blank" rel="noopener noreferrer" data-searchable="Грамота за активное участие в жизни отряда образовательная смена центр Сахалинтех Алаид апрель 2025 JPEG 370 КБ олимпиада Ближе к Дальнему Всероссийская олимпиада Южно-Сахалинск СахГУ 2025" data-archive="030">
+                                    <strong>Грамота за активное участие в жизни отряда в рамках образовательной смены центра «Сахалинтех Алаид» (апрель 2025)</strong>
+                                    <div class="document-meta">
+                                        <span>JPEG, 370 КБ (архив №030)</span>
+                                    </div>
+                                </a>
+                                
+                                <a href="https://cloud.mail.ru/public/oKxn/bU2Y4FnKQ" class="olympiad-document" target="_blank" rel="noopener noreferrer" data-searchable="Стела Лауреат смены Дальнего апрель 2025 JPEG 211 КБ олимпиада Ближе к Дальнему Всероссийская олимпиада Южно-Сахалинск СахГУ 2025" data-archive="031">
+                                    <strong>Стела «Лауреат смены Дальнего» (апрель 2025)</strong>
+                                    <div class="document-meta">
+                                        <span>JPEG, 211 КБ (архив №031)</span>
+                                    </div>
+                                </a>
+
+                                <a href="https://cloud.mail.ru/public/B5Pr/qVY7PNFo8" class="olympiad-document" target="_blank" rel="noopener noreferrer" data-searchable="Основные источники парниковых газов и способы борьбы с ними апрель 2025 JPG 147 КБ олимпиада Ближе к Дальнему Южно-Сахалинск СахГУ 2025" data-archive="032">
+                                    <strong>Основные источники парниковых газов и способы борьбы с ними (апрель 2025)</strong>
+                                    <div class="document-meta">
+                                        <span>JPG, 147 КБ (архив №032)</span>
+                                    </div>
+                                </a>
+                                
+                                <div class="notice-plate">
+                                    Дипломы, грамоты и фотография стелы находятся в архиве МХ «КРЯК»; оригиналы - в личном владении автора. Схема «Основные источники парниковых газов и способы борьбы с ними» является авторским материалом участника и размещена в целях документирования экспертной деятельности движения (п. 2.2 Устава).
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="event">
+                            <div class="event-date">Сахалинский климатический эксперимент (научная основа)</div>
+                            <div class="event-content">
+                                <a href="https://cyberleninka.ru/article/n/obzor-tehnologiy-dekarbonizatsii-proizvodstva-teplovoy-i-elektricheskoy-energii/viewer?spm=a2ty_o01.29997173.0.0.464751710CZOcE" class="olympiad-document" target="_blank" rel="noopener noreferrer" data-searchable="Обзор технологий декарбонизации производства тепловой и электрической энергии КГЭУ 2023 Сахалинский климатический эксперимент научная основа" data-archive="036">
+                                    <strong>Обзор технологий декарбонизации производства тепловой и электрической энергии (КГЭУ, 2023)</strong>
+                                    <div class="document-meta">
+                                        <span>архив №036</span>
+                                    </div>
+                                </a>
+                                
+                                <a href="https://www.mdpi.com/2071-1050/16/7/3031" class="olympiad-document" target="_blank" rel="noopener noreferrer" data-searchable="Оценка гидрохимических характеристик углеродного наблюдательного участка Карбон-Сахалин в заливе Анива Охотского моря СахГУ 2024 Сахалинский климатический эксперимент научная основа" data-archive="034">
+                                    <strong>Оценка гидрохимических характеристик углеродного наблюдательного участка «Карбон-Сахалин» в заливе Анива Охотского моря (СахГУ, 2024)</strong>
+                                    <div class="document-meta">
+                                        <span>архив №034</span>
+                                    </div>
+                                </a>
+                                
+                                <a href="https://cyberleninka.ru/article/n/dobrovolnyy-rynok-ugleroda-rossiyskiy-institutsionalnyy-kontekst-i-perspektivy-razvitiya/viewer?spm=a2ty_o01.29997173.0.0.464751710CZOcE" class="olympiad-document" target="_blank" rel="noopener noreferrer" data-searchable="Добровольный рынок углерода российский институциональный контекст и перспективы развития ДВФУ 2024 Сахалинский климатический эксперимент научная основа" data-archive="035">
+                                    <strong>Добровольный рынок углерода: российский институциональный контекст и перспективы развития (ДВФУ, 2024)</strong>
+                                    <div class="document-meta">
+                                        <span>архив №035</span>
+                                    </div>
+                                </a>
+                                
+                                <a href="https://ecology.sakhalin.gov.ru/about/climate/1505-regionalnye-kadastry.html" class="olympiad-document" target="_blank" rel="noopener noreferrer" data-searchable="Региональный кадастр антропогенных выбросов из источников и абсорбции поглотителями парниковых газов в Сахалинской области за 2024 год Сахалинский климатический эксперимент научная основа" data-archive="033">
+                                    <strong>Региональный кадастр антропогенных выбросов из источников и абсорбции поглотителями парниковых газов в Сахалинской области за 2024 год</strong>
+                                    <div class="document-meta">
+                                        <span>архив №033</span>
+                                    </div>
+                                </a>
+                                
+                                <a href="https://cyberleninka.ru/article/n/sekvestratsiya-ugleroda-atmosfery-s-ispolzovaniem-mikrovodorosley/viewer?spm=a2ty_o01.29997173.0.0.464751710CZOcE" class="olympiad-document" target="_blank" rel="noopener noreferrer" data-searchable="Секвестрация углерода атмосферы с использованием микроводорослей КФУ 2024 Сахалинский климатический эксперимент научная основа" data-archive="037">
+                                    <strong>Секвестрация углерода атмосферы с использованием микроводорослей (КФУ, 2024)</strong>
+                                    <div class="document-meta">
+                                        <span>архив №037</span>
+                                    </div>
+                                </a>
+
+                                <div class="notice-plate">
+                                    Научные материалы использованы в образовательных целях (п. 2.2 Устава). Ссылки ведут на официальные источники в открытом доступе. Авторские права принадлежат правообладателям.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ГЕОГРАФИЧЕСКИЕ АТЛАСЫ -->
+                <div class="month-section">
+                    <div class="month-header">
+                        <h2>🗺️ Географические атласы</h2>
+                        <span>▼</span>
+                    </div>
+                    <div class="month-content">
+                        <div class="event">
+                            <div class="event-date">Атласы</div>
+                            <div class="event-content">
+                                <a href="https://cloud.mail.ru/public/GzER/2iA9dZKmg" class="atlas-document" target="_blank" rel="noopener noreferrer" data-searchable="Малый атлас мира ГУГК при СМ СССР 1974 PDF 135 МБ архив №004 Географические атласы" data-archive="004">
+                                    <strong>Малый атлас мира (ГУГК при СМ СССР, 1974)</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 135 МБ (архив №004)</span>
+                                    </div>
+                                </a>
+                                <a href="https://cloud.mail.ru/public/VZSH/mjuL85gPi" class="atlas-document" target="_blank" rel="noopener noreferrer" data-searchable="Географический атлас для учителей средней школы ГУГК при СМ СССР 1982 PDF 208 МБ Географические атласы" data-archive="001">
+                                    <strong>Географический атлас для учителей средней школы (ГУГК при СМ СССР, 1982)</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 208 МБ (архив №001)</span>
+                                    </div>
+                                </a>
+                                <a href="https://cloud.mail.ru/public/y3Fj/oEnznYPxD" class="atlas-document" target="_blank" rel="noopener noreferrer" data-searchable="Атлас железных дорог СССР Пассажирское сообщение ГУГК при СМ СССР 1988 PDF 111 МБ Географические атласы" data-archive="048">
+                                    <strong>Атлас железных дорог СССР. Пассажирское сообщение (ГУГК при СМ СССР, 1988)</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 111 МБ (архив №048)</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="notice-plate">
+                            Материалы находятся в бумажном архиве МХ «КРЯК» и используются в исследовательских целях (п. 2.2 Устава).
+                        </div>
+                    </div>
+                </div>
+
+                <!-- СТРОИТЕЛЬНОЕ ПРОЕКТИРОВАНИЕ -->
+                <div class="month-section">
+                    <div class="month-header">
+                        <h2>🏗️ Строительное проектирование</h2>
+                        <span>▼</span>
+                    </div>
+                    <div class="month-content">
+                        <div class="description-text">
+                            Экземпляр книги Эрнста Нойферта «Строительное проектирование» (43-е изд., 2024) находится в бумажном архиве (карточка №003) МХ «КРЯК» и используется в исследовательских целях (п. 2.2 Устава). Электронная версия не предоставляется в связи с охраной авторских прав.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ПОСОБИЯ ПО УРБАНИСТИКЕ -->
+                <div class="month-section">
+                    <div class="month-header">
+                        <h2>📚 Пособия по урбанистике</h2>
+                        <span>▼</span>
+                    </div>
+                    <div class="month-content">
+                        <div class="description-text">
+                            Экземпляры англо-русского глоссария водно-зеленой инфраструктуры (2022) и практического пособия «Зелёный код территорий» (2023) находятся в бумажном архиве МХ «КРЯК» и используются в исследовательских целях (п. 2.2 Устава). Электронные версии не предоставляются в связи с охраной авторских прав.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- КРАСНЫЕ КНИГИ СУБЪЕКТОВ РФ -->
+                <div class="month-section">
+                    <div class="month-header">
+                        <h2>📕 Красные книги субъектов РФ</h2>
+                        <span>▼</span>
+                    </div>
+                    <div class="month-content">
+                        <div class="event">
+                            <div class="event-date">Красные книги</div>
+                            <div class="event-content">
+                                <a href="https://les.sakhalin.gov.ru/fileadmin/user_upload/Krasnaja_kniga/%D0%9A%D1%80%D0%B0%D1%81%D0%BD%D0%B0%D1%8F_%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_%D0%A1%D0%B0%D1%85%D0%B0%D0%BB%D0%B8%D0%BD%D1%81%D0%BA%D0%BE%D0%B9_%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D0%B8__%D0%B6%D0%B8%D0%B2%D0%BE%D1%82%D0%BD%D1%8B%D0%B5__2016.pdf" class="redbook-document" target="_blank" rel="noopener noreferrer" data-searchable="Красная книга Сахалинской области Животные 2016 PDF 57.9 МБ Красные книги субъектов РФ" data-archive="002">
+                                    <strong>Красная книга Сахалинской области (Животные, 2016)</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 57.9 МБ (архив №002)</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="notice-plate">
+                            Материалы находятся в бумажном архиве МХ «КРЯК» и используются в исследовательских целях (п. 2.2 Устава). Официальные версии размещены правообладателями в открытом доступе; ссылки ведут на оригинальные источники.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- МИНСТРОЙ РОССИИ И ФОРУМ -->
+                <div class="month-section">
+                    <div class="month-header">
+                        <h2>🏗️ Минстрой России и форум 100+ TechnoBuild</h2>
+                        <span>▼</span>
+                    </div>
+                    <div class="month-content">
+                        <div class="event">
+                            <div class="event-date">Сборник лучших практик</div>
+                            <div class="event-content">
+                                <a href="https://cloud.mail.ru/public/mY67/b8xTKCX9Z" class="ministry-document" target="_blank" rel="noopener noreferrer" data-searchable="Сборник лучших практик деятельности добровольческих организаций в развитии городской среды за 2024 год Минстрой Россия страница 6 PDF 6.43 МБ форум 100+ TechnoBuild Сборник лучших практик" data-archive="038">
+                                    <strong>Сборник лучших практик деятельности добровольческих организаций в развитии городской среды за 2024 год, сформированный Минстроем России (страница 6)</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 6.43 МБ (архив №038)</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="event">
+                            <div class="event-date">100+ TechnoBuild, Екатеринбург, 2025</div>
+                            <div class="event-content">
+                                <a href="https://cloud.mail.ru/public/iMy9/k8npmFU5N" class="ministry-document" target="_blank" rel="noopener noreferrer" data-searchable="Презентация Уютный Курск КРЯК октябрь 2025 PDF 1.85 МБ форум 100+ TechnoBuild Минстрой Россия Екатеринбург 2025" data-archive="039">
+                                    <strong>Презентация «Уютный Курск (КРЯК)» (октябрь 2025)</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 1.85 МБ (архив №039)</span>
+                                    </div>
+                                </a>
+                                
+                                <a href="https://cloud.mail.ru/public/Eek7/G2cxfRJQC" class="ministry-document" target="_blank" rel="noopener noreferrer" data-searchable="Благодарственное письмо Дмитрию Шаповалу от министра Ирека Файзуллина октябрь 2025 JPG 2.03 МБ форум 100+ TechnoBuild Минстрой Россия Екатеринбург 2025" data-archive="040">
+                                    <strong>Благодарственное письмо Дмитрию Шаповалу от министра Ирека Файзуллина (октябрь 2025)</strong>
+                                    <div class="document-meta">
+                                        <span>JPG, 2.03 МБ (архив №040)</span>
+                                    </div>
+                                </a>
+                                
+                                <a href="https://cloud.mail.ru/public/qhvz/Xf9uyThqz" class="ministry-document" target="_blank" rel="noopener noreferrer" data-searchable="Круглый стол Минстроя России Новая сила городской среды лучшие практики добровольчества октябрь 2025 DOCX 19.8 КБ форум 100+ TechnoBuild Екатеринбург 2025" data-archive="041">
+                                    <strong>Круглый стол Минстроя России «Новая сила городской среды: лучшие практики добровольчества» (октябрь 2025)</strong>
+                                    <div class="document-meta">
+                                        <span>DOCX, 19.8 КБ (архив №041)</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="notice-plate">
+                            Материалы находятся в бумажном архиве МХ «КРЯК» и фиксируют участие движения в государственных мероприятиях (п. 2.2 Устава). Благодарственное письмо Дмитрию Шаповалу: оригинал - у адресата, копия - в архиве участника. Авторские права - за организаторами и участниками.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ВОЛОНТЁРСКАЯ ДЕЯТЕЛЬНОСТЬ -->
+                <div class="month-section">
+                    <div class="month-header">
+                        <h2>🤝 Волонтёрская деятельность</h2>
+                        <span>▼</span>
+                    </div>
+                    <div class="month-content">
+                        <div class="event">
+                            <div class="event-date">Волонтёрские документы</div>
+                            <div class="event-content">
+                                <a href="https://cloud.mail.ru/public/UhAR/ws6neCYng" class="volunteer-document" target="_blank" rel="noopener noreferrer" data-searchable="Стандарт работы организатора волонтёрской деятельности АВЦ 2021 PDF 14.7 МБ Волонтёрские документы Волонтёрская деятельность" data-archive="042">
+                                    <strong>Стандарт работы организатора волонтёрской деятельности (АВЦ, 2021)</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 14.7 МБ (архив №042)</span>
+                                    </div>
+                                </a>
+                                
+                                <a href="https://cloud.mail.ru/public/SNkw/wLUMe8u3w" class="volunteer-document" target="_blank" rel="noopener noreferrer" data-searchable="Сертификат за участие во Всероссийской неделе субботников Мы за чистоту апрель 2025 PNG 1.6 МБ Волонтёрские документы Волонтёрская деятельность" data-archive="044">
+                                    <strong>Сертификат за участие во Всероссийской неделе субботников «Мы за чистоту!» (апрель 2025)</strong>
+                                    <div class="document-meta">
+                                        <span>PNG, 1.6 МБ (архив №044)</span>
+                                    </div>
+                                </a>
+                                
+                                <a href="https://cloud.mail.ru/public/7FCm/G2acjJZsH" class="volunteer-document" target="_blank" rel="noopener noreferrer" data-searchable="Сертификат за участие в V Всероссийском голосовании федеральный проект ФКГС апрель июнь 2025 JPG 438 КБ Волонтёрские документы Волонтёрская деятельность" data-archive="043">
+                                    <strong>Сертификат за участие в V Всероссийском голосовании в рамках федерального проекта «ФКГС» (апрель - июнь 2025)</strong>
+                                    <div class="document-meta">
+                                        <span>JPG, 438 КБ (архив №043)</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="notice-plate">
+                            Материалы находятся в бумажном архиве МХ «КРЯК» и подтверждают участие в добровольческих инициативах (п. 2.2 Устава). Сертификаты - подлинные.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ТРАНСПОРТНАЯ РЕФОРМА (КУРСК) -->
+                <div class="month-section">
+                    <div class="month-header">
+                        <h2>🚌 Курская транспортная реформа</h2>
+                        <span>▼</span>
+                    </div>
+                    <div class="month-content">
+                        <div class="event">
+                            <div class="event-date">Мониторинг качества сервиса</div>
+                            <div class="event-content">
+                                <a href="https://cloud.mail.ru/public/mDnm/BZrMmmbcS" class="monitoring-document" target="_blank" rel="noopener noreferrer" data-searchable="Мониторинг качества сервиса в общественном транспорте Курска 2025 DOCX 25.3 КБ Транспортная реформа Курск" data-archive="045">
+                                    <strong>Мониторинг качества сервиса в общественном транспорте Курска (2025)</strong>
+                                    <div class="document-meta">
+                                        <span>DOCX, 25.3 КБ (архив №045)</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="event">
+                            <div class="event-date">Встреча в точке кипения КГУ, 2024</div>
+                            <div class="event-content">
+                                <a href="https://cloud.mail.ru/public/ndcZ/1dmLvM3RR" class="transport-document" target="_blank" rel="noopener noreferrer" data-searchable="Презентация Олега Погожих Курская транспортная реформа вместе к лучшему PDF 4.37 МБ Транспортная реформа Курск точка кипения КГУ 2024" data-archive="050">
+                                    <strong>Презентация Олега Погожих «Курская транспортная реформа, вместе к лучшему!»</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 4.37 МБ (архив №050)</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="notice-plate">
+                            Материалы находятся в бумажном архиве МХ «КРЯК» и размещены в целях публичной фиксации экспертной деятельности движения (п. 2.2 Устава). Экземпляр документа «Курская транспортная реформа, вместе к лучшему!» включён в электронный архив МХ «КРЯК» (п. 4.5 Устава) и используется в исследовательских целях (п. 2.2 Устава). Авторские права - за авторами.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ОБЩЕСТВЕННЫЕ ОБСУЖДЕНИЯ И ЭКСПЕРТНАЯ ДЕЯТЕЛЬНОСТЬ -->
+                <div class="month-section">
+                    <div class="month-header">
+                        <h2>📋 Общественные обсуждения и экспертиза</h2>
+                        <span>▼</span>
+                    </div>
+                    <div class="month-content">
+                        <div class="event">
+                            <div class="event-date">Санкт-Петербург, бывшая Яблоновская свалка, 2026</div>
+                            <div class="event-content expert-documents">
+                                <a href="https://cloud.mail.ru/public/eHWt/AFmGQc4x7" class="expert-document" target="_blank" rel="noopener noreferrer" data-searchable="Протокол общественных обсуждений Бывшая Яблоновская свалка Санкт-Петербург PDF 8.52 МБ 2026" data-archive="052">
+                                    <strong>Протокол общественных обсуждений Комитета по природопользованию Санкт-Петербурга (Бывшая Яблоновская свалка)</strong>
+                                    <div class="document-meta">
+                                        <span>PDF, 8.52 МБ (архив №052)</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="notice-plate" style="margin-top: 12px;">
+                                Материал (копия) находится в бумажном архиве МХ «КРЯК» и размещён в целях публичной фиксации деятельности движения (п. 2.2 Устава).
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="no-results" id="noResults">
+                По вашему запросу ничего не найдено. Попробуйте изменить поисковый запрос.
+            </div>
+            
+            <div class="update-notice">
+                🔄 Страница обновлена 7 октября 2026 года.
+            </div>
+
+            <div class="archive-contact">
+                📬 При желании передать в архив какие-либо материалы можно обращаться на электронную почту <a href="mailto:kryak_kursk@mail.ru">kryak_kursk@mail.ru</a>.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const clearSearch = document.getElementById('clearSearch');
+        const searchResults = document.getElementById('searchResults');
+        const noResults = document.getElementById('noResults');
+        const monthSections = document.querySelectorAll('.month-section');
+        const monthHeaders = document.querySelectorAll('.month-header');
+        const monthContents = document.querySelectorAll('.month-content');
+        
+        monthContents.forEach(content => {
+            content.style.display = 'flex';
+        });
+        
+        monthHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const arrow = header.querySelector('span');
+                
+                if (content.style.display === 'none' || content.style.display === '') {
+                    content.style.display = 'flex';
+                    arrow.textContent = '▼';
+                } else {
+                    content.style.display = 'none';
+                    arrow.textContent = '▶';
+                }
+            });
+        });
+        
+        function performSearch() {
+            const searchTerm = searchInput.value.trim().toLowerCase();
+            let visibleDocuments = 0;
+            let visibleEvents = 0;
+            let visibleSections = 0;
+            
+            noResults.style.display = 'none';
+            
+            if (searchTerm === '') {
+                clearSearch.style.display = 'none';
+                searchResults.textContent = '';
+                
+                document.querySelectorAll('a[data-searchable]').forEach(link => {
+                    link.classList.remove('hidden-by-search');
+                });
+                
+                document.querySelectorAll('.event').forEach(event => {
+                    event.classList.remove('hidden-by-search');
+                });
+                
+                monthSections.forEach(section => {
+                    section.classList.remove('hidden-by-search');
+                });
+                
+                return;
+            }
+            
+            clearSearch.style.display = 'flex';
+            
+            document.querySelectorAll('a[data-searchable]').forEach(link => {
+                link.classList.add('hidden-by-search');
+            });
+            
+            const isThreeDigitArchiveNumber = /^[0-9]{3}$/.test(searchTerm) || /^№[0-9]{3}$/.test(searchTerm);
+            
+            if (isThreeDigitArchiveNumber) {
+                const cleanArchiveNumber = searchTerm.replace('№', '');
+                
+                document.querySelectorAll('a[data-archive]').forEach(link => {
+                    const archiveNumber = link.getAttribute('data-archive');
+                    const cleanArchiveAttr = archiveNumber.replace('УСТ-', '');
+                    
+                    if (cleanArchiveAttr === cleanArchiveNumber) {
+                        link.classList.remove('hidden-by-search');
+                        visibleDocuments++;
+                        
+                        const event = link.closest('.event');
+                        if (event) {
+                            event.classList.remove('hidden-by-search');
+                        }
+                    }
+                });
+            } else {
+                document.querySelectorAll('a[data-searchable]').forEach(link => {
+                    const searchableText = link.getAttribute('data-searchable').toLowerCase();
+                    
+                    if (searchableText.includes(searchTerm)) {
+                        link.classList.remove('hidden-by-search');
+                        visibleDocuments++;
+                        
+                        const event = link.closest('.event');
+                        if (event) {
+                            event.classList.remove('hidden-by-search');
+                        }
+                    }
+                });
+            }
+            
+            document.querySelectorAll('.event').forEach(event => {
+                const visibleLinks = event.querySelectorAll('a[data-searchable]:not(.hidden-by-search)');
+                if (visibleLinks.length > 0) {
+                    event.classList.remove('hidden-by-search');
+                    visibleEvents++;
+                } else {
+                    event.classList.add('hidden-by-search');
+                }
+            });
+            
+            monthSections.forEach(section => {
+                const visibleEventsInSection = section.querySelectorAll('.event:not(.hidden-by-search)');
+                if (visibleEventsInSection.length > 0) {
+                    section.classList.remove('hidden-by-search');
+                    visibleSections++;
+                    
+                    const content = section.querySelector('.month-content');
+                    const arrow = section.querySelector('.month-header span');
+                    if (content && arrow) {
+                        content.style.display = 'flex';
+                        arrow.textContent = '▼';
+                    }
+                } else {
+                    section.classList.add('hidden-by-search');
+                }
+            });
+            
+            if (visibleDocuments > 0) {
+                searchResults.textContent = `Найдено документов: ${visibleDocuments}`;
+                searchResults.style.color = '#8f7ed6';
+            } else {
+                searchResults.textContent = 'Ничего не найдено';
+                searchResults.style.color = '#ff6b6b';
+                noResults.style.display = 'block';
+            }
+        }
+        
+        searchInput.addEventListener('input', performSearch);
+        clearSearch.addEventListener('click', () => {
+            searchInput.value = '';
+            performSearch();
+            searchInput.focus();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && searchInput.value !== '') {
+                searchInput.value = '';
+                performSearch();
+            }
+        });
+    </script>
+</body>
+</html>

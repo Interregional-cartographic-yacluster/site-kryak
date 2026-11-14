@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МХ «КРЯК» — Совет Движения</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Raleway:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #8f7ed6;
+            --primary-dark: #7260c2;
+            --primary-darker: #5a4a9e;
+            --primary-light: #a897e8;
+            --secondary: #ff6b6b;
+            --accent: #4ecdc4;
+            --light: #ffffff;
+            --text: #333333;
+            --background: #8f7ed6;
+            --shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            --shadow-strong: 0 12px 25px rgba(0, 0, 0, 0.15);
+            --shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.18);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Raleway', sans-serif;
+            background: var(--background);
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 60px 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-strong);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header p {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Content Sections */
+        .content-section {
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow-strong);
+            padding: 40px;
+            margin-bottom: 40px;
+            color: var(--text);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            bottom: -10px;
+            left: 0;
+            border-radius: 2px;
+        }
+        
+        /* Council Grid */
+        .council-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .council-card {
+            background: var(--background);
+            color: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .council-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .member-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent);
+            margin: 0 auto 20px;
+        }
+        
+        .member-name {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+        
+        .member-position {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .member-description {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .member-contacts {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .contact-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .contact-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .contact-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        
+        /* Responsibilities Section */
+        .responsibilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .responsibility-item {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            color: white;
+        }
+        
+        .responsibility-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .responsibility-item h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .responsibility-item p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 20px;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .header p {
+                font-size: 1.2rem;
+            }
+            
+            .content-section {
+                padding: 25px;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .council-grid, .responsibilities-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .member-photo {
+                width: 120px;
+                height: 120px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 30px 15px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .content-section {
+                padding: 20px;
+            }
+        }
+    
+
+        /* Общая навигация сайта */
+        .site-nav {
+            position: sticky;
+            top: 12px;
+            z-index: 1000;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto 24px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            color: #333;
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(255, 255, 255, 0.65);
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            backdrop-filter: blur(14px);
+        }
+        .site-nav__brand {
+            color: #7260c2;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .site-nav__links {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 4px;
+            list-style: none;
+        }
+        .site-nav__links a,
+        .site-nav summary {
+            display: block;
+            padding: 9px 13px;
+            border-radius: 10px;
+            color: #4b4659;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+        .site-nav__links a:hover,
+        .site-nav summary:hover,
+        .site-nav details[open] > summary {
+            color: #7260c2;
+            background: #f1eefc;
+        }
+        .site-nav details { position: relative; }
+        .site-nav summary { list-style: none; }
+        .site-nav summary::-webkit-details-marker { display: none; }
+        .site-nav summary::after { content: ' ▾'; }
+        .site-nav details[open] > summary::after { content: ' ▴'; }
+        .site-nav__submenu {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            width: min(330px, calc(100vw - 40px));
+            padding: 8px;
+            list-style: none;
+            background: #fff;
+            border: 1px solid #e8e3f5;
+            border-radius: 14px;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        .site-nav__submenu li + li { margin-top: 3px; }
+        .site-nav__submenu a { white-space: normal; }
+        .site-nav__submenu .site-nav__submenu {
+            position: static;
+            width: 100%;
+            margin: 4px 0 0;
+            padding: 5px 0 5px 10px;
+            border: 0;
+            border-left: 2px solid #e8e3f5;
+            border-radius: 0;
+            box-shadow: none;
+            background: #faf9fe;
+        }
+        .site-nav__submenu summary { white-space: normal; }
+        @media (max-width: 720px) {
+            .site-nav { align-items: flex-start; flex-direction: column; gap: 5px; }
+            .site-nav__links { width: 100%; align-items: stretch; flex-direction: column; }
+            .site-nav__links > li > a, .site-nav summary { padding: 8px 10px; }
+            .site-nav__submenu { position: static; width: 100%; margin-top: 4px; box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+<nav class="site-nav" aria-label="Основная навигация">
+    <a class="site-nav__brand" href="/главная">КРЯК</a>
+    <ul class="site-nav__links">
+        <li><a href="/главная">Главная</a></li>
+        <li><a href="/карта-деятельности">Карта деятельности</a></li>
+        <li><a href="/история">История</a></li>
+        <li><a href="/наш-архив">Архив</a></li>
+        <li>
+            <details>
+                <summary>УрбанХаб</summary>
+                <ul class="site-nav__submenu">
+                    <li><a href="/урбанхаб/вырубки-курск">Карта вырубок Курской области</a></li>
+                    <li><a href="/урбанхаб/незаконные-стоянки-курск">Карта стихийных парковок Курска</a></li>
+                    <li><a href="/урбанхаб/окн-курск">Карта ОКН Курской области</a></li>
+                </ul>
+            </details>
+        </li>
+
+        <li>
+            <details>
+                <summary>Яндекс Карты</summary>
+                <ul class="site-nav__submenu">
+                    <li><a href="/яндекс-карты/что-такое-няк">Что такое НЯК?</a></li>
+                    <li><a href="/яндекс-карты/3d-карты">3D-карты</a></li>
+                </ul>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary>Наши друзья</summary>
+                <ul class="site-nav__submenu">
+                    <li>
+                        <details>
+                            <summary>Ведомства</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-друзья/ведомства/минстрой-россии">Минстрой России</a></li>
+                                <li><a href="/наши-друзья/ведомства/росмолодёжь">Росмолодёжь</a></li>
+                                <li><a href="/наши-друзья/ведомства/комитет-молодёжной-политики-курской-области">Комитет молодёжной политики Курской области</a></li>
+                                <li><a href="/наши-друзья/ведомства/администрация-курска">Администрация Курска</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Проекты</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-друзья/проекты/народная-карта">Народная карта Яндекса</a></li>
+                                <li><a href="/наши-друзья/проекты/добро-рф">Добро.рф и Добро.Медиа</a></li>
+                                <li><a href="/наши-друзья/проекты/медиазавры">«МЕДИАЗАВРЫ, вперёд!»</a></li>
+                                <li><a href="/наши-друзья/проекты/содружество-урбанистов">Содружество урбанистов</a></li>
+                                <li><a href="/наши-друзья/проекты/урбан-админы">Урбан-админы</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Движения</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-друзья/движения/движение-первых">Движение Первых</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Дополнительное образование</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-друзья/доп-образование/медиашкола-цдт">Медиашкола «ДЮйМ» ЦДТ</a></li>
+                                <li><a href="/наши-друзья/доп-образование/курская-люж">ЛЮЖ | Курск</a></li>
+                                <li><a href="/наши-друзья/доп-образование/префикс-10">Медиафорум «Префикс +10»</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Университеты</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-друзья/университеты/кгу">Курский государственный университет</a></li>
+                                <li><a href="/наши-друзья/университеты/юзгу">Юго-Западный государственный университет</a></li>
+                                <li><a href="/наши-друзья/университеты/сахгу">Сахалинский государственный университет</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Сторонники</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-друзья/сторонники/хаяла-бахшиева">Хаяла Бахшиева</a></li>
+                                <li><a href="/наши-друзья/сторонники/андрей-башкирев">Андрей Башкирев</a></li>
+                                <li><a href="/наши-друзья/сторонники/дэниз-байрам">Дэниз Байрам</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                </ul>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary>Наши контакты</summary>
+                <ul class="site-nav__submenu">
+                    <li><a href="/наши-контакты/президент-движения">Президент движения</a></li>
+                    <li>
+                        <details>
+                            <summary>Советы</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-контакты/советы/совет-движения">Совет Движения</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Отделения</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-контакты/отделения/курск">Курск</a></li>
+                                <li><a href="/наши-контакты/отделения/киров">Киров</a></li>
+                                <li><a href="/наши-контакты/отделения/великий-новгород">Великий Новгород</a></li>
+                                <li><a href="/наши-контакты/отделения/нижний-новгород">Нижний Новгород</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                </ul>
+            </details>
+        </li>
+    </ul>
+</nav>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Совет Движения</h1>
+            <p>Руководящая команда молодёжного общественного движения «Межрегиональный картографический Я-кластер», определяющая стратегию развития и ключевые направления деятельности организации</p>
+        </header>
+
+        <!-- Council Members -->
+        <section class="content-section fade-in">
+            <div class="section-title">
+                <h2>Состав Совета Движения</h2>
+            </div>
+            
+            <div class="council-grid">
+                <!-- Роман Бугаенко -->
+                <div class="council-card">
+                    <img src="https://raw.githubusercontent.com/Kursk-Editors-of-Yandex-Maps/Image/refs/heads/main/d-COb-Vlpi-M-xa-Z4-BZdk-KEr-Ujb15-Gs2zt-Ey156-Mk-ARP5-ix-Tv3gc-ORi-KGl1-UG0n-v-H4-V005-Md-Hct-Ga-Ubw1-YC0h.jpg" alt="Роман Бугаенко" class="member-photo">
+                    <div class="member-name">Роман Бугаенко</div>
+                    <div class="member-position">Председатель Совета</div>
+                    <p class="member-description">Координирует работу движения, отвечает за стратегическое развитие и взаимодействие с партнёрами. Руководит направлением урбанистики и картографии.</p>
+                    <div class="member-contacts">
+                        <a href="https://vk.ru/bugromka" target="_blank" rel="noopener noreferrer" class="contact-link">
+                            <img src="https://raw.githubusercontent.com/Kursk-Editors-of-Yandex-Maps/Image/refs/heads/main/Icon-Color.png" alt="VK" class="contact-icon">
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Светлана Белоусова -->
+                <div class="council-card">
+                    <img src="https://raw.githubusercontent.com/Kursk-Editors-of-Yandex-Maps/Image/refs/heads/main/g-S9-iydk9-II.jpg" alt="Светлана Белоусова" class="member-photo">
+                    <div class="member-name">Светлана Белоусова</div>
+                    <div class="member-position">Член Совета</div>
+                    <p class="member-description">Курирует медианаправление движения, создаёт образовательный контент и организует просветительские мероприятия для молодёжи.</p>
+                    <div class="member-contacts">
+                        <a href="https://vk.ru/bukva2000" target="_blank" rel="noopener noreferrer" class="contact-link">
+                            <img src="https://raw.githubusercontent.com/Kursk-Editors-of-Yandex-Maps/Image/refs/heads/main/Icon-Color.png" alt="VK" class="contact-icon">
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Полина Пожидаева -->
+                <div class="council-card">
+                    <img src="https://raw.githubusercontent.com/Kursk-Editors-of-Yandex-Maps/Image/refs/heads/main/zflr-Qbbr-K2-Px2-PDg-Mo-Jk-YCodca-Kpj-Xynbu-Lzw7-3-UAL2i-K-k35b5gpf-PM6ecdcq-TDPaq-TWEnfhy-THb-2-D83.jpg" alt="Полина Пожидаева" class="member-photo">
+                    <div class="member-name">Полина Пожидаева</div>
+                    <div class="member-position">Член Совета</div>
+                    <p class="member-description">Отвечает за визуальное оформление проектов движения, разрабатывает дизайн-концепции и брендбук организации.</p>
+                    <div class="member-contacts">
+                        <a href="https://vk.ru/taeminixx" target="_blank" rel="noopener noreferrer" class="contact-link">
+                            <img src="https://raw.githubusercontent.com/Kursk-Editors-of-Yandex-Maps/Image/refs/heads/main/Icon-Color.png" alt="VK" class="contact-icon">
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Егор Разинский -->
+                <div class="council-card">
+                    <img src="https://raw.githubusercontent.com/Kursk-Editors-of-Yandex-Maps/Image/refs/heads/main/p1738491143084.jpg" alt="Егор Разинский" class="member-photo">
+                    <div class="member-name">Егор Разинский</div>
+                    <div class="member-position">Член Совета</div>
+                    <p class="member-description">Разрабатывает и внедряет иммерсивные технологии, занимается 3D-моделированием и созданием новых решений в этой области.</p>
+                    <div class="member-contacts">
+                        <a href="https://vk.ru/destkoder" target="_blank" rel="noopener noreferrer" class="contact-link">
+                            <img src="https://raw.githubusercontent.com/Kursk-Editors-of-Yandex-Maps/Image/refs/heads/main/Icon-Color.png" alt="VK" class="contact-icon">
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Дмитрий Шаповал -->
+                <div class="council-card">
+                    <img src="https://raw.githubusercontent.com/Kursk-Editors-of-Yandex-Maps/Image/refs/heads/main/v-R1hv-Rhq73qip-HEEr-Klo9-Qu-Yd-Zyr5h-DIgj-Wn60-XSu-Fi-MBSYBYftb7hv-Ni-Bdwant-Xvh9-O2-IQqgekg-FGb-Fp.jpg" alt="Дмитрий Шаповал" class="member-photo">
+                    <div class="member-name">Дмитрий Шаповал</div>
+                    <div class="member-position">Член Совета</div>
+                    <p class="member-description">Специализируется на 3D-моделировании, развивает технологическое направление движения.</p>
+                    <div class="member-contacts">
+                        <a href="https://vk.ru/ziki12" target="_blank" rel="noopener noreferrer" class="contact-link">
+                            <img src="https://raw.githubusercontent.com/Kursk-Editors-of-Yandex-Maps/Image/refs/heads/main/Icon-Color.png" alt="VK" class="contact-icon">
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Кирилл Киреев -->
+                <div class="council-card">
+                    <img src="https://raw.githubusercontent.com/Kursk-Editors-of-Yandex-Maps/Image/refs/heads/main/81-jr-X4hd7-Y.jpg" alt="Кирилл Киреев" class="member-photo" style="object-position: center 30%;">
+                    <div class="member-name">Кирилл Киреев</div>
+                    <div class="member-position">Член Совета</div>
+                    <p class="member-description">Руководит проектами по развитию городской среды, занимается предложениями о создании комфортных пространств и решениями задач регионального развития.</p>
+                    <div class="member-contacts">
+                        <a href="https://vk.ru/afz_1991" target="_blank" rel="noopener noreferrer" class="contact-link">
+                            <img src="https://raw.githubusercontent.com/Kursk-Editors-of-Yandex-Maps/Image/refs/heads/main/Icon-Color.png" alt="VK" class="contact-icon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Responsibilities Section -->
+        <section class="content-section fade-in">
+            <div class="section-title">
+                <h2>Направления работы Совета</h2>
+            </div>
+            
+            <div class="responsibilities-grid">
+                <div class="responsibility-item">
+                    <h3>Стратегия развития</h3>
+                    <p>Определение перспективных направлений работы движения, постановка целей и планирование долгосрочных проектов для достижения максимального результата.</p>
+                </div>
+                
+                <div class="responsibility-item">
+                    <h3>Координация проектов</h3>
+                    <p>Согласование работы всех направлений движения, обеспечение эффективного взаимодействия между командами и контроль за реализацией ключевых инициатив.</p>
+                </div>
+                
+                <div class="responsibility-item">
+                    <h3>Развитие партнёрств</h3>
+                    <p>Установление и поддержание отношений с государственными органами, партнёрами и общественными организациями для реализации совместных проектов.</p>
+                </div>
+                
+                <div class="responsibility-item">
+                    <h3>Кадровая политика</h3>
+                    <p>Формирование сильной команды, поддержка профессионального роста участников и создание условий для реализации их потенциала в проектах движения.</p>
+                </div>
+                
+                <div class="responsibility-item">
+                    <h3>Контроль качества</h3>
+                    <p>Обеспечение высокого уровня выполнения проектов, мониторинг эффективности работы отделений и направлений деятельности движения.</p>
+                </div>
+                
+                <div class="responsibility-item">
+                    <h3>Инновации и технологии</h3>
+                    <p>Внедрение передовых технологических решений в картографии, урбанистике и смежных областях для повышения эффективности работы движения.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Анимация появления элементов при скролле
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            function checkFade() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementBottom = element.getBoundingClientRect().bottom;
+                    const isVisible = (elementTop < window.innerHeight - 100) && (elementBottom > 0);
+                    
+                    if (isVisible) {
+                        element.classList.add('visible');
+                    }
+                });
+            }
+            
+            // Проверяем при загрузке и при скролле
+            checkFade();
+            window.addEventListener('scroll', checkFade);
+        });
+    </script>
+</body>
+</html>

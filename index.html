@@ -59,6 +59,39 @@ h1, h2, h3, h4, h5 {
   margin-right: auto;
 }
 
+/* Уведомление о технических работах */
+.maintenance-notice {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 24px;
+  padding: 16px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #4d3d00;
+  background: #fff3bf;
+  border: 1px solid #f2cf55;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+}
+.maintenance-notice__icon {
+  flex: 0 0 auto;
+  font-size: 1.3rem;
+}
+@media (max-width: 576px) {
+  .maintenance-notice {
+    align-items: flex-start;
+    padding: 14px 16px;
+    font-size: 0.9rem;
+    text-align: left;
+  }
+}
+
 /* Hero Section */
 .hero {
   padding: 100px 0 80px;
@@ -688,7 +721,7 @@ h1, h2, h3, h4, h5 {
         .site-nav summary { list-style: none; }
         .site-nav summary::-webkit-details-marker { display: none; }
         .site-nav summary::after { content: ' ▾'; }
-        .site-nav details[open] summary::after { content: ' ▴'; }
+        .site-nav details[open] > summary::after { content: ' ▴'; }
         .site-nav__submenu {
             position: absolute;
             top: calc(100% + 8px);
@@ -703,6 +736,18 @@ h1, h2, h3, h4, h5 {
         }
         .site-nav__submenu li + li { margin-top: 3px; }
         .site-nav__submenu a { white-space: normal; }
+        .site-nav__submenu .site-nav__submenu {
+            position: static;
+            width: 100%;
+            margin: 4px 0 0;
+            padding: 5px 0 5px 10px;
+            border: 0;
+            border-left: 2px solid #e8e3f5;
+            border-radius: 0;
+            box-shadow: none;
+            background: #faf9fe;
+        }
+        .site-nav__submenu summary { white-space: normal; }
         @media (max-width: 720px) {
             .site-nav { align-items: flex-start; flex-direction: column; gap: 5px; }
             .site-nav__links { width: 100%; align-items: stretch; flex-direction: column; }
@@ -719,6 +764,8 @@ h1, h2, h3, h4, h5 {
     <ul class="site-nav__links">
         <li><a href="/главная">Главная</a></li>
         <li><a href="/карта-деятельности">Карта деятельности</a></li>
+        <li><a href="/история">История</a></li>
+        <li><a href="/наш-архив">Архив</a></li>
         <li>
             <details>
                 <summary>УрбанХаб</summary>
@@ -739,8 +786,108 @@ h1, h2, h3, h4, h5 {
                 </ul>
             </details>
         </li>
+        <li>
+            <details>
+                <summary>Наши друзья</summary>
+                <ul class="site-nav__submenu">
+                    <li>
+                        <details>
+                            <summary>Ведомства</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-друзья/ведомства/минстрой-россии">Минстрой России</a></li>
+                                <li><a href="/наши-друзья/ведомства/росмолодёжь">Росмолодёжь</a></li>
+                                <li><a href="/наши-друзья/ведомства/комитет-молодёжной-политики-курской-области">Комитет молодёжной политики Курской области</a></li>
+                                <li><a href="/наши-друзья/ведомства/администрация-курска">Администрация Курска</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Проекты</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-друзья/проекты/народная-карта">Народная карта Яндекса</a></li>
+                                <li><a href="/наши-друзья/проекты/добро-рф">Добро.рф и Добро.Медиа</a></li>
+                                <li><a href="/наши-друзья/проекты/медиазавры">«МЕДИАЗАВРЫ, вперёд!»</a></li>
+                                <li><a href="/наши-друзья/проекты/содружество-урбанистов">Содружество урбанистов</a></li>
+                                <li><a href="/наши-друзья/проекты/урбан-админы">Урбан-админы</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Движения</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-друзья/движения/движение-первых">Движение Первых</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Дополнительное образование</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-друзья/доп-образование/медиашкола-цдт">Медиашкола «ДЮйМ» ЦДТ</a></li>
+                                <li><a href="/наши-друзья/доп-образование/курская-люж">ЛЮЖ | Курск</a></li>
+                                <li><a href="/наши-друзья/доп-образование/префикс-10">Медиафорум «Префикс +10»</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Университеты</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-друзья/университеты/кгу">Курский государственный университет</a></li>
+                                <li><a href="/наши-друзья/университеты/юзгу">Юго-Западный государственный университет</a></li>
+                                <li><a href="/наши-друзья/университеты/сахгу">Сахалинский государственный университет</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Сторонники</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-друзья/сторонники/хаяла-бахшиева">Хаяла Бахшиева</a></li>
+                                <li><a href="/наши-друзья/сторонники/андрей-башкирев">Андрей Башкирев</a></li>
+                                <li><a href="/наши-друзья/сторонники/дэниз-байрам">Дэниз Байрам</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                </ul>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary>Наши контакты</summary>
+                <ul class="site-nav__submenu">
+                    <li><a href="/наши-контакты/президент-движения">Президент движения</a></li>
+                    <li>
+                        <details>
+                            <summary>Советы</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-контакты/советы/совет-движения">Совет Движения</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Отделения</summary>
+                            <ul class="site-nav__submenu">
+                                <li><a href="/наши-контакты/отделения/курск">Курск</a></li>
+                                <li><a href="/наши-контакты/отделения/киров">Киров</a></li>
+                                <li><a href="/наши-контакты/отделения/великий-новгород">Великий Новгород</a></li>
+                                <li><a href="/наши-контакты/отделения/нижний-новгород">Нижний Новгород</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                </ul>
+            </details>
+        </li>
     </ul>
 </nav>
+
+<div class="maintenance-notice" role="status" aria-live="polite">
+  <span class="maintenance-notice__icon" aria-hidden="true">⚠️</span>
+  <span>На сайте проводятся технические работы в связи с переездом на новый хостинг. Некоторые разделы могут быть временно недоступны.</span>
+</div>
 
 
 <!-- Hero Section -->
@@ -772,7 +919,7 @@ h1, h2, h3, h4, h5 {
       </ul>
       <p>Все материалы, кроме книг, защищённых авторским правом (например, «Строительное проектирование» Нойферта), доступны в электронном виде на сайте. Бумажные оригиналы хранятся в Курске и используются исключительно участниками холдинга.</p>
       <p>Мы не просто собираем — мы описываем, систематизируем и используем архив в урбанистике, образовании и медиа. Например, сравнение карт 1974 и 2026 годов помогает понять, как менялись границы, инфраструктура и восприятие мира.</p>
-      <a href="https://www.yacluster-kryak.ru/%D0%BD%D0%B0%D1%88-%D0%B0%D1%80%D1%85%D0%B8%D0%B2" class="archive-link">Перейти в электронный архив</a>
+      <a href="/наш-архив" class="archive-link">Перейти в электронный архив</a>
     </div>
   </div>
 </section>
