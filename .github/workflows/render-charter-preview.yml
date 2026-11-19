@@ -1,5 +1,7 @@
 name: Render charter preview
 on:
+  push:
+    branches: [arena/1bd3d9b0-site-kryak]
   workflow_dispatch:
 jobs:
   render:
