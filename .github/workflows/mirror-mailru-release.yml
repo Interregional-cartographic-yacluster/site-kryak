@@ -27,9 +27,18 @@ jobs:
 
       - name: Download public archive files
         run: |
+          set +e
           python3 scripts/mirror_mailru_release.py \
             --manifest assets/documents/mailru-manifest.json \
-            --output "$OUTPUT_DIR"
+            --output "$OUTPUT_DIR" 2>&1 | tee /tmp/archive-mirror.log
+          status=${PIPESTATUS[0]}
+          {
+            echo '## Archive mirror log'
+            echo '```text'
+            tail -100 /tmp/archive-mirror.log
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          exit "$status"
 
       - name: Create archive release if needed
         run: |
