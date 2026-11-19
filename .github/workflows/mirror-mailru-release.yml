@@ -1,0 +1,43 @@
+name: Mirror Cloud Mail.ru archive to GitHub Release
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - arena/e46e4d83-site-kryak
+    paths:
+      - .github/workflows/mirror-mailru-release.yml
+      - scripts/mirror_mailru_release.py
+      - assets/documents/mailru-manifest.json
+
+permissions:
+  contents: write
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      GH_TOKEN: ${{ github.token }}
+      RELEASE_TAG: archive-files-v1
+      OUTPUT_DIR: ${{ runner.temp }}/archive-files
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Download public archive files
+        run: |
+          python3 scripts/mirror_mailru_release.py \
+            --manifest assets/documents/mailru-manifest.json \
+            --output "$OUTPUT_DIR"
+
+      - name: Create archive release if needed
+        run: |
+          gh release view "$RELEASE_TAG" >/dev/null 2>&1 || \
+            gh release create "$RELEASE_TAG" \
+              --target "$GITHUB_SHA" \
+              --title "Электронный архив МХ «КРЯК»" \
+              --notes "Файлы электронного архива, перенесённые с Cloud Mail.ru."
+
+      - name: Upload archive files to release
+        run: gh release upload "$RELEASE_TAG" "$OUTPUT_DIR"/* --clobber

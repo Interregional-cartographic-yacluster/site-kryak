@@ -1,0 +1,364 @@
+{
+  "release_tag": "archive-files-v1",
+  "release_url": "https://github.com/Interregional-cartographic-yacluster/site-kryak/releases/tag/archive-files-v1",
+  "total_expected_bytes": 1134796555,
+  "documents": [
+    {
+      "archive_id": "УСТ-01",
+      "description": "Устав МХ КРЯК PDF 1.27 МБ Основной документ Уставные документы",
+      "source_url": "https://cloud.mail.ru/public/oRGJ/afXky51M7",
+      "expected_bytes": 1331692,
+      "release_filename": "archive-ust-01.pdf"
+    },
+    {
+      "archive_id": "005",
+      "description": "Шаблон документов для отделения по франшизе PDF 112 КБ Документы по франшизе аффилированию",
+      "source_url": "https://cloud.mail.ru/public/3DuU/68CLEWPtv",
+      "expected_bytes": 114688,
+      "release_filename": "archive-005.pdf"
+    },
+    {
+      "archive_id": "054",
+      "description": "Брендбук МХ КРЯК PDF 7.34 МБ фирменный стиль визуальная идентичность",
+      "source_url": "https://cloud.mail.ru/public/nSVY/As4mWXkM9",
+      "expected_bytes": 7696548,
+      "release_filename": "archive-054.pdf"
+    },
+    {
+      "archive_id": "006",
+      "description": "Приказ о регистрации Курского регионального отделения в структуре МХ КРЯК PDF 795 КБ Бугаенко 31.10.2025",
+      "source_url": "https://cloud.mail.ru/public/GRYC/cv7uMBgXM",
+      "expected_bytes": 814080,
+      "release_filename": "archive-006.pdf"
+    },
+    {
+      "archive_id": "007",
+      "description": "Доверенность на основании которой действует подразделение Реновация Соловьиного края PDF 794 КБ 31.10.2025",
+      "source_url": "https://cloud.mail.ru/public/6cQv/TfAh9DAhR",
+      "expected_bytes": 813056,
+      "release_filename": "archive-007.pdf"
+    },
+    {
+      "archive_id": "008",
+      "description": "Приказ о назначении врио руководителя Кировского отделения PDF 950 КБ Бугаенко 10.07.2025",
+      "source_url": "https://cloud.mail.ru/public/oNUa/hp9kc5jCx",
+      "expected_bytes": 972800,
+      "release_filename": "archive-008.pdf"
+    },
+    {
+      "archive_id": "009",
+      "description": "Приказ о реорганизации Кировского отделения PDF 790 КБ Бугаенко 07.08.2025",
+      "source_url": "https://cloud.mail.ru/public/yPBa/QTtrKmgzk",
+      "expected_bytes": 808960,
+      "release_filename": "archive-009.pdf"
+    },
+    {
+      "archive_id": "012",
+      "description": "Приказ №3 О назначении руководителя функционального направления Дизайн PDF 792 КБ Бугаенко 18.11.2025",
+      "source_url": "https://cloud.mail.ru/public/2dN1/msoEfXM7G",
+      "expected_bytes": 811008,
+      "release_filename": "archive-012.pdf"
+    },
+    {
+      "archive_id": "010",
+      "description": "Приказ о регистрации направления Иммерсивные технологии PDF 957 КБ Бугаенко Шаповал Разинский 25.06.2025",
+      "source_url": "https://cloud.mail.ru/public/UzUV/iRchXrW4W",
+      "expected_bytes": 979968,
+      "release_filename": "archive-010.pdf"
+    },
+    {
+      "archive_id": "011",
+      "description": "Доверенность для Новгородского и Нижегородского региональных отделений PDF 796 КБ Бугаенко Разинский Шаповал 31.10.2025",
+      "source_url": "https://cloud.mail.ru/public/adjW/1Y6qpCLpX",
+      "expected_bytes": 815104,
+      "release_filename": "archive-011.pdf"
+    },
+    {
+      "archive_id": "055",
+      "description": "Приказ №5 Об открытии поднаправления Космическая систематика PDF 786 КБ",
+      "source_url": "https://cloud.mail.ru/public/Knjv/RZ5sTM3L9",
+      "expected_bytes": 804864,
+      "release_filename": "archive-055.pdf"
+    },
+    {
+      "archive_id": "058",
+      "description": "Микроконтроллерная инженерия на базе ESP32 DOCX 32.5 КБ поднаправление Космическая систематика",
+      "source_url": "https://cloud.mail.ru/public/bpjK/hkbqF7776",
+      "expected_bytes": 33280,
+      "release_filename": "archive-058.docx"
+    },
+    {
+      "archive_id": "013",
+      "description": "Журнал Светлячок №47 осень 2022 Центр детского творчества Курск PDF 36.7 МБ",
+      "source_url": "https://cloud.mail.ru/public/sbw9/KbJAecWzC",
+      "expected_bytes": 38482739,
+      "release_filename": "archive-013.pdf"
+    },
+    {
+      "archive_id": "014",
+      "description": "Журнал Светлячок №48 зима 2022 2023 Центр детского творчества Курск PDF 34.1 МБ",
+      "source_url": "https://cloud.mail.ru/public/rdAU/kWRxDaJok",
+      "expected_bytes": 35756442,
+      "release_filename": "archive-014.pdf"
+    },
+    {
+      "archive_id": "015",
+      "description": "Журнал Светлячок №49 весна 2023 Центр детского творчества Курск PDF 39.3 МБ",
+      "source_url": "https://cloud.mail.ru/public/s3XS/L74X1r3C8",
+      "expected_bytes": 41209037,
+      "release_filename": "archive-015.pdf"
+    },
+    {
+      "archive_id": "016",
+      "description": "Журнал Светлячок №51 осень 2023 Центр детского творчества Курск PDF 39.2 МБ",
+      "source_url": "https://cloud.mail.ru/public/wKfB/c8RTGcr9p",
+      "expected_bytes": 41104179,
+      "release_filename": "archive-016.pdf"
+    },
+    {
+      "archive_id": "017",
+      "description": "Журнал Светлячок №52 зима 2023 2024 Центр детского творчества Курск PDF 35.9 МБ",
+      "source_url": "https://cloud.mail.ru/public/u6SL/Ckkc3vRqn",
+      "expected_bytes": 37643878,
+      "release_filename": "archive-017.pdf"
+    },
+    {
+      "archive_id": "018",
+      "description": "Журнал Светлячок №53 весна 2024 Центр детского творчества Курск PDF 46 МБ",
+      "source_url": "https://cloud.mail.ru/public/tnu2/fAtZa96p3",
+      "expected_bytes": 48234496,
+      "release_filename": "archive-018.pdf"
+    },
+    {
+      "archive_id": "019",
+      "description": "Журнал Светлячок №54 лето 2024 Центр детского творчества Курск PDF 36.1 МБ",
+      "source_url": "https://cloud.mail.ru/public/TtsB/kfzhDEiXQ",
+      "expected_bytes": 37853594,
+      "release_filename": "archive-019.pdf"
+    },
+    {
+      "archive_id": "020",
+      "description": "Журнал Светлячок №55 осень 2024 Центр детского творчества Курск PDF 45.5 МБ",
+      "source_url": "https://cloud.mail.ru/public/xm1f/fxEYHofcn",
+      "expected_bytes": 47710208,
+      "release_filename": "archive-020.pdf"
+    },
+    {
+      "archive_id": "021",
+      "description": "Журнал Светлячок №56 зима 2024 2025 Центр детского творчества Курск PDF 38.7 МБ",
+      "source_url": "https://cloud.mail.ru/public/g8p7/r1Ri4Aexq",
+      "expected_bytes": 40579891,
+      "release_filename": "archive-021.pdf"
+    },
+    {
+      "archive_id": "022",
+      "description": "Журнал Светлячок №57 весна 2025 Центр детского творчества Курск PDF 33.9 МБ",
+      "source_url": "https://cloud.mail.ru/public/PEht/NG35L7iaH",
+      "expected_bytes": 35546726,
+      "release_filename": "archive-022.pdf"
+    },
+    {
+      "archive_id": "046",
+      "description": "Журнал Светлячок №58 лето 2025 Центр детского творчества Курск PDF 38.2 МБ",
+      "source_url": "https://cloud.mail.ru/public/VZ6Q/sdhyeT3ef",
+      "expected_bytes": 40055603,
+      "release_filename": "archive-046.pdf"
+    },
+    {
+      "archive_id": "047",
+      "description": "Журнал Светлячок №59 осень 2025 Центр детского творчества Курск PDF 36.7 МБ",
+      "source_url": "https://cloud.mail.ru/public/rq92/ikUKSbuhq",
+      "expected_bytes": 38482739,
+      "release_filename": "archive-047.pdf"
+    },
+    {
+      "archive_id": "053",
+      "description": "Журнал Светлячок №60 зима 2025 2026 Центр детского творчества Курск PDF 41.2 МБ",
+      "source_url": "https://cloud.mail.ru/public/PEt4/sJCoQkt8c",
+      "expected_bytes": 43201331,
+      "release_filename": "archive-053.pdf"
+    },
+    {
+      "archive_id": "061",
+      "description": "Журнал Светлячок №61 весна 2026 Центр детского творчества Курск PDF 40.4 МБ",
+      "source_url": "https://cloud.mail.ru/public/4bCZ/bz1RunGpM",
+      "expected_bytes": 42362470,
+      "release_filename": "archive-061.pdf"
+    },
+    {
+      "archive_id": "023",
+      "description": "Яндекс Карты в жизни человека DOCX 7.25 МБ Проектные работы Защита проектов 2024 школа №59 Курск",
+      "source_url": "https://cloud.mail.ru/public/KHs2/FWpzPeepZ",
+      "expected_bytes": 7602176,
+      "release_filename": "archive-023.docx"
+    },
+    {
+      "archive_id": "024",
+      "description": "Яндекс Карты в жизни человека PPTX 5.63 МБ Проектные работы Защита проектов 2024 школа №59 Курск",
+      "source_url": "https://cloud.mail.ru/public/RmJh/m6SF3WCN1",
+      "expected_bytes": 5903483,
+      "release_filename": "archive-024.pptx"
+    },
+    {
+      "archive_id": "025",
+      "description": "МХ КРЯК DOCX 1.4 МБ Проектные работы Защита проектов 2025 Центр детского творчества Курск",
+      "source_url": "https://cloud.mail.ru/public/S8Nh/vJy4HCnrP",
+      "expected_bytes": 1468006,
+      "release_filename": "archive-025.docx"
+    },
+    {
+      "archive_id": "026",
+      "description": "МХ КРЯК PPTX 3.85 МБ Проектные работы Защита проектов 2025 Центр детского творчества Курск",
+      "source_url": "https://cloud.mail.ru/public/Moeq/ubWuoC89f",
+      "expected_bytes": 4037018,
+      "release_filename": "archive-026.pptx"
+    },
+    {
+      "archive_id": "027",
+      "description": "Сертификат о защите проекта МХ КРЯК PDF 708 КБ Защита проектов 2025 Центр детского творчества Курск",
+      "source_url": "https://cloud.mail.ru/public/Th9n/Zbu2AMpjC",
+      "expected_bytes": 724992,
+      "release_filename": "archive-027.pdf"
+    },
+    {
+      "archive_id": "049",
+      "description": "Создание 3D-моделей ОКН города Курска для цифрового пространства Яндекс Карт DOCX 36 КБ Проектные работы Защита проектов 2026 школа №7 Курск",
+      "source_url": "https://cloud.mail.ru/public/EM4B/mjJfZGMC7",
+      "expected_bytes": 36864,
+      "release_filename": "archive-049.docx"
+    },
+    {
+      "archive_id": "051",
+      "description": "Создание 3D-моделей ОКН города Курска для цифрового пространства Яндекс Карт PPTX 11.1 МБ Проектные работы Защита проектов 2026 школа №7 Курск",
+      "source_url": "https://cloud.mail.ru/public/eaGr/9LojFsRez",
+      "expected_bytes": 11639194,
+      "release_filename": "archive-051.pptx"
+    },
+    {
+      "archive_id": "028",
+      "description": "Диплом победителя I тура январь 2025 PDF 367 КБ олимпиада Ближе к Дальнему Всероссийская олимпиада Южно-Сахалинск СахГУ 2025",
+      "source_url": "https://cloud.mail.ru/public/iqFP/iBZLYvj9M",
+      "expected_bytes": 375808,
+      "release_filename": "archive-028.pdf"
+    },
+    {
+      "archive_id": "029",
+      "description": "Похвальная грамота за участие во II туре февраль 2025 PNG 75.4 КБ олимпиада Ближе к Дальнему Всероссийская олимпиада Южно-Сахалинск СахГУ 2025",
+      "source_url": "https://cloud.mail.ru/public/P6qD/JS95gpNeL",
+      "expected_bytes": 77210,
+      "release_filename": "archive-029.png"
+    },
+    {
+      "archive_id": "030",
+      "description": "Грамота за активное участие в жизни отряда образовательная смена центр Сахалинтех Алаид апрель 2025 JPEG 370 КБ олимпиада Ближе к Дальнему Всероссийская олимпиада Южно-Сахалинск СахГУ 2025",
+      "source_url": "https://cloud.mail.ru/public/ozxN/R6zuZc9Du",
+      "expected_bytes": 378880,
+      "release_filename": "archive-030.jpg"
+    },
+    {
+      "archive_id": "031",
+      "description": "Стела Лауреат смены Дальнего апрель 2025 JPEG 211 КБ олимпиада Ближе к Дальнему Всероссийская олимпиада Южно-Сахалинск СахГУ 2025",
+      "source_url": "https://cloud.mail.ru/public/oKxn/bU2Y4FnKQ",
+      "expected_bytes": 216064,
+      "release_filename": "archive-031.jpg"
+    },
+    {
+      "archive_id": "032",
+      "description": "Основные источники парниковых газов и способы борьбы с ними апрель 2025 JPG 147 КБ олимпиада Ближе к Дальнему Южно-Сахалинск СахГУ 2025",
+      "source_url": "https://cloud.mail.ru/public/B5Pr/qVY7PNFo8",
+      "expected_bytes": 150528,
+      "release_filename": "archive-032.jpg"
+    },
+    {
+      "archive_id": "004",
+      "description": "Малый атлас мира ГУГК при СМ СССР 1974 PDF 135 МБ архив №004 Географические атласы",
+      "source_url": "https://cloud.mail.ru/public/GzER/2iA9dZKmg",
+      "expected_bytes": 141557760,
+      "release_filename": "archive-004.pdf"
+    },
+    {
+      "archive_id": "001",
+      "description": "Географический атлас для учителей средней школы ГУГК при СМ СССР 1982 PDF 208 МБ Географические атласы",
+      "source_url": "https://cloud.mail.ru/public/VZSH/mjuL85gPi",
+      "expected_bytes": 218103808,
+      "release_filename": "archive-001.pdf"
+    },
+    {
+      "archive_id": "048",
+      "description": "Атлас железных дорог СССР Пассажирское сообщение ГУГК при СМ СССР 1988 PDF 111 МБ Географические атласы",
+      "source_url": "https://cloud.mail.ru/public/y3Fj/oEnznYPxD",
+      "expected_bytes": 116391936,
+      "release_filename": "archive-048.pdf"
+    },
+    {
+      "archive_id": "038",
+      "description": "Сборник лучших практик деятельности добровольческих организаций в развитии городской среды за 2024 год Минстрой Россия страница 6 PDF 6.43 МБ форум 100+ TechnoBuild Сборник лучших практик",
+      "source_url": "https://cloud.mail.ru/public/mY67/b8xTKCX9Z",
+      "expected_bytes": 6742344,
+      "release_filename": "archive-038.pdf"
+    },
+    {
+      "archive_id": "039",
+      "description": "Презентация Уютный Курск КРЯК октябрь 2025 PDF 1.85 МБ форум 100+ TechnoBuild Минстрой Россия Екатеринбург 2025",
+      "source_url": "https://cloud.mail.ru/public/iMy9/k8npmFU5N",
+      "expected_bytes": 1939866,
+      "release_filename": "archive-039.pdf"
+    },
+    {
+      "archive_id": "040",
+      "description": "Благодарственное письмо Дмитрию Шаповалу от министра Ирека Файзуллина октябрь 2025 JPG 2.03 МБ форум 100+ TechnoBuild Минстрой Россия Екатеринбург 2025",
+      "source_url": "https://cloud.mail.ru/public/Eek7/G2cxfRJQC",
+      "expected_bytes": 2128609,
+      "release_filename": "archive-040.jpg"
+    },
+    {
+      "archive_id": "041",
+      "description": "Круглый стол Минстроя России Новая сила городской среды лучшие практики добровольчества октябрь 2025 DOCX 19.8 КБ форум 100+ TechnoBuild Екатеринбург 2025",
+      "source_url": "https://cloud.mail.ru/public/qhvz/Xf9uyThqz",
+      "expected_bytes": 20275,
+      "release_filename": "archive-041.docx"
+    },
+    {
+      "archive_id": "042",
+      "description": "Стандарт работы организатора волонтёрской деятельности АВЦ 2021 PDF 14.7 МБ Волонтёрские документы Волонтёрская деятельность",
+      "source_url": "https://cloud.mail.ru/public/UhAR/ws6neCYng",
+      "expected_bytes": 15414067,
+      "release_filename": "archive-042.pdf"
+    },
+    {
+      "archive_id": "044",
+      "description": "Сертификат за участие во Всероссийской неделе субботников Мы за чистоту апрель 2025 PNG 1.6 МБ Волонтёрские документы Волонтёрская деятельность",
+      "source_url": "https://cloud.mail.ru/public/SNkw/wLUMe8u3w",
+      "expected_bytes": 1677722,
+      "release_filename": "archive-044.png"
+    },
+    {
+      "archive_id": "043",
+      "description": "Сертификат за участие в V Всероссийском голосовании федеральный проект ФКГС апрель июнь 2025 JPG 438 КБ Волонтёрские документы Волонтёрская деятельность",
+      "source_url": "https://cloud.mail.ru/public/7FCm/G2acjJZsH",
+      "expected_bytes": 448512,
+      "release_filename": "archive-043.jpg"
+    },
+    {
+      "archive_id": "045",
+      "description": "Мониторинг качества сервиса в общественном транспорте Курска 2025 DOCX 25.3 КБ Транспортная реформа Курск",
+      "source_url": "https://cloud.mail.ru/public/mDnm/BZrMmmbcS",
+      "expected_bytes": 25907,
+      "release_filename": "archive-045.docx"
+    },
+    {
+      "archive_id": "050",
+      "description": "Презентация Олега Погожих Курская транспортная реформа вместе к лучшему PDF 4.37 МБ Транспортная реформа Курск точка кипения КГУ 2024",
+      "source_url": "https://cloud.mail.ru/public/ndcZ/1dmLvM3RR",
+      "expected_bytes": 4582277,
+      "release_filename": "archive-050.pdf"
+    },
+    {
+      "archive_id": "052",
+      "description": "Протокол общественных обсуждений Бывшая Яблоновская свалка Санкт-Петербург PDF 8.52 МБ 2026",
+      "source_url": "https://cloud.mail.ru/public/eHWt/AFmGQc4x7",
+      "expected_bytes": 8933868,
+      "release_filename": "archive-052.pdf"
+    }
+  ]
+}
