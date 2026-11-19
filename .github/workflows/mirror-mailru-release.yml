@@ -26,6 +26,9 @@ jobs:
               --title "Электронный архив МХ «КРЯК»" \
               --notes "Файлы электронного архива, перенесённые с Cloud Mail.ru."
 
+      - name: Upload locally supplied replacement files
+        run: gh release upload "$RELEASE_TAG" assets/documents/archive-007.pdf --clobber
+
       - name: List existing release assets
         run: gh release view "$RELEASE_TAG" --json assets --jq '.assets[].name' > /tmp/existing-release-files.txt
 

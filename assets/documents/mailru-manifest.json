@@ -38,7 +38,8 @@
       "expected_bytes": 813056,
       "release_filename": "archive-007.pdf",
       "skip_migration": true,
-      "migration_note": "Source URL returned HTTP 404 on 2026-11-19; kept as the original link until a replacement is provided."
+      "migration_note": "Original Cloud Mail.ru URL returned HTTP 404; the replacement supplied by the user is uploaded from local_source.",
+      "local_source": "assets/documents/archive-007.pdf"
     },
     {
       "archive_id": "008",
