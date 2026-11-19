@@ -23,11 +23,18 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh release download archive-files-v1 --pattern archive-054.pdf --dir /tmp
+          ls -lh /tmp/archive-054.pdf
+          file /tmp/archive-054.pdf
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('/tmp/archive-054.pdf')
+          print('Header:', p.read_bytes()[:16])
+          PY
           sudo apt-get update >/dev/null
           sudo apt-get install -y poppler-utils >/dev/null
           mkdir -p working/brandbook-pages
           pdftotext -layout /tmp/archive-054.pdf working/brandbook.txt
-          pdftoppm -png -r 80 /tmp/archive-054.pdf working/brandbook-pages/page >/dev/null 2>&1
+          pdftoppm -png -r 60 -f 1 -l 30 /tmp/archive-054.pdf working/brandbook-pages/page
           test -s working/brandbook.txt
       - name: Commit extracted materials
         run: |
