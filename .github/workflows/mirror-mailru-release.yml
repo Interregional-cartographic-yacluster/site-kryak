@@ -2,13 +2,6 @@ name: Mirror Cloud Mail.ru archive to GitHub Release
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - arena/e46e4d83-site-kryak
-    paths:
-      - .github/workflows/mirror-mailru-release.yml
-      - scripts/mirror_mailru_release.py
-      - assets/documents/mailru-manifest.json
 
 permissions:
   contents: write
