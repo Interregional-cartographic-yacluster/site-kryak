@@ -38,6 +38,10 @@ jobs:
             tail -100 /tmp/archive-mirror.log
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
+          if [ "$status" -ne 0 ]; then
+            message=$(tail -20 /tmp/archive-mirror.log | tr '\n' ' ')
+            echo "::error title=Archive mirror failed::$message"
+          fi
           exit "$status"
 
       - name: Create archive release if needed

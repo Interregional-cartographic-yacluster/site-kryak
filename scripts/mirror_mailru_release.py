@@ -39,7 +39,7 @@ def download(entry: dict, host: str, output: Path) -> None:
     temporary = destination.with_suffix(destination.suffix + ".part")
 
     last_error = None
-    for attempt in range(1, 7):
+    for attempt in range(1, 3):
         try:
             print(f"Downloading {entry['archive_id']} (attempt {attempt})")
             with request(direct_url, timeout=600) as response, temporary.open("wb") as target:
@@ -64,7 +64,7 @@ def download(entry: dict, host: str, output: Path) -> None:
         except (HTTPError, URLError, OSError, RuntimeError) as exc:
             last_error = exc
             temporary.unlink(missing_ok=True)
-            if attempt == 6:
+            if attempt == 2:
                 break
             time.sleep(attempt * 5)
             # CDN hosts can rotate, but the direct URL remains valid for normal short runs.
