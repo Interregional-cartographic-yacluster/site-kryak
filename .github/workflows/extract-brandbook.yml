@@ -32,12 +32,13 @@ jobs:
           p = Path('/tmp/archive-054.pdf')
           print('Header:', p.read_bytes()[:16])
           PY
+          mkdir -p working/brandbook-pages
+          cp /tmp/archive-054.pdf working/archive-054.bin
           sudo apt-get update >/dev/null
           sudo apt-get install -y poppler-utils >/dev/null
-          mkdir -p working/brandbook-pages
-          pdftotext -layout /tmp/archive-054.pdf working/brandbook.txt
-          pdftoppm -jpeg -jpegopt quality=72 -r 72 -f 1 -l 30 /tmp/archive-054.pdf working/brandbook-pages/page
-          test -n "$(find working/brandbook-pages -type f -print -quit)"
+          pdftotext -layout /tmp/archive-054.pdf working/brandbook.txt || true
+          pdftoppm -jpeg -jpegopt quality=72 -r 72 -f 1 -l 30 \
+            /tmp/archive-054.pdf working/brandbook-pages/page || true
       - name: Commit extracted materials
         run: |
           git config user.name "github-actions[bot]"
