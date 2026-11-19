@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Интерактивная версия официального брендбука МХ «КРЯК».">
+<title>МХ «КРЯК» — Брендбук</title>
+<link rel="preload" href="/assets/brandbook/pages/page-01.webp" as="image" type="image/webp">
+<style>
+@font-face{font-family:Montserrat;src:url('/assets/fonts/montserrat-cyrillic-400.woff2') format('woff2');font-weight:400;font-display:swap;unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:Montserrat;src:url('/assets/fonts/montserrat-latin-400.woff2') format('woff2');font-weight:400;font-display:swap;unicode-range:U+0000-024F,U+1E00-1EFF,U+20A0-20CF}
+@font-face{font-family:Montserrat;src:url('/assets/fonts/montserrat-cyrillic-700.woff2') format('woff2');font-weight:700;font-display:swap;unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:Montserrat;src:url('/assets/fonts/montserrat-latin-700.woff2') format('woff2');font-weight:700;font-display:swap;unicode-range:U+0000-024F,U+1E00-1EFF,U+20A0-20CF}
+:root{--violet:#837dbd;--violet-dark:#665fa7;--paper:#fff;--ink:#312d45;--shadow:0 22px 65px rgba(29,24,62,.3)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Montserrat,Arial,sans-serif;background:linear-gradient(145deg,#726bb0,#9387d9 52%,#5e588f);color:var(--ink);min-height:100vh;padding:20px;line-height:1.45}
+a{color:inherit}button{font:inherit}
+.site-nav{width:100%;max-width:1200px;margin:0 auto 20px;background:rgba(255,255,255,.97);border:1px solid rgba(255,255,255,.7);border-radius:18px;min-height:68px;padding:10px 16px;display:flex;align-items:center;gap:16px;position:relative;z-index:50;box-shadow:0 12px 35px rgba(30,25,70,.16)}
+.site-nav__brand{text-decoration:none;font-weight:800;color:var(--violet);letter-spacing:.05em;font-size:1.3rem;padding:7px 10px;border-radius:10px}
+.site-nav__links{display:flex;align-items:center;justify-content:flex-end;gap:3px;list-style:none;margin-left:auto}
+.site-nav__links a,.site-nav__links summary{display:block;text-decoration:none;border:0;background:none;color:#34314d;font-weight:600;font-size:.72rem;white-space:nowrap;padding:9px 7px;border-radius:9px;cursor:pointer;list-style:none}
+.site-nav__links summary::-webkit-details-marker{display:none}
+.site-nav__links a:hover,.site-nav__links summary:hover,.site-nav__links a[aria-current="page"]{background:#eeeafd;color:#6358b6}
+.site-nav__links details{position:relative}.site-nav__submenu{display:none;position:absolute;top:100%;left:0;min-width:250px;list-style:none;background:#fff;border:1px solid #e5e0f5;border-radius:12px;padding:8px;box-shadow:0 15px 35px rgba(28,24,66,.18)}
+.site-nav__links details[open]>.site-nav__submenu{display:block}.site-nav__submenu details .site-nav__submenu{left:100%;top:0}
+.site-nav__toggle{display:none;margin-left:auto;width:44px;height:44px;border:0;border-radius:12px;background:#eeeafd;align-items:center;justify-content:center;flex-direction:column;gap:5px;cursor:pointer}.site-nav__toggle span{display:block;width:22px;height:2px;background:var(--violet);border-radius:2px}
+.presentation{width:100%;max-width:1200px;margin:0 auto}
+.presentation-head{display:flex;align-items:end;justify-content:space-between;gap:25px;color:#fff;margin:0 4px 14px}
+.presentation-head h1{font-size:clamp(1.4rem,3vw,2.25rem);line-height:1.05}.presentation-head p{font-size:.76rem;max-width:510px;text-align:right;opacity:.82}
+.deck{width:100%;aspect-ratio:16/9;background:#12111a;border-radius:26px;overflow:hidden;position:relative;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.35);touch-action:pan-y}
+.slide{position:absolute;inset:0;display:grid;place-items:center;opacity:0;visibility:hidden;transform:translateX(18px);transition:opacity .3s ease,transform .36s ease,visibility .3s;background:#000}
+.slide.is-active{opacity:1;visibility:visible;transform:none;z-index:2}
+.slide img{display:block;width:100%;height:100%;object-fit:contain;background:#000}
+.slide:nth-child(3) img,.slide:nth-child(4) img,.slide:nth-child(17) img{background:#fff}
+.deck-controls{display:flex;align-items:center;gap:12px;margin-top:14px;background:rgba(255,255,255,.97);border-radius:16px;padding:10px 12px;box-shadow:0 10px 30px rgba(31,26,73,.15)}
+.control-btn{border:0;background:#eeebf8;color:#4f477e;min-width:44px;height:44px;border-radius:11px;cursor:pointer;font-weight:800;font-size:1.05rem;transition:.2s}.control-btn:hover{background:var(--violet);color:#fff}.control-btn:disabled{opacity:.35;cursor:not-allowed}.control-btn.fullscreen{font-size:.78rem;padding:0 14px}
+.progress{height:5px;background:#e5e0ee;border-radius:99px;flex:1;overflow:hidden}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--violet),#c55959);transition:width .3s}.counter{font-size:.78rem;font-weight:700;color:#5d5675;min-width:58px;text-align:center}
+.slide-dots{display:flex;justify-content:center;gap:7px;margin:14px 0 0;flex-wrap:wrap}.slide-dot{width:8px;height:8px;border:0;border-radius:50%;background:rgba(255,255,255,.42);cursor:pointer;transition:.2s}.slide-dot.is-active{width:28px;border-radius:99px;background:#fff}.hint{text-align:center;color:rgba(255,255,255,.8);font-size:.7rem;margin:9px 0 18px}
+.actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:20px}.actions a{text-decoration:none;background:rgba(255,255,255,.95);color:#575083;border-radius:11px;padding:11px 15px;font-size:.76rem;font-weight:700}.actions a.secondary{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.45)}
+.legal-footer{width:100%;max-width:1200px;margin:0 auto;background:rgba(255,255,255,.95);border-radius:16px;padding:20px;text-align:center;color:#5f5873;font-size:.76rem}
+.deck:fullscreen{width:100vw;height:100vh;aspect-ratio:auto;border-radius:0;border:0;background:#000}.deck:fullscreen .slide img{object-fit:contain}
+@media(max-width:1050px){.site-nav__toggle{display:flex}.site-nav__links{display:none;position:absolute;top:calc(100% + 8px);left:0;right:0;background:#fff;border-radius:16px;padding:10px;box-shadow:0 15px 35px rgba(28,24,66,.2);align-items:stretch;flex-direction:column}.site-nav__links.is-open{display:flex}.site-nav__links a,.site-nav__links summary{font-size:.85rem;padding:12px}.site-nav__links li{width:100%}.site-nav__submenu,.site-nav__submenu details .site-nav__submenu{position:static;box-shadow:none;margin:4px 0 4px 14px}}
+@media(max-width:650px){body{padding:10px}.site-nav{margin-bottom:14px}.presentation-head{align-items:start;flex-direction:column;gap:7px}.presentation-head p{text-align:left}.deck{border-radius:17px}.fullscreen{display:none}.deck-controls{gap:7px;padding:8px}.control-btn{min-width:40px;height:40px}.hint{display:none}.slide-dots{gap:5px}.slide-dot{width:6px;height:6px}.slide-dot.is-active{width:20px}.legal-footer{margin-top:15px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<nav class="site-nav" aria-label="Основная навигация">
+<a class="site-nav__brand" href="/главная">КРЯК</a>
+<button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="site-nav-menu" aria-label="Открыть меню"><span></span><span></span><span></span></button>
+<ul class="site-nav__links" id="site-nav-menu">
+<li><a href="/главная">Главная</a></li><li><a href="/карта-деятельности">Карта деятельности</a></li>
+<li><details><summary>УрбанХаб</summary><ul class="site-nav__submenu"><li><a href="/урбанхаб/вырубки-курск">Карта вырубок Курской области</a></li><li><a href="/урбанхаб/незаконные-стоянки-курск">Карта стихийных парковок Курска</a></li><li><a href="/урбанхаб/окн-курск">Карта ОКН Курской области</a></li></ul></details></li>
+<li><details><summary>Яндекс Карты</summary><ul class="site-nav__submenu"><li><a href="/яндекс-карты/что-такое-няк">Что такое НЯК?</a></li><li><a href="/яндекс-карты/3d-карты">3D-карты</a></li></ul></details></li>
+<li><details><summary>Наши контакты</summary><ul class="site-nav__submenu"><li><a href="/наши-контакты/президент-движения">Президент движения</a></li><li><details><summary>Советы</summary><ul class="site-nav__submenu"><li><a href="/наши-контакты/советы/совет-движения">Совет Движения</a></li></ul></details></li><li><details><summary>Отделения</summary><ul class="site-nav__submenu"><li><a href="/наши-контакты/отделения/курск">Курск</a></li><li><a href="/наши-контакты/отделения/киров">Киров</a></li><li><a href="/наши-контакты/отделения/великий-новгород">Великий Новгород</a></li><li><a href="/наши-контакты/отделения/нижний-новгород">Нижний Новгород</a></li></ul></details></li></ul></details></li>
+<li><a href="/история">История</a></li><li><a href="/наш-архив">Наш архив</a></li><li><a href="/брендбук" aria-current="page">Брендбук</a></li>
+</ul>
+</nav>
+<main class="presentation">
+<header class="presentation-head"><div><h1>Брендбук МХ «КРЯК»</h1></div><p>Официальные страницы брендбука без переработки оформления. Переключайте слайды кнопками, стрелками клавиатуры или свайпом.</p></header>
+<div class="deck" id="brandbook-deck" aria-live="polite">
+<section class="slide is-active" data-slide="0"><img src="/assets/brandbook/pages/page-01.webp" alt="Страница 1. Обложка айдентики бренда МХ «КРЯК»" width="1440" height="810"></section>
+<section class="slide" data-slide="1"><img loading="lazy" src="/assets/brandbook/pages/page-02.webp" alt="Страница 2. Авторы и область применения брендбука" width="1440" height="810"></section>
+<section class="slide" data-slide="2"><img loading="lazy" src="/assets/brandbook/pages/page-03.webp" alt="Страница 3. Графический знак и палитра МХ «КРЯК»" width="1440" height="810"></section>
+<section class="slide" data-slide="3"><img loading="lazy" src="/assets/brandbook/pages/page-04.webp" alt="Страница 4. Знак подразделения и дополнительная палитра" width="1440" height="810"></section>
+<section class="slide" data-slide="4"><img loading="lazy" src="/assets/brandbook/pages/page-05.webp" alt="Страница 5. Горизонтальное размещение знака и текстового элемента" width="1440" height="810"></section>
+<section class="slide" data-slide="5"><img loading="lazy" src="/assets/brandbook/pages/page-06.webp" alt="Страница 6. Вертикальное размещение знака и текстового элемента" width="1440" height="810"></section>
+<section class="slide" data-slide="6"><img loading="lazy" src="/assets/brandbook/pages/page-07.webp" alt="Страница 7. Цветная версия графического знака" width="1440" height="810"></section>
+<section class="slide" data-slide="7"><img loading="lazy" src="/assets/brandbook/pages/page-08.webp" alt="Страница 8. Размещение знаков Движения и подразделения" width="1440" height="810"></section>
+<section class="slide" data-slide="8"><img loading="lazy" src="/assets/brandbook/pages/page-09.webp" alt="Страница 9. Правила кобрендинга с партнёрами" width="1440" height="810"></section>
+<section class="slide" data-slide="9"><img loading="lazy" src="/assets/brandbook/pages/page-10.webp" alt="Страница 10. Основные цвета" width="1440" height="810"></section>
+<section class="slide" data-slide="10"><img loading="lazy" src="/assets/brandbook/pages/page-11.webp" alt="Страница 11. Пример размещения логотипа рядом со знаком партнёра" width="1440" height="810"></section>
+<section class="slide" data-slide="11"><img loading="lazy" src="/assets/brandbook/pages/page-12.webp" alt="Страница 12. Шрифт Montserrat" width="1440" height="810"></section>
+<section class="slide" data-slide="12"><img loading="lazy" src="/assets/brandbook/pages/page-13.webp" alt="Страница 13. Шрифт Roboto" width="1440" height="810"></section>
+<section class="slide" data-slide="13"><img loading="lazy" src="/assets/brandbook/pages/page-14.webp" alt="Страница 14. Фирменный шоппер" width="1440" height="810"></section>
+<section class="slide" data-slide="14"><img loading="lazy" src="/assets/brandbook/pages/page-15.webp" alt="Страница 15. Пример использования фирменного шоппера" width="1440" height="810"></section>
+<section class="slide" data-slide="15"><img loading="lazy" src="/assets/brandbook/pages/page-16.webp" alt="Страница 16. Фирменный бейдж участника МХ «КРЯК»" width="1440" height="810"></section>
+<section class="slide" data-slide="16"><img loading="lazy" src="/assets/brandbook/pages/page-17.webp" alt="Страница 17. Фирменное поло МХ «КРЯК»" width="1440" height="810"></section>
+</div>
+<div class="deck-controls" aria-label="Управление презентацией"><button class="control-btn" id="prev-slide" type="button" aria-label="Предыдущий слайд">←</button><div class="progress" aria-hidden="true"><span id="deck-progress"></span></div><div class="counter"><span id="slide-current">01</span> / <span id="slide-total">17</span></div><button class="control-btn" id="next-slide" type="button" aria-label="Следующий слайд">→</button><button class="control-btn fullscreen" id="fullscreen-slide" type="button">На весь экран</button></div>
+<div class="slide-dots" id="slide-dots" aria-label="Выбор слайда"></div><p class="hint">Стрелки клавиатуры · свайп · полноэкранный режим</p>
+<div class="actions"><a href="/assets/brandbook/KRYAK_brand.pdf" target="_blank" rel="noopener noreferrer">Открыть PDF</a><a class="secondary" href="https://github.com/Interregional-cartographic-yacluster/site-kryak/releases/download/archive-files-v1/archive-054.pdf" target="_blank" rel="noopener noreferrer">Архив №054</a></div>
+</main>
+<footer class="legal-footer"><strong>© МХ «КРЯК», 2022–2026</strong><br>Материалы принадлежат участникам молодёжного общественного движения «Межрегиональный картографический Я-кластер» как авторам, на основании п. 4.5 Устава движения. Использование материалов, размещённых на этом сайте, возможно только при обязательном указании автора и ссылки на источник.</footer>
+<script>
+(()=>{const slides=[...document.querySelectorAll('.slide')],prev=document.getElementById('prev-slide'),next=document.getElementById('next-slide'),current=document.getElementById('slide-current'),total=document.getElementById('slide-total'),progress=document.getElementById('deck-progress'),dots=document.getElementById('slide-dots'),deck=document.getElementById('brandbook-deck');let index=Math.max(0,Math.min(slides.length-1,Number(location.hash.replace('#slide-',''))-1||0));total.textContent=String(slides.length).padStart(2,'0');slides.forEach((_,i)=>{const b=document.createElement('button');b.className='slide-dot';b.type='button';b.setAttribute('aria-label',`Страница ${i+1}`);b.addEventListener('click',()=>show(i));dots.appendChild(b)});const dotItems=[...dots.children];function show(i){index=Math.max(0,Math.min(slides.length-1,i));slides.forEach((s,n)=>{s.classList.toggle('is-active',n===index);s.setAttribute('aria-hidden',n===index?'false':'true')});dotItems.forEach((d,n)=>d.classList.toggle('is-active',n===index));current.textContent=String(index+1).padStart(2,'0');progress.style.width=`${((index+1)/slides.length)*100}%`;prev.disabled=index===0;next.disabled=index===slides.length-1;history.replaceState(null,'',`#slide-${index+1}`)}prev.addEventListener('click',()=>show(index-1));next.addEventListener('click',()=>show(index+1));document.addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();show(index+1)}if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();show(index-1)}if(e.key==='Home')show(0);if(e.key==='End')show(slides.length-1)});let startX=0;deck.addEventListener('touchstart',e=>startX=e.changedTouches[0].clientX,{passive:true});deck.addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-startX;if(Math.abs(d)>55)show(index+(d<0?1:-1))},{passive:true});document.getElementById('fullscreen-slide').addEventListener('click',()=>document.fullscreenElement?document.exitFullscreen?.():deck.requestFullscreen?.());show(index)})();
+(()=>{const toggle=document.querySelector('.site-nav__toggle'),menu=document.querySelector('.site-nav__links');toggle.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',String(!open));toggle.setAttribute('aria-label',open?'Открыть меню':'Закрыть меню');menu.classList.toggle('is-open',!open)});document.addEventListener('click',e=>{if(!e.target.closest('.site-nav')&&menu.classList.contains('is-open')){menu.classList.remove('is-open');toggle.setAttribute('aria-expanded','false')}})})();
+</script>
+</body>
+</html>
