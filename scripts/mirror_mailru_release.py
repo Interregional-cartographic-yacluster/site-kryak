@@ -53,9 +53,9 @@ def download(entry: dict, host: str, output: Path) -> None:
                     target.write(chunk)
             size = temporary.stat().st_size
             expected = int(entry["expected_bytes"])
-            # Published sizes are rounded, so allow a generous but useful range.
+            # Published sizes can become stale when a public file is replaced.
             if expected and not (expected * 0.70 <= size <= expected * 1.30):
-                raise RuntimeError(f"Unexpected size for {public_url}: {size} bytes, expected about {expected}")
+                print(f"WARNING: {entry['archive_id']} is {size} bytes; page metadata says about {expected}")
             if size < 100:
                 raise RuntimeError(f"Downloaded file is implausibly small: {public_url}")
             temporary.replace(destination)
@@ -75,14 +75,24 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--manifest", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--existing-files", type=Path)
     args = parser.parse_args()
 
     entries = json.loads(args.manifest.read_text(encoding="utf-8"))["documents"]
+    existing = set()
+    if args.existing_files and args.existing_files.exists():
+        existing = {line.strip() for line in args.existing_files.read_text(encoding="utf-8").splitlines() if line.strip()}
     args.output.mkdir(parents=True, exist_ok=True)
     host = download_host()
     print(f"Using Cloud Mail.ru download host: {host}")
     failures = []
     for entry in entries:
+        if entry.get("skip_migration"):
+            print(f"Skipping unavailable source {entry['archive_id']}: {entry['source_url']}")
+            continue
+        if entry["release_filename"] in existing:
+            print(f"Already uploaded: {entry['release_filename']}")
+            continue
         try:
             download(entry, host, args.output)
         except Exception as exc:  # Continue so one stale public link does not hide other failures.

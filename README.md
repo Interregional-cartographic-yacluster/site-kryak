@@ -65,4 +65,4 @@ python3 -m http.server 8000
 
 ## Файлы электронного архива
 
-Крупные документы электронного архива хранятся в GitHub Release `archive-files-v1`, поскольку общий объём превышает 1 ГБ, а отдельные PDF превышают лимит Git-репозитория в 100 МБ. Исходные адреса Cloud Mail.ru и имена Release assets перечислены в `assets/documents/mailru-manifest.json`. Workflow `mirror-mailru-release.yml` скачивает опубликованные файлы и загружает их в Release; страница `/наш-архив` ссылается непосредственно на Release assets.
+Крупные документы электронного архива хранятся в GitHub Release `archive-files-v1`, поскольку общий объём превышает 1 ГБ, а отдельные PDF превышают лимит Git-репозитория в 100 МБ. Исходные адреса Cloud Mail.ru и имена Release assets перечислены в `assets/documents/mailru-manifest.json`. Workflow `mirror-mailru-release.yml` скачивает опубликованные файлы и загружает их в Release; страница `/наш-архив` ссылается непосредственно на Release assets. Из 51 исходной ссылки перенесено 50 файлов; источник документа `007` возвращает HTTP 404 и временно оставлен без изменения до предоставления рабочей ссылки.

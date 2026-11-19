@@ -25,11 +25,23 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Create archive release if needed
+        run: |
+          gh release view "$RELEASE_TAG" >/dev/null 2>&1 || \
+            gh release create "$RELEASE_TAG" \
+              --target "$GITHUB_SHA" \
+              --title "Электронный архив МХ «КРЯК»" \
+              --notes "Файлы электронного архива, перенесённые с Cloud Mail.ru."
+
+      - name: List existing release assets
+        run: gh release view "$RELEASE_TAG" --json assets --jq '.assets[].name' > /tmp/existing-release-files.txt
+
       - name: Download public archive files
         run: |
           set +e
           python3 scripts/mirror_mailru_release.py \
             --manifest assets/documents/mailru-manifest.json \
+            --existing-files /tmp/existing-release-files.txt \
             --output "$OUTPUT_DIR" 2>&1 | tee /tmp/archive-mirror.log
           status=${PIPESTATUS[0]}
           {
@@ -43,15 +55,6 @@ jobs:
             echo "::error title=Archive mirror failed::$message"
           fi
           exit "$status"
-
-      - name: Create archive release if needed
-        if: always()
-        run: |
-          gh release view "$RELEASE_TAG" >/dev/null 2>&1 || \
-            gh release create "$RELEASE_TAG" \
-              --target "$GITHUB_SHA" \
-              --title "Электронный архив МХ «КРЯК»" \
-              --notes "Файлы электронного архива, перенесённые с Cloud Mail.ru."
 
       - name: Upload downloaded archive files to release
         if: always()

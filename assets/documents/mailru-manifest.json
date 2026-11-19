@@ -36,7 +36,9 @@
       "description": "Доверенность на основании которой действует подразделение Реновация Соловьиного края PDF 794 КБ 31.10.2025",
       "source_url": "https://cloud.mail.ru/public/6cQv/TfAh9DAhR",
       "expected_bytes": 813056,
-      "release_filename": "archive-007.pdf"
+      "release_filename": "archive-007.pdf",
+      "skip_migration": true,
+      "migration_note": "Source URL returned HTTP 404 on 2026-11-19; kept as the original link until a replacement is provided."
     },
     {
       "archive_id": "008",
