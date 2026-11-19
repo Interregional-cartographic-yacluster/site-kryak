@@ -22,7 +22,9 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release download archive-files-v1 --pattern archive-054.pdf --dir /tmp
+          gh api -H 'Accept: application/octet-stream' \
+            repos/Interregional-cartographic-yacluster/site-kryak/releases/assets/767580804 \
+            > /tmp/archive-054.pdf
           ls -lh /tmp/archive-054.pdf
           file /tmp/archive-054.pdf
           python3 - <<'PY'
