@@ -1,0 +1,63 @@
+name: Mirror Cloud Mail.ru archive to GitHub Release
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      GH_TOKEN: ${{ github.token }}
+      RELEASE_TAG: archive-files-v1
+      OUTPUT_DIR: /tmp/archive-files
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Create archive release if needed
+        run: |
+          gh release view "$RELEASE_TAG" >/dev/null 2>&1 || \
+            gh release create "$RELEASE_TAG" \
+              --target "$GITHUB_SHA" \
+              --title "Электронный архив МХ «КРЯК»" \
+              --notes "Файлы электронного архива, перенесённые с Cloud Mail.ru."
+
+      - name: Upload locally supplied replacement files
+        run: gh release upload "$RELEASE_TAG" assets/documents/archive-007.pdf --clobber
+
+      - name: List existing release assets
+        run: gh release view "$RELEASE_TAG" --json assets --jq '.assets[].name' > /tmp/existing-release-files.txt
+
+      - name: Download public archive files
+        run: |
+          set +e
+          python3 scripts/mirror_mailru_release.py \
+            --manifest assets/documents/mailru-manifest.json \
+            --existing-files /tmp/existing-release-files.txt \
+            --output "$OUTPUT_DIR" 2>&1 | tee /tmp/archive-mirror.log
+          status=${PIPESTATUS[0]}
+          {
+            echo '## Archive mirror log'
+            echo '```text'
+            tail -100 /tmp/archive-mirror.log
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          if [ "$status" -ne 0 ]; then
+            message=$(tail -20 /tmp/archive-mirror.log | tr '\n' ' ')
+            echo "::error title=Archive mirror failed::$message"
+          fi
+          exit "$status"
+
+      - name: Upload downloaded archive files to release
+        if: always()
+        run: |
+          files=("$OUTPUT_DIR"/*)
+          if [ -e "${files[0]}" ]; then
+            gh release upload "$RELEASE_TAG" "${files[@]}" --clobber
+          else
+            echo "No archive files were downloaded"
+          fi
