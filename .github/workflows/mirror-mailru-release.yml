@@ -45,6 +45,7 @@ jobs:
           exit "$status"
 
       - name: Create archive release if needed
+        if: always()
         run: |
           gh release view "$RELEASE_TAG" >/dev/null 2>&1 || \
             gh release create "$RELEASE_TAG" \
@@ -52,5 +53,12 @@ jobs:
               --title "Электронный архив МХ «КРЯК»" \
               --notes "Файлы электронного архива, перенесённые с Cloud Mail.ru."
 
-      - name: Upload archive files to release
-        run: gh release upload "$RELEASE_TAG" "$OUTPUT_DIR"/* --clobber
+      - name: Upload downloaded archive files to release
+        if: always()
+        run: |
+          files=("$OUTPUT_DIR"/*)
+          if [ -e "${files[0]}" ]; then
+            gh release upload "$RELEASE_TAG" "${files[@]}" --clobber
+          else
+            echo "No archive files were downloaded"
+          fi

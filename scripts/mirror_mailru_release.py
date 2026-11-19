@@ -81,14 +81,21 @@ def main() -> None:
     args.output.mkdir(parents=True, exist_ok=True)
     host = download_host()
     print(f"Using Cloud Mail.ru download host: {host}")
+    failures = []
     for entry in entries:
-        download(entry, host, args.output)
+        try:
+            download(entry, host, args.output)
+        except Exception as exc:  # Continue so one stale public link does not hide other failures.
+            failures.append({"archive_id": entry["archive_id"], "source_url": entry["source_url"], "error": str(exc)})
+            print(f"FAILED {entry['archive_id']}: {exc}")
 
     downloaded = sorted(p.name for p in args.output.iterdir() if p.is_file())
-    expected = sorted(entry["release_filename"] for entry in entries)
-    if downloaded != expected:
-        raise RuntimeError("Downloaded file set does not match the manifest")
-    print(f"Downloaded all {len(downloaded)} archive files")
+    print(f"Downloaded {len(downloaded)} of {len(entries)} archive files")
+    if failures:
+        print("Failed public links:")
+        for failure in failures:
+            print(f"- {failure['archive_id']}: {failure['source_url']} — {failure['error']}")
+        raise RuntimeError(f"{len(failures)} archive files could not be downloaded")
 
 
 if __name__ == "__main__":
