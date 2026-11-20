@@ -39,7 +39,7 @@ python3 server.py
 python3 server.py
 ```
 
-Откройте <http://localhost:8000/портал.html>. В этом режиме API обработки персональных данных отключён. Для локальных тестов только с вымышленными данными запустите `PORTAL_DATA_PROCESSING_ENABLED=1 python3 server.py`.
+Откройте <http://localhost:8000/портал/главная>. В этом режиме API обработки персональных данных отключён. Для локальных тестов только с вымышленными данными запустите `PORTAL_DATA_PROCESSING_ENABLED=1 python3 server.py`.
 
 ## Что хранится
 

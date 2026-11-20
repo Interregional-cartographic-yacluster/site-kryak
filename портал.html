@@ -18,7 +18,7 @@
 <body>
 <div class="app">
 <header class="topbar">
-<a class="brand" href="#home" data-view="home"><img src="/assets/documents/new_logo_kryak.png" alt="Логотип КРЯК"><div>КРЯКтика<small>единое цифровое пространство</small></div></a>
+<a class="brand" href="/портал/главная" data-view="home"><img src="/assets/documents/new_logo_kryak.png" alt="Логотип КРЯК"><div>КРЯКтика<small>единое цифровое пространство</small></div></a>
 <nav class="main-nav" aria-label="Основная навигация">
 <a href="/главная"><span class="nav-icon">↗</span><span>Сайт</span></a>
 <button class="active" data-view="home"><span class="nav-icon">⌂</span><span>Главная</span></button>
@@ -34,7 +34,7 @@
 <section class="view active" id="home" aria-labelledby="home-title">
 <div class="hero"><div class="eyebrow">Единый портал МХ «КРЯК»</div><h1 id="home-title">Полезные инициативы — в одном месте</h1><p>Понятный путь от идеи или обращения до результата. Для граждан, участников команды и руководителей — в единой дизайн-системе сайта КРЯКа.</p><div class="hero-actions"><button class="btn primary" data-view="catalog">Посмотреть услуги →</button><button class="btn secondary" data-view="workspace" data-role-target="member">Режим участника</button></div></div>
 <div class="quick-grid"><article class="card quick-card"><div class="service-icon">◎</div><div><b>Обработка отключена</b><p>Регистрация откроется после уведомления РКН.</p></div></article><article class="card quick-card"><div class="service-icon">▦</div><div><b>6 сценариев</b><p>Каталог будущих услуг портала.</p></div></article><article class="card quick-card"><div class="service-icon">◇</div><div><b>3 роли</b><p>Гражданин, участник и руководитель.</p></div></article><article class="card quick-card"><div class="service-icon">✓</div><div><b>Демо без отправки</b><p>Введённое в макете не уходит на сервер.</p></div></article></div>
-<div class="section-title"><div><h2>Основные сценарии</h2><p>Начните с понятной задачи</p></div><a href="#catalog" data-view="catalog">Весь каталог →</a></div>
+<div class="section-title"><div><h2>Основные сценарии</h2><p>Начните с понятной задачи</p></div><a href="/портал/услуги" data-view="catalog">Весь каталог →</a></div>
 <div class="service-grid"><article class="card service-card" data-view="service"><div class="service-icon">⌖</div><h3>Сообщить о неточности</h3><p>Передать сведения об объекте для проверки в разрешённом картографическом сервисе.</p><div class="service-meta"><span class="tag">Демо</span><span class="tag info">3 шага</span></div></article><article class="card service-card" data-view="catalog"><div class="service-icon">✦</div><h3>Предложить инициативу</h3><p>Описать идею для городской среды и увидеть прозрачный маршрут рассмотрения.</p><div class="service-meta"><span class="tag">Планируется</span></div></article><article class="card service-card" data-view="documents"><div class="service-icon">▤</div><h3>Открыть документы</h3><p>Устав, политики, регламенты и материалы движения в одном разделе.</p><div class="service-meta"><span class="tag success">Открытые материалы</span></div></article></div>
 </section>
 
@@ -114,12 +114,16 @@ const sheet=document.getElementById('launch-sheet');
 const toast=document.getElementById('toast');
 const moreTrigger=document.getElementById('more-trigger');
 const moreMenu=document.getElementById('more-menu');
+const routes={home:'главная',catalog:'услуги',service:'услуга',application:'новое-обращение',status:'обращения',workspace:'рабочий-стол',projects:'проекты',project:'проект',documents:'документы',notifications:'уведомления',profile:'профиль',admin:'управление'};
+const routeViews=Object.fromEntries(Object.entries(routes).map(([view,slug])=>[slug,view]));
 let toastTimer;
+function portalPath(id){return '/портал/'+routes[id]}
+function viewFromLocation(){let pathname=location.pathname;try{pathname=decodeURIComponent(pathname)}catch{}const slug=pathname.split('/').filter(Boolean).pop();return routeViews[slug]||location.hash.slice(1)||'home'}
 function notify(text){toast.textContent=text;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2600)}
 function setRole(next,silent=false){role.value=next;document.body.dataset.previewRole=next;if(!silent)notify('Режим просмотра: '+role.options[role.selectedIndex].text)}
 function closeMore(returnFocus=false){const wasOpen=moreMenu.classList.contains('open');moreMenu.classList.remove('open');moreTrigger.setAttribute('aria-expanded','false');if(returnFocus&&wasOpen)moreTrigger.focus()}
-function show(id,source){const target=document.getElementById(id);if(!target)return;const needed=source?.dataset.roleTarget||(id==='admin'?'lead':['workspace','projects','project'].includes(id)?'member':null);if(needed==='lead'&&role.value!=='lead')setRole('lead');if(needed==='member'&&role.value==='citizen')setRole('member');views.forEach(view=>view.classList.toggle('active',view===target));document.querySelectorAll('.main-nav button[data-view]').forEach(button=>button.classList.toggle('active',button.dataset.view===id));moreTrigger.classList.toggle('active',!!moreMenu.querySelector(`button[data-view="${id}"]`));closeMore(!!source?.closest('.more-menu'));history.replaceState(null,'','#'+id);window.scrollTo({top:0,behavior:'smooth'})}
-viewControls.forEach(control=>{control.addEventListener('click',event=>{event.preventDefault();show(control.dataset.view,control)});if(!control.matches('button,a')){control.tabIndex=0;control.setAttribute('role','button');control.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();show(control.dataset.view,control)}})}});
+function show(id,source,historyMode='push'){const target=document.getElementById(id);if(!target)return;const needed=source?.dataset.roleTarget||(id==='admin'?'lead':['workspace','projects','project'].includes(id)?'member':null);if(needed==='lead'&&role.value!=='lead')setRole('lead');if(needed==='member'&&role.value==='citizen')setRole('member');views.forEach(view=>view.classList.toggle('active',view===target));document.querySelectorAll('.main-nav button[data-view]').forEach(button=>button.classList.toggle('active',button.dataset.view===id));moreTrigger.classList.toggle('active',!!moreMenu.querySelector(`button[data-view="${id}"]`));closeMore(!!source?.closest('.more-menu'));const path=portalPath(id);if(historyMode==='replace')history.replaceState({view:id},'',path);else if(historyMode==='push'&&decodeURIComponent(location.pathname)!==path)history.pushState({view:id},'',path);document.title=(target.querySelector('h1')?.textContent||'КРЯКтика')+' — КРЯКтика';window.scrollTo({top:0,behavior:'smooth'})}
+viewControls.forEach(control=>{if(control.matches('a'))control.href=portalPath(control.dataset.view);control.addEventListener('click',event=>{event.preventDefault();show(control.dataset.view,control)});if(!control.matches('button,a')){control.tabIndex=0;control.setAttribute('role','button');control.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();show(control.dataset.view,control)}})}});
 moreTrigger.addEventListener('click',event=>{event.stopPropagation();const open=!moreMenu.classList.contains('open');moreMenu.classList.toggle('open',open);moreTrigger.setAttribute('aria-expanded',String(open));if(open)moreMenu.querySelector('button').focus()});
 moreMenu.addEventListener('click',event=>event.stopPropagation());
 document.addEventListener('click',closeMore);
@@ -134,7 +138,8 @@ document.getElementById('auth-open').addEventListener('click',()=>sheet.classLis
 document.getElementById('close-sheet').addEventListener('click',()=>sheet.classList.remove('open'));
 sheet.addEventListener('click',event=>{if(event.target===sheet)sheet.classList.remove('open')});
 document.addEventListener('keydown',event=>{if(event.key==='Escape'){sheet.classList.remove('open');closeMore(true)}});
-setRole('citizen',true);show(location.hash.slice(1)||'home');
+window.addEventListener('popstate',()=>show(viewFromLocation(),null,'none'));
+setRole('citizen',true);show(viewFromLocation(),null,'replace');
 })();
 </script>
 </body>
