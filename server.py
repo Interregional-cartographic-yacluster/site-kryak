@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Static-only server for the КРЯК website and КРЯКтика prototype.
+"""Static-only server for the public КРЯК website.
 
 The application intentionally has no registration, authentication, submission,
-database, session-cookie, or personal-data API. GitHub Pages remains the primary
-publishing target; this server exists only for local preview and static hosting.
+database, session-cookie, or personal-data API. КРЯКтика source files remain in
+the repository but are not served before 1 July 2027 under the owner's family
+agreement. Publishing after that date still requires an explicit code change.
 """
 
 import json
@@ -40,7 +41,14 @@ class StaticSiteHandler(SimpleHTTPRequestHandler):
             relative = result.relative_to(ROOT)
         except ValueError:
             return str(ROOT / "__not_found__")
-        if ".git" in result.parts or relative.parts[:1] in {("data",), ("documents",)} or result.name.startswith(".env"):
+        hidden_file = relative in {
+            Path("портал.html"),
+            Path("портал-дизайн-система.html"),
+            Path("пользовательское-соглашение-портала.html"),
+            Path("КРЯКТИКА-НЕ-ПУБЛИКОВАТЬ-ДО-2027-07-01.md"),
+        }
+        hidden_directory = relative.parts[:1] in {("data",), ("documents",), ("портал",)}
+        if ".git" in result.parts or hidden_file or hidden_directory or result.name.startswith(".env"):
             return str(ROOT / "__not_found__")
         if not result.exists() and not result.suffix:
             html_result = result.with_suffix(".html")
@@ -81,5 +89,5 @@ class StaticSiteHandler(SimpleHTTPRequestHandler):
 
 if __name__ == "__main__":
     print(f"Статический сайт КРЯК: http://{HOST}:{PORT}/")
-    print(f"КРЯКтика (демонстрация без ПДн): http://{HOST}:{PORT}/портал/главная")
+    print("КРЯКтика временно не публикуется до отдельного решения после 30 июня 2027 года.")
     ThreadingHTTPServer((HOST, PORT), StaticSiteHandler).serve_forever()

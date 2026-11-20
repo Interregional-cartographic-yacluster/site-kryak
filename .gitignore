@@ -8,6 +8,9 @@
 .env.*
 !.env.example
 
+# Generated public-site artifact
+_site/
+
 # Python caches
 __pycache__/
 *.py[cod]

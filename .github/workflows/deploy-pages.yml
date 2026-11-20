@@ -25,12 +25,16 @@ jobs:
         uses: actions/checkout@v4
       - name: Настроить GitHub Pages
         uses: actions/configure-pages@v5
-      - name: Сформировать маршруты КРЯКтики
-        run: python3 scripts/generate_portal_routes.py
-      - name: Подготовить файлы сайта
+      # По семейному решению КРЯКтику нельзя возвращать на сайт раньше
+      # 1 июля 2027 года. Исходники остаются в репозитории, но не входят
+      # в публикуемый артефакт. После этой даты подключение выполняется
+      # только отдельным осознанным изменением, не автоматически.
+      - name: Подготовить публичную версию без КРЯКтики
+        run: python3 scripts/build_public_site.py
+      - name: Загрузить файлы сайта
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
       - name: Опубликовать сайт
         id: deployment
         uses: actions/deploy-pages@v4
