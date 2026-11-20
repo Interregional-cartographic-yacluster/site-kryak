@@ -152,6 +152,10 @@ class PortalHandler(SimpleHTTPRequestHandler):
             return str(ROOT / "__not_found__")
         if result == DB_PATH or ".git" in result.parts or "data" in result.relative_to(ROOT).parts[:1]:
             return str(ROOT / "__not_found__")
+        if not result.exists() and not result.suffix:
+            html_result = result.with_suffix(".html")
+            if html_result.is_file():
+                return str(html_result)
         return str(result)
 
     def json_response(self, status: int, payload: dict, cookie: str | None = None) -> None:
@@ -438,6 +442,6 @@ if __name__ == "__main__":
         if missing:
             raise SystemExit("Production start blocked: " + "; ".join(missing) + ".")
     init_db()
-    print(f"КРЯКтика: http://{HOST}:{PORT}/портал.html")
+    print(f"КРЯКтика: http://{HOST}:{PORT}/портал/главная")
     print("Storage: Tabrica (Russia)" if TABRICA else f"SQLite: {DB_PATH}")
     ThreadingHTTPServer((HOST, PORT), PortalHandler).serve_forever()
