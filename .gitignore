@@ -1,0 +1,13 @@
+# Runtime database and SQLite temporary files
+/data/*.db
+/data/*.db-shm
+/data/*.db-wal
+
+# Local secrets and environment
+.env
+.env.*
+!.env.example
+
+# Python caches
+__pycache__/
+*.py[cod]
