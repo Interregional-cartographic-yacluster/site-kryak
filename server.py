@@ -7,6 +7,7 @@ in the Russian Federation and set DATA_RESIDENCY_CONFIRMED=RU.
 """
 from __future__ import annotations
 
+import base64
 import hashlib
 import hmac
 import json
@@ -22,6 +23,8 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlparse
 
+from tabrica_storage import TabricaError, TabricaStorage
+
 ROOT = Path(__file__).resolve().parent
 DB_PATH = Path(os.environ.get("PORTAL_DB_PATH", ROOT / "data" / "portal.db")).resolve()
 HOST = os.environ.get("HOST", "0.0.0.0")
@@ -29,8 +32,11 @@ PORT = int(os.environ.get("PORT", "8000"))
 PRODUCTION = os.environ.get("APP_ENV") == "production"
 COOKIE_SECURE = PRODUCTION or os.environ.get("COOKIE_SECURE") == "1"
 SESSION_SECONDS = 30 * 24 * 60 * 60
+CONSENT_VERSION = "1.0-2026-11-14"
 EMAIL_RE = re.compile(r"^[^\s@]+@[^\s@]+\.[^\s@]+$")
 RATE_LIMIT: dict[str, list[float]] = {}
+STORAGE_MODE = os.environ.get("PORTAL_STORAGE", "sqlite").lower()
+TABRICA: TabricaStorage | None = None
 
 
 def now_iso() -> str:
@@ -45,6 +51,13 @@ def connect() -> sqlite3.Connection:
 
 
 def init_db() -> None:
+    global TABRICA
+    if STORAGE_MODE == "tabrica":
+        TABRICA = TabricaStorage()
+        TABRICA.healthcheck()
+        return
+    if STORAGE_MODE != "sqlite":
+        raise RuntimeError("PORTAL_STORAGE must be 'sqlite' or 'tabrica'")
     DB_PATH.parent.mkdir(parents=True, exist_ok=True)
     with connect() as db:
         db.executescript(
@@ -61,6 +74,7 @@ def init_db() -> None:
                 role TEXT NOT NULL DEFAULT 'citizen'
                     CHECK (role IN ('citizen', 'member', 'lead')),
                 consent_at TEXT NOT NULL,
+                consent_version TEXT NOT NULL,
                 created_at TEXT NOT NULL,
                 updated_at TEXT NOT NULL
             );
@@ -89,6 +103,9 @@ def init_db() -> None:
             CREATE INDEX IF NOT EXISTS idx_applications_user ON applications(user_id, created_at);
             """
         )
+        columns = {row["name"] for row in db.execute("PRAGMA table_info(users)")}
+        if "consent_version" not in columns:
+            db.execute("ALTER TABLE users ADD COLUMN consent_version TEXT NOT NULL DEFAULT 'legacy-before-2026-11-14'")
         db.execute("DELETE FROM sessions WHERE expires_at < ?", (int(time.time()),))
 
 
@@ -183,6 +200,11 @@ class PortalHandler(SimpleHTTPRequestHandler):
         if not token:
             return None
         token_hash = hashlib.sha256(token.encode()).hexdigest()
+        if TABRICA:
+            session = TABRICA.session_by_hash(token_hash)
+            if not session or int(session.get("expires_at", 0)) <= int(time.time()):
+                return None
+            return TABRICA.user_by_id(int(session["user_id"]))
         with connect() as db:
             return db.execute(
                 """SELECT u.* FROM sessions s JOIN users u ON u.id=s.user_id
@@ -192,34 +214,52 @@ class PortalHandler(SimpleHTTPRequestHandler):
 
     def issue_session(self, user_id: int) -> str:
         token = secrets.token_urlsafe(32)
-        with connect() as db:
-            db.execute(
-                "INSERT INTO sessions(user_id,token_hash,expires_at,created_at) VALUES(?,?,?,?)",
-                (user_id, hashlib.sha256(token.encode()).hexdigest(), int(time.time()) + SESSION_SECONDS, now_iso()),
-            )
+        values = {"user_id": user_id, "token_hash": hashlib.sha256(token.encode()).hexdigest(), "expires_at": int(time.time()) + SESSION_SECONDS, "created_at": now_iso()}
+        if TABRICA:
+            TABRICA.create_session(values)
+        else:
+            with connect() as db:
+                db.execute(
+                    "INSERT INTO sessions(user_id,token_hash,expires_at,created_at) VALUES(?,?,?,?)",
+                    (values["user_id"], values["token_hash"], values["expires_at"], values["created_at"]),
+                )
         secure = "; Secure" if COOKIE_SECURE else ""
         return f"kryak_session={token}; Path=/; HttpOnly; SameSite=Lax; Max-Age={SESSION_SECONDS}{secure}"
 
     def do_GET(self) -> None:
         path = urlparse(self.path).path
         if path == "/api/health":
-            self.json_response(200, {"ok": True, "database": "sqlite", "residency": "server-local"})
+            self.json_response(200, {"ok": True, "database": STORAGE_MODE, "residency": "Russia (provider confirmation required)" if TABRICA else "server-local"})
             return
         if path == "/api/auth/me":
-            user = self.current_user()
+            try:
+                user = self.current_user()
+            except TabricaError:
+                self.json_response(503, {"error": "Российское хранилище временно недоступно"})
+                return
             self.json_response(200, {"authenticated": bool(user), "user": public_user(user) if user else None})
             return
         if path == "/api/applications":
-            user = self.current_user()
-            if not user:
-                self.json_response(401, {"error": "Требуется вход в личный кабинет"})
+            try:
+                user = self.current_user()
+                if not user:
+                    self.json_response(401, {"error": "Требуется вход в личный кабинет"})
+                    return
+                if TABRICA:
+                    rows = TABRICA.applications_for_user(int(user["id"]))
+                    allowed = ("public_id", "service_type", "city", "address", "category", "description", "status", "created_at")
+                    applications = [{key: row.get(key) for key in allowed} for row in rows]
+                else:
+                    with connect() as db:
+                        rows = db.execute(
+                            "SELECT public_id,service_type,city,address,category,description,status,created_at FROM applications WHERE user_id=? ORDER BY id DESC",
+                            (user["id"],),
+                        ).fetchall()
+                    applications = [dict(x) for x in rows]
+            except TabricaError:
+                self.json_response(503, {"error": "Российское хранилище временно недоступно"})
                 return
-            with connect() as db:
-                rows = db.execute(
-                    "SELECT public_id,service_type,city,address,category,description,status,created_at FROM applications WHERE user_id=? ORDER BY id DESC",
-                    (user["id"],),
-                ).fetchall()
-            self.json_response(200, {"applications": [dict(x) for x in rows]})
+            self.json_response(200, {"applications": applications})
             return
         super().do_GET()
 
@@ -250,28 +290,48 @@ class PortalHandler(SimpleHTTPRequestHandler):
         last = clean_text(data.get("lastName"), 80)
         region = clean_text(data.get("region"), 120)
         consent = data.get("consent") is True
+        consent_version = clean_text(data.get("consentVersion"), 40)
         if not EMAIL_RE.match(email):
             self.json_response(400, {"error": "Укажите корректный email"}); return
         if len(password) < 10 or len(password) > 200:
             self.json_response(400, {"error": "Пароль должен содержать не менее 10 символов"}); return
         if not first or not last or not region:
             self.json_response(400, {"error": "Заполните имя, фамилию и регион"}); return
-        if not consent:
-            self.json_response(400, {"error": "Необходимо согласие на обработку персональных данных"}); return
+        if not consent or consent_version != CONSENT_VERSION:
+            self.json_response(400, {"error": "Необходимо подтвердить актуальную версию согласия на обработку персональных данных"}); return
         salt = secrets.token_bytes(16)
         created = now_iso()
         try:
-            with connect() as db:
-                cur = db.execute(
-                    """INSERT INTO users(email,password_hash,password_salt,first_name,last_name,region,consent_at,created_at,updated_at)
-                       VALUES(?,?,?,?,?,?,?,?,?)""",
-                    (email, password_hash(password, salt), salt, first, last, region, created, created, created),
-                )
-                user_id = cur.lastrowid
-                user = db.execute("SELECT * FROM users WHERE id=?", (user_id,)).fetchone()
+            if TABRICA:
+                if TABRICA.user_by_email(email):
+                    self.json_response(409, {"error": "Пользователь с таким email уже зарегистрирован"}); return
+                user = TABRICA.create_user({
+                    "email": email,
+                    "password_hash": base64.b64encode(password_hash(password, salt)).decode(),
+                    "password_salt": base64.b64encode(salt).decode(),
+                    "first_name": first, "last_name": last, "region": region, "role": "citizen",
+                    "consent_at": created, "consent_version": CONSENT_VERSION,
+                    "created_at": created, "updated_at": created,
+                })
+                user_id = int(user["id"])
+            else:
+                with connect() as db:
+                    cur = db.execute(
+                        """INSERT INTO users(email,password_hash,password_salt,first_name,last_name,region,consent_at,consent_version,created_at,updated_at)
+                           VALUES(?,?,?,?,?,?,?,?,?,?)""",
+                        (email, password_hash(password, salt), salt, first, last, region, created, CONSENT_VERSION, created, created),
+                    )
+                    user_id = cur.lastrowid
+                    user = db.execute("SELECT * FROM users WHERE id=?", (user_id,)).fetchone()
         except sqlite3.IntegrityError:
             self.json_response(409, {"error": "Пользователь с таким email уже зарегистрирован"}); return
-        self.json_response(201, {"ok": True, "user": public_user(user)}, self.issue_session(user_id))
+        except TabricaError:
+            self.json_response(503, {"error": "Российское хранилище временно недоступно"}); return
+        try:
+            cookie = self.issue_session(user_id)
+        except TabricaError:
+            self.json_response(503, {"error": "Учётная запись создана, но российское хранилище не смогло открыть сессию. Повторите вход позже."}); return
+        self.json_response(201, {"ok": True, "user": public_user(user)}, cookie)
 
     def login(self) -> None:
         data = self.read_json()
@@ -279,23 +339,47 @@ class PortalHandler(SimpleHTTPRequestHandler):
             self.json_response(400, {"error": "Некорректный запрос"}); return
         email = clean_text(data.get("email"), 254).lower()
         password = data.get("password") if isinstance(data.get("password"), str) else ""
-        with connect() as db:
-            user = db.execute("SELECT * FROM users WHERE email=?", (email,)).fetchone()
-        valid = bool(user) and hmac.compare_digest(password_hash(password, user["password_salt"]), user["password_hash"])
+        try:
+            if TABRICA:
+                user = TABRICA.user_by_email(email)
+                salt = base64.b64decode(user["password_salt"]) if user else b""
+                expected = base64.b64decode(user["password_hash"]) if user else b""
+            else:
+                with connect() as db:
+                    user = db.execute("SELECT * FROM users WHERE email=?", (email,)).fetchone()
+                salt = user["password_salt"] if user else b""
+                expected = user["password_hash"] if user else b""
+        except (TabricaError, ValueError):
+            self.json_response(503, {"error": "Российское хранилище временно недоступно"}); return
+        valid = bool(user) and hmac.compare_digest(password_hash(password, salt), expected)
         if not valid:
             self.json_response(401, {"error": "Неверный email или пароль"}); return
-        self.json_response(200, {"ok": True, "user": public_user(user)}, self.issue_session(user["id"]))
+        try:
+            cookie = self.issue_session(user["id"])
+        except TabricaError:
+            self.json_response(503, {"error": "Российское хранилище не смогло открыть сессию. Повторите позже."}); return
+        self.json_response(200, {"ok": True, "user": public_user(user)}, cookie)
 
     def logout(self) -> None:
         token = self.session_token()
         if token:
-            with connect() as db:
-                db.execute("DELETE FROM sessions WHERE token_hash=?", (hashlib.sha256(token.encode()).hexdigest(),))
+            token_hash = hashlib.sha256(token.encode()).hexdigest()
+            if TABRICA:
+                try:
+                    TABRICA.delete_session(token_hash)
+                except TabricaError:
+                    pass
+            else:
+                with connect() as db:
+                    db.execute("DELETE FROM sessions WHERE token_hash=?", (token_hash,))
         secure = "; Secure" if COOKIE_SECURE else ""
         self.json_response(200, {"ok": True}, f"kryak_session=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0{secure}")
 
     def create_application(self) -> None:
-        user = self.current_user()
+        try:
+            user = self.current_user()
+        except TabricaError:
+            self.json_response(503, {"error": "Российское хранилище временно недоступно"}); return
         if not user:
             self.json_response(401, {"error": "Сначала войдите в личный кабинет"}); return
         data = self.read_json()
@@ -308,22 +392,45 @@ class PortalHandler(SimpleHTTPRequestHandler):
         if not all((city, address, category, description)):
             self.json_response(400, {"error": "Заполните все поля обращения"}); return
         stamp = now_iso()
-        with connect() as db:
-            cur = db.execute(
-                """INSERT INTO applications(user_id,service_type,city,address,category,description,created_at,updated_at)
-                   VALUES(?,?,?,?,?,?,?,?)""",
-                (user["id"], "map_inaccuracy", city, address, category, description, stamp, stamp),
-            )
-            app_id = cur.lastrowid
-            public_id = f"КР-{datetime.now().year}-{app_id:06d}"
-            db.execute("UPDATE applications SET public_id=? WHERE id=?", (public_id, app_id))
+        if TABRICA:
+            public_id = f"КР-{datetime.now().year}-{secrets.randbelow(1_000_000):06d}"
+            try:
+                TABRICA.create_application({
+                    "public_id": public_id, "user_id": int(user["id"]), "service_type": "map_inaccuracy",
+                    "city": city, "address": address, "category": category, "description": description,
+                    "status": "received", "created_at": stamp, "updated_at": stamp,
+                })
+            except TabricaError:
+                self.json_response(503, {"error": "Российское хранилище временно недоступно"}); return
+        else:
+            with connect() as db:
+                cur = db.execute(
+                    """INSERT INTO applications(user_id,service_type,city,address,category,description,created_at,updated_at)
+                       VALUES(?,?,?,?,?,?,?,?)""",
+                    (user["id"], "map_inaccuracy", city, address, category, description, stamp, stamp),
+                )
+                app_id = cur.lastrowid
+                public_id = f"КР-{datetime.now().year}-{app_id:06d}"
+                db.execute("UPDATE applications SET public_id=? WHERE id=?", (public_id, app_id))
         self.json_response(201, {"ok": True, "application": {"id": public_id, "status": "received", "createdAt": stamp}})
 
 
 if __name__ == "__main__":
     if PRODUCTION and os.environ.get("DATA_RESIDENCY_CONFIRMED") != "RU":
         raise SystemExit("Production start blocked: set DATA_RESIDENCY_CONFIRMED=RU only on infrastructure physically located in Russia.")
+    if PRODUCTION:
+        policy = (ROOT / "политика-обработки-персональных-данных.html").read_text(encoding="utf-8")
+        if "ДО ПУБЛИЧНОГО ЗАПУСКА УКАЗАТЬ" in policy or "[УКАЗАТЬ АДРЕС" in policy:
+            raise SystemExit("Production start blocked: fill the individual operator's registration/residence address in all legal documents.")
+        required_confirmations = {
+            "RKN_NOTIFICATION_FILED": "file the Roskomnadzor notification",
+            "PD_DOCUMENTS_APPROVED": "approve the personal-data documents",
+            "PROCESSOR_TERMS_CONFIRMED": "confirm processor terms and Russian storage locations",
+        }
+        missing = [message for name, message in required_confirmations.items() if os.environ.get(name) != "1"]
+        if missing:
+            raise SystemExit("Production start blocked: " + "; ".join(missing) + ".")
     init_db()
     print(f"КРЯК Портал: http://{HOST}:{PORT}/портал.html")
-    print(f"SQLite: {DB_PATH}")
+    print("Storage: Tabrica (Russia)" if TABRICA else f"SQLite: {DB_PATH}")
     ThreadingHTTPServer((HOST, PORT), PortalHandler).serve_forever()
