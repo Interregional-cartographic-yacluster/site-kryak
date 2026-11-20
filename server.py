@@ -36,6 +36,7 @@ CONSENT_VERSION = "1.0-2026-11-14"
 EMAIL_RE = re.compile(r"^[^\s@]+@[^\s@]+\.[^\s@]+$")
 RATE_LIMIT: dict[str, list[float]] = {}
 STORAGE_MODE = os.environ.get("PORTAL_STORAGE", "sqlite").lower()
+DATA_PROCESSING_ENABLED = os.environ.get("PORTAL_DATA_PROCESSING_ENABLED") == "1"
 TABRICA: TabricaStorage | None = None
 
 
@@ -229,7 +230,10 @@ class PortalHandler(SimpleHTTPRequestHandler):
     def do_GET(self) -> None:
         path = urlparse(self.path).path
         if path == "/api/health":
-            self.json_response(200, {"ok": True, "database": STORAGE_MODE, "residency": "Russia (provider confirmation required)" if TABRICA else "server-local"})
+            self.json_response(200, {"ok": True, "database": STORAGE_MODE, "dataProcessing": DATA_PROCESSING_ENABLED, "residency": "Russia (provider confirmation required)" if TABRICA else "server-local"})
+            return
+        if path.startswith("/api/") and not DATA_PROCESSING_ENABLED:
+            self.json_response(503, {"error": "Обработка персональных данных не ведётся до направления уведомления Роскомнадзору и официального запуска"})
             return
         if path == "/api/auth/me":
             try:
@@ -265,6 +269,9 @@ class PortalHandler(SimpleHTTPRequestHandler):
 
     def do_POST(self) -> None:
         path = urlparse(self.path).path
+        if path.startswith("/api/") and not DATA_PROCESSING_ENABLED:
+            self.json_response(503, {"error": "Обработка персональных данных не ведётся до направления уведомления Роскомнадзору и официального запуска"})
+            return
         if path in {"/api/auth/register", "/api/auth/login"} and self.rate_limited():
             self.json_response(429, {"error": "Слишком много попыток. Повторите через несколько минут."})
             return

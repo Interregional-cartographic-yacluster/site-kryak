@@ -19,13 +19,17 @@ GitHub Pages может публиковать только статически
 ```bash
 APP_ENV=production \
 DATA_RESIDENCY_CONFIRMED=RU \
+RKN_NOTIFICATION_FILED=1 \
+PD_DOCUMENTS_APPROVED=1 \
+PROCESSOR_TERMS_CONFIRMED=1 \
+PORTAL_DATA_PROCESSING_ENABLED=1 \
 COOKIE_SECURE=1 \
 HOST=0.0.0.0 \
 PORT=8000 \
 python3 server.py
 ```
 
-Устанавливать `DATA_RESIDENCY_CONFIRMED=RU` можно только после проверки, что сервер и диски находятся в России. Адрес оператора заполнен. Для production также необходимо установить `RKN_NOTIFICATION_FILED=1`, `PD_DOCUMENTS_APPROVED=1` и `PROCESSOR_TERMS_CONFIRMED=1`, но только после фактической подачи уведомления, утверждения документов, акцепта условий обработчиков и подтверждения российских мест хранения.
+Устанавливать `DATA_RESIDENCY_CONFIRMED=RU` можно только после проверки, что сервер и диски находятся в России. Адрес оператора заполнен. Для production также необходимо установить `RKN_NOTIFICATION_FILED=1`, `PD_DOCUMENTS_APPROVED=1` и `PROCESSOR_TERMS_CONFIRMED=1`, но только после фактической подачи уведомления, утверждения документов, акцепта условий обработчиков и подтверждения российских мест хранения. Переменная `PORTAL_DATA_PROCESSING_ENABLED=1` отдельно включает API регистрации, входа и обращений; по умолчанию они возвращают HTTP 503 и персональные данные не принимаются.
 
 ## Локальный запуск
 
@@ -35,7 +39,7 @@ python3 server.py
 python3 server.py
 ```
 
-Откройте <http://localhost:8000/портал.html>.
+Откройте <http://localhost:8000/портал.html>. В этом режиме API обработки персональных данных отключён. Для локальных тестов только с вымышленными данными запустите `PORTAL_DATA_PROCESSING_ENABLED=1 python3 server.py`.
 
 ## Что хранится
 
