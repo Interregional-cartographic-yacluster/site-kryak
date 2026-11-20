@@ -29,6 +29,7 @@ PORT = int(os.environ.get("PORT", "8000"))
 PRODUCTION = os.environ.get("APP_ENV") == "production"
 COOKIE_SECURE = PRODUCTION or os.environ.get("COOKIE_SECURE") == "1"
 SESSION_SECONDS = 30 * 24 * 60 * 60
+CONSENT_VERSION = "1.0-2026-11-14"
 EMAIL_RE = re.compile(r"^[^\s@]+@[^\s@]+\.[^\s@]+$")
 RATE_LIMIT: dict[str, list[float]] = {}
 
@@ -61,6 +62,7 @@ def init_db() -> None:
                 role TEXT NOT NULL DEFAULT 'citizen'
                     CHECK (role IN ('citizen', 'member', 'lead')),
                 consent_at TEXT NOT NULL,
+                consent_version TEXT NOT NULL,
                 created_at TEXT NOT NULL,
                 updated_at TEXT NOT NULL
             );
@@ -89,6 +91,9 @@ def init_db() -> None:
             CREATE INDEX IF NOT EXISTS idx_applications_user ON applications(user_id, created_at);
             """
         )
+        columns = {row["name"] for row in db.execute("PRAGMA table_info(users)")}
+        if "consent_version" not in columns:
+            db.execute("ALTER TABLE users ADD COLUMN consent_version TEXT NOT NULL DEFAULT 'legacy-before-2026-11-14'")
         db.execute("DELETE FROM sessions WHERE expires_at < ?", (int(time.time()),))
 
 
@@ -250,22 +255,23 @@ class PortalHandler(SimpleHTTPRequestHandler):
         last = clean_text(data.get("lastName"), 80)
         region = clean_text(data.get("region"), 120)
         consent = data.get("consent") is True
+        consent_version = clean_text(data.get("consentVersion"), 40)
         if not EMAIL_RE.match(email):
             self.json_response(400, {"error": "Укажите корректный email"}); return
         if len(password) < 10 or len(password) > 200:
             self.json_response(400, {"error": "Пароль должен содержать не менее 10 символов"}); return
         if not first or not last or not region:
             self.json_response(400, {"error": "Заполните имя, фамилию и регион"}); return
-        if not consent:
-            self.json_response(400, {"error": "Необходимо согласие на обработку персональных данных"}); return
+        if not consent or consent_version != CONSENT_VERSION:
+            self.json_response(400, {"error": "Необходимо подтвердить актуальную версию согласия на обработку персональных данных"}); return
         salt = secrets.token_bytes(16)
         created = now_iso()
         try:
             with connect() as db:
                 cur = db.execute(
-                    """INSERT INTO users(email,password_hash,password_salt,first_name,last_name,region,consent_at,created_at,updated_at)
-                       VALUES(?,?,?,?,?,?,?,?,?)""",
-                    (email, password_hash(password, salt), salt, first, last, region, created, created, created),
+                    """INSERT INTO users(email,password_hash,password_salt,first_name,last_name,region,consent_at,consent_version,created_at,updated_at)
+                       VALUES(?,?,?,?,?,?,?,?,?,?)""",
+                    (email, password_hash(password, salt), salt, first, last, region, created, CONSENT_VERSION, created, created),
                 )
                 user_id = cur.lastrowid
                 user = db.execute("SELECT * FROM users WHERE id=?", (user_id,)).fetchone()
@@ -323,6 +329,10 @@ class PortalHandler(SimpleHTTPRequestHandler):
 if __name__ == "__main__":
     if PRODUCTION and os.environ.get("DATA_RESIDENCY_CONFIRMED") != "RU":
         raise SystemExit("Production start blocked: set DATA_RESIDENCY_CONFIRMED=RU only on infrastructure physically located in Russia.")
+    if PRODUCTION:
+        policy = (ROOT / "политика-обработки-персональных-данных.html").read_text(encoding="utf-8")
+        if "ДО ПУБЛИЧНОГО ЗАПУСКА УКАЗАТЬ" in policy or "[УКАЗАТЬ ПОЛНЫЙ ПОЧТОВЫЙ АДРЕС]" in policy:
+            raise SystemExit("Production start blocked: fill the operator's full postal address in all legal documents.")
     init_db()
     print(f"КРЯК Портал: http://{HOST}:{PORT}/портал.html")
     print(f"SQLite: {DB_PATH}")
