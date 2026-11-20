@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>МХ «КРЯК» — Карта ОКН Курской области</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Raleway:wght@300;400;500;600;700&display=swap');
+    <style>500;600;700;800&family=Raleway:wght@300;400;500;600;700&display=swap');
         
         :root {
             --primary: #8f7ed6;
@@ -466,6 +465,7 @@
 
 </style>
 <link rel="stylesheet" href="/assets/css/navigation-nowrap.css">
+<link rel="stylesheet" href="/assets/css/local-fonts.css">
 </head>
 <body>
 
@@ -551,12 +551,7 @@
                     <div style="position:relative;overflow:hidden; width:100%; height:100%;">
                         <a href="https://yandex.ru/maps?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;left:0;z-index:1;"></a>
                         <a href="https://yandex.ru/maps/?ll=37.617698%2C55.755864&z=10" style="color:#eee;font-size:12px;position:absolute;top:14px;left:0;z-index:1;"></a>
-                        <iframe title="Интерактивная карта" src="https://yandex.ru/map-widget/v1/?um=constructor%3Afd1b637b3924cda97de2090e4ca05708feb430b1046a36e853448792d3dd00eb&source=constructor" 
-                                width="100%" 
-                                height="100%" 
-                                frameborder="0" 
-                                allowfullscreen="true" 
-                                style="position:relative; display: block;"></iframe>
+                        <div data-external-embed data-kind="iframe" data-src="https://yandex.ru/map-widget/v1/?um=constructor%3Afd1b637b3924cda97de2090e4ca05708feb430b1046a36e853448792d3dd00eb&source=constructor" data-title="Интерактивная карта" style="display:grid;place-items:center;min-height:260px;padding:24px;text-align:center;background:#f1eefc;border-radius:16px"><div><p><strong>Интерактивная карта</strong></p><p>Материал размещён на сторонней площадке и загрузится только после вашего действия.</p><button type="button" style="padding:11px 16px;border:0;border-radius:10px;background:#837dbd;color:#fff;font-weight:700;cursor:pointer">Загрузить внешний материал</button></div></div>
                     </div>
                 </div>
             </div>
@@ -637,5 +632,6 @@
 })();
 </script>
 
+<script src="/assets/js/external-embed.js"></script>
 </body>
 </html>
