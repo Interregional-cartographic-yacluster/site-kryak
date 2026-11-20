@@ -420,8 +420,8 @@ if __name__ == "__main__":
         raise SystemExit("Production start blocked: set DATA_RESIDENCY_CONFIRMED=RU only on infrastructure physically located in Russia.")
     if PRODUCTION:
         policy = (ROOT / "политика-обработки-персональных-данных.html").read_text(encoding="utf-8")
-        if "ДО ПУБЛИЧНОГО ЗАПУСКА УКАЗАТЬ" in policy or "[УКАЗАТЬ ПОЛНЫЙ ПОЧТОВЫЙ АДРЕС]" in policy:
-            raise SystemExit("Production start blocked: fill the operator's full postal address in all legal documents.")
+        if "ДО ПУБЛИЧНОГО ЗАПУСКА УКАЗАТЬ" in policy or "[УКАЗАТЬ АДРЕС" in policy:
+            raise SystemExit("Production start blocked: fill the individual operator's registration/residence address in all legal documents.")
     init_db()
     print(f"КРЯК Портал: http://{HOST}:{PORT}/портал.html")
     print("Storage: Tabrica (Russia)" if TABRICA else f"SQLite: {DB_PATH}")
