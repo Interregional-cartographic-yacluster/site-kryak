@@ -422,6 +422,14 @@ if __name__ == "__main__":
         policy = (ROOT / "политика-обработки-персональных-данных.html").read_text(encoding="utf-8")
         if "ДО ПУБЛИЧНОГО ЗАПУСКА УКАЗАТЬ" in policy or "[УКАЗАТЬ АДРЕС" in policy:
             raise SystemExit("Production start blocked: fill the individual operator's registration/residence address in all legal documents.")
+        required_confirmations = {
+            "RKN_NOTIFICATION_FILED": "file the Roskomnadzor notification",
+            "PD_DOCUMENTS_APPROVED": "approve the personal-data documents",
+            "PROCESSOR_TERMS_CONFIRMED": "confirm processor terms and Russian storage locations",
+        }
+        missing = [message for name, message in required_confirmations.items() if os.environ.get(name) != "1"]
+        if missing:
+            raise SystemExit("Production start blocked: " + "; ".join(missing) + ".")
     init_db()
     print(f"КРЯК Портал: http://{HOST}:{PORT}/портал.html")
     print("Storage: Tabrica (Russia)" if TABRICA else f"SQLite: {DB_PATH}")
