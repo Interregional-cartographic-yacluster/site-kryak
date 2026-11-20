@@ -1,0 +1,28 @@
+/* Keep the desktop site navigation compact and on one line. */
+@media (min-width: 721px) {
+  .site-nav {
+    gap: 10px;
+  }
+
+  .site-nav__brand {
+    flex: 0 0 auto;
+    font-size: 1.05rem;
+  }
+
+  .site-nav__links {
+    flex: 0 1 auto;
+    min-width: 0;
+    gap: 1px;
+  }
+
+  .site-nav__links > li {
+    flex: 0 0 auto;
+  }
+
+  .site-nav__links a,
+  .site-nav summary {
+    padding: 9px 8px;
+    font-size: clamp(0.7rem, 0.84vw, 0.82rem);
+    white-space: nowrap;
+  }
+}
