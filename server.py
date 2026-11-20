@@ -438,6 +438,6 @@ if __name__ == "__main__":
         if missing:
             raise SystemExit("Production start blocked: " + "; ".join(missing) + ".")
     init_db()
-    print(f"КРЯК Навигатор: http://{HOST}:{PORT}/портал.html")
+    print(f"КРЯКтика: http://{HOST}:{PORT}/портал.html")
     print("Storage: Tabrica (Russia)" if TABRICA else f"SQLite: {DB_PATH}")
     ThreadingHTTPServer((HOST, PORT), PortalHandler).serve_forever()
