@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import re
 import shutil
 from pathlib import Path
 
@@ -55,7 +56,18 @@ def main() -> None:
     if references:
         raise RuntimeError(f"Public HTML still references КРЯКтика: {references}")
 
-    print(f"Public site built without КРЯКтика (publication hold until {HOLD_UNTIL}).")
+    font_violations: list[str] = []
+    for asset in [*OUTPUT.rglob("*.html"), *OUTPUT.rglob("*.css")]:
+        if "vendor" in asset.parts:
+            continue
+        text = asset.read_text(encoding="utf-8")
+        for declaration in re.findall(r"font-family\s*:\s*([^;}]+)", text, flags=re.IGNORECASE):
+            if "montserrat" not in declaration.lower():
+                font_violations.append(f"{asset.relative_to(OUTPUT)}: {declaration.strip()}")
+    if font_violations:
+        raise RuntimeError(f"Public site contains a font other than Montserrat: {font_violations}")
+
+    print(f"Public site built with Montserrat and without КРЯКтика (publication hold until {HOLD_UNTIL}).")
 
 
 if __name__ == "__main__":
