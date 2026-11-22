@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Интерактивная версия официального брендбука МХ «КРЯК».">
 <title>МХ «КРЯК» — Брендбук</title>
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/images/favicon-kryak.png">
 <link rel="preload" href="/assets/brandbook/pages/page-01.webp" as="image" type="image/webp">
 <style>
 @font-face{font-family:Montserrat;src:url('/assets/fonts/montserrat-cyrillic-400.woff2') format('woff2');font-weight:400;font-display:swap;unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
@@ -25,8 +26,6 @@ a{color:inherit}button{font:inherit}
 .site-nav__links details[open]>.site-nav__submenu{display:block}.site-nav__submenu details .site-nav__submenu{left:100%;top:0}
 .site-nav__toggle{display:none;margin-left:auto;width:44px;height:44px;border:0;border-radius:12px;background:#eeeafd;align-items:center;justify-content:center;flex-direction:column;gap:5px;cursor:pointer}.site-nav__toggle span{display:block;width:22px;height:2px;background:var(--violet);border-radius:2px}
 .presentation{width:100%;max-width:1200px;margin:0 auto}
-.presentation-head{display:flex;align-items:center;justify-content:space-between;gap:28px;margin:0 0 24px;padding:38px 34px;color:#fff;background:linear-gradient(135deg,var(--violet),var(--violet-dark));border:1px solid rgba(255,255,255,.3);border-radius:20px;box-shadow:var(--shadow-strong)}
-.presentation-head h1{font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.08;letter-spacing:-.03em}.presentation-head p{font-size:.88rem;max-width:560px;text-align:left;color:rgba(255,255,255,.9)}
 .deck{width:100%;aspect-ratio:16/9;background:#12111a;border-radius:20px;overflow:hidden;position:relative;box-shadow:var(--shadow-strong);border:1px solid rgba(255,255,255,.45);touch-action:pan-y}
 .slide{position:absolute;inset:0;display:grid;place-items:center;opacity:0;visibility:hidden;transform:translateX(18px);transition:opacity .3s ease,transform .36s ease,visibility .3s;background:#000}
 .slide.is-active{opacity:1;visibility:visible;transform:none;z-index:2}
@@ -39,7 +38,7 @@ a{color:inherit}button{font:inherit}
 .site-footer{width:100%;max-width:1200px;margin:40px auto 0;padding:24px 28px;color:#4b4659;background:rgba(255,255,255,.96);border:1px solid rgba(255,255,255,.65);border-radius:16px;box-shadow:var(--shadow);text-align:left}.site-footer__copyright{margin:0 0 10px;color:var(--violet-dark);font-size:1rem;font-weight:700}.site-footer__legal{margin:0;font-size:.82rem;line-height:1.65}
 .deck:fullscreen{width:100vw;height:100vh;aspect-ratio:auto;border-radius:0;border:0;background:#000}.deck:fullscreen .slide img{object-fit:contain}
 @media(max-width:1050px){.site-nav__toggle{display:flex}.site-nav__links{display:none;position:absolute;top:calc(100% + 8px);left:0;right:0;background:#fff;border-radius:16px;padding:10px;box-shadow:0 15px 35px rgba(28,24,66,.2);align-items:stretch;flex-direction:column}.site-nav__links.is-open{display:flex}.site-nav__links a,.site-nav__links summary{font-size:.85rem;padding:12px}.site-nav__links li{width:100%}.site-nav__submenu,.site-nav__submenu details .site-nav__submenu{position:static;box-shadow:none;margin:4px 0 4px 14px}}
-@media(max-width:650px){body{padding:10px}.site-nav{margin-bottom:14px}.presentation-head{align-items:start;flex-direction:column;gap:10px;padding:28px 22px}.presentation-head p{text-align:left}.deck{border-radius:15px}.fullscreen{display:none}.deck-controls{gap:7px;padding:8px}.control-btn{min-width:40px;height:40px}.hint{margin-bottom:18px}.slide-dots{gap:5px}.slide-dot{width:6px;height:6px}.slide-dot.is-active{width:20px}.site-footer{margin-top:28px;padding:20px 18px}.site-footer__copyright{font-size:.92rem}.site-footer__legal{font-size:.76rem}}
+@media(max-width:650px){body{padding:10px}.site-nav{margin-bottom:14px}.deck{border-radius:15px}.fullscreen{display:none}.deck-controls{gap:7px;padding:8px}.control-btn{min-width:40px;height:40px}.hint{margin-bottom:18px}.slide-dots{gap:5px}.slide-dot{width:6px;height:6px}.slide-dot.is-active{width:20px}.site-footer{margin-top:28px;padding:20px 18px}.site-footer__copyright{font-size:.92rem}.site-footer__legal{font-size:.76rem}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 <link rel="stylesheet" href="/assets/css/navigation-nowrap.css">
@@ -57,7 +56,6 @@ a{color:inherit}button{font:inherit}
 </ul>
 </nav>
 <main class="presentation">
-<header class="presentation-head"><div><h1>Брендбук МХ «КРЯК»</h1></div><p>Официальные страницы брендбука без переработки оформления. Переключайте слайды кнопками, стрелками клавиатуры или свайпом.</p></header>
 <div class="deck" id="brandbook-deck" aria-live="polite">
 <section class="slide is-active" data-slide="0"><img src="/assets/brandbook/pages/page-01.webp" alt="Страница 1. Обложка айдентики бренда МХ «КРЯК»" width="1440" height="810"></section>
 <section class="slide" data-slide="1"><img loading="lazy" src="/assets/brandbook/pages/page-02.webp" alt="Страница 2. Авторы и область применения брендбука" width="1440" height="810"></section>
