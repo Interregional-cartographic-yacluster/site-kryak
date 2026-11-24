@@ -22,9 +22,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Получить исходный код
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Настроить GitHub Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
       # По семейному решению КРЯКтику нельзя возвращать на сайт раньше
       # 1 июля 2027 года. Исходники остаются в репозитории, но не входят
       # в публикуемый артефакт. После этой даты подключение выполняется
@@ -32,9 +32,9 @@ jobs:
       - name: Подготовить публичную версию без КРЯКтики
         run: python3 scripts/build_public_site.py
       - name: Загрузить файлы сайта
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: _site
       - name: Опубликовать сайт
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
