@@ -782,13 +782,18 @@
                 });
 
                 const officePlacemark = new ymaps.Placemark(officeCoordinates, {
+                    iconContent: 'МХ «КРЯК» | Курск',
                     hintContent: 'Курское региональное отделение МХ «КРЯК»',
                     balloonContent: '305040, г. Курск, проспект Дружбы, д. 2'
                 }, {
-                    iconLayout: 'default#image',
+                    iconLayout: 'default#imageWithContent',
                     iconImageHref: '/assets/images/favicon-kryak.png',
-                    iconImageSize: [56, 56],
-                    iconImageOffset: [-28, -56]
+                    iconImageSize: [36, 36],
+                    iconImageOffset: [-18, -36],
+                    iconContentOffset: [26, 6],
+                    iconContentLayout: ymaps.templateLayoutFactory.createClass(
+                        '<div style="pointer-events: none; padding: 4px 10px; border: 1px solid rgba(90, 74, 158, 0.35); border-radius: 8px; background: rgba(255, 255, 255, 0.95); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); font-family: Montserrat, Arial, sans-serif; font-size: 13px; font-weight: 600; line-height: 1.2; color: #5a4a9e; white-space: nowrap;">$[properties.iconContent]</div>'
+                    )
                 });
 
                 map.geoObjects.add(officePlacemark);
