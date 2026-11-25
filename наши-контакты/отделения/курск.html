@@ -798,8 +798,15 @@
                     iconImageOffset: [-18, -42],
                     iconContentOffset: [26, 12],
                     iconContentLayout: ymaps.templateLayoutFactory.createClass(
-                        '<div style="pointer-events: none; padding: 4px 10px; border: 1px solid rgba(90, 74, 158, 0.35); border-radius: 8px; background: rgba(255, 255, 255, 0.95); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); font-family: Montserrat, Arial, sans-serif; font-size: 13px; font-weight: 600; line-height: 1.2; color: #5a4a9e; white-space: nowrap;">$[properties.iconContent]</div>'
-                    )
+                        '<div style="pointer-events: none; padding: 4px 10px; border: 1px solid rgba(90, 74, 158, 0.55); border-radius: 8px; background: #ffffff; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); font-family: Montserrat, Arial, sans-serif; font-size: 13px; font-weight: 600; line-height: 1.2; color: #5a4a9e; white-space: nowrap;">$[properties.iconContent]</div>'
+                    ),
+                    // Подпись должна быть видна всегда: поднимаем метку над
+                    // тайлами и POI подложки, иначе на средних зумах POI
+                    // здания рисуется поверх гео-объектов.
+                    zIndex: 10001,
+                    zIndexActive: 10001,
+                    zIndexHover: 10001,
+                    zIndexDrag: 10001
                 });
 
                 map.geoObjects.add(officePlacemark);
