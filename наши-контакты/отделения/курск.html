@@ -781,11 +781,11 @@
                     yandexMapDisablePoiInteractivity: true
                 });
 
-                // Под ложбальной меткой может выглядывать POI здания (например,
-                // иконка музея) — убираем POI, чтобы метка КРЯКа его закрывала.
-                if (map.poi && typeof map.poi.clear === 'function') {
-                    map.poi.clear();
-                }
+                // Иконки POI — часть подложки Яндекс Карт, API скрыть их не
+                // позволяет (map.poi в JS API 2.1 нет). Поэтому иконку музея
+                // не убираем, а накрываем: метка КРЯКа посажена на белый
+                // диск-бейдж (assets/images/kryak-map-badge.png), который
+                // полностью перекрывает POI здания под ней.
 
                 const officePlacemark = new ymaps.Placemark(officeCoordinates, {
                     iconContent: 'МХ «КРЯК» | Курск',
@@ -793,16 +793,15 @@
                     balloonContent: '305040, г. Курск, проспект Дружбы, д. 2'
                 }, {
                     iconLayout: 'default#imageWithContent',
-                    iconImageHref: '/assets/images/favicon-kryak.png',
-                    iconImageSize: [36, 36],
-                    iconImageOffset: [-18, -42],
-                    iconContentOffset: [26, 12],
+                    iconImageHref: '/assets/images/kryak-map-badge.png',
+                    iconImageSize: [60, 60],
+                    iconImageOffset: [-30, -48],
+                    iconContentOffset: [36, 10],
                     iconContentLayout: ymaps.templateLayoutFactory.createClass(
                         '<div style="pointer-events: none; padding: 4px 10px; border: 1px solid rgba(90, 74, 158, 0.55); border-radius: 8px; background: #ffffff; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); font-family: Montserrat, Arial, sans-serif; font-size: 13px; font-weight: 600; line-height: 1.2; color: #5a4a9e; white-space: nowrap;">$[properties.iconContent]</div>'
                     ),
                     // Подпись должна быть видна всегда: поднимаем метку над
-                    // тайлами и POI подложки, иначе на средних зумах POI
-                    // здания рисуется поверх гео-объектов.
+                    // слоем гео-объектов подложки.
                     zIndex: 10001,
                     zIndexActive: 10001,
                     zIndexHover: 10001,
